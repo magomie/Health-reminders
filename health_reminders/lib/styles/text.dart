@@ -6,5 +6,6 @@ class TextStyles {
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: brown,
+    fontFamily: 'Garuda'
   );
 }

@@ -16,7 +16,7 @@ class landingPage extends StatelessWidget {
               SizedBox(height: 190,),
               Text('ยินดีต้อนรับ', style: TextStyle(
           color: Color.fromRGBO(107, 89, 24, 1),
-          fontFamily: 'Roboto',
+          fontFamily: 'Garuda',
           fontWeight: FontWeight.bold,
           fontSize: 24),
               ),
