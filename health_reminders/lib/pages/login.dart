@@ -87,6 +87,7 @@ class loginPage extends StatelessWidget {
                           child: Text('ลืมรหัสผ่าน?', style: TextStyle(
                               color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
                               decoration: TextDecoration.underline,
+                              fontFamily: 'Garuda',
                               fontSize: 14,
                               
                             ),
@@ -117,6 +118,7 @@ class loginPage extends StatelessWidget {
                           child: Text('หรือ', style: TextStyle(
                               color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
                               fontSize: 14,
+                              fontFamily: 'Garuda',
                               
                             ),
                           ),
@@ -132,6 +134,7 @@ class loginPage extends StatelessWidget {
                           child: Text('สมัครสมาชิก', style: TextStyle(
                               color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
                               fontSize: 14,
+                              fontFamily: 'Garuda',
                           ),
                         ),
                       ),
