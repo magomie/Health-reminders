@@ -23,3 +23,14 @@ final ButtonStyle buttontwo = ElevatedButton.styleFrom(
   shadowColor: brown,
   elevation: 1,
 );
+
+final ButtonStyle buttonlgin = ElevatedButton.styleFrom(
+  minimumSize: Size(133, 40),
+  primary: yellow,
+  //elevation: 0,
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+  ),
+  shadowColor: brown,
+  elevation: 1,
+);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/login.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/text.dart';
 
@@ -26,6 +27,10 @@ class landingPage extends StatelessWidget {
                 onPressed: () {
                   // Handle the first button press
                   print('Button 1 Pressed');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => loginPage()),
+                  );
                 },
                 child: Text('เข้าสู่ระบบ',style: TextStyles.login,),
               ),

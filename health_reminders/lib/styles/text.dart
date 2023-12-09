@@ -8,4 +8,11 @@ class TextStyles {
     color: brown,
     fontFamily: 'Garuda'
   );
+
+  static const TextStyle Tlogin = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: brown,
+    fontFamily: 'Garuda'
+  );
 }
