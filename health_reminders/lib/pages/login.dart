@@ -134,10 +134,6 @@ class loginPage extends StatelessWidget {
                   height: 10,
                 ),
                 GestureDetector(
-                          onTap: () {
-                            // Handle the "Forgot Password" action
-                            print('Forgot Password tapped');
-                          },
                          
                           child: Text('หรือ', style: TextStyle(
                               color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
@@ -151,7 +147,7 @@ class loginPage extends StatelessWidget {
                 GestureDetector(
                           onTap: () {
                             // Handle the "Forgot Password" action
-                            print('Forgot Password tapped');
+                            print('go to registerpage');
                           },
                          
                           child: Text('สมัครสมาชิก', style: TextStyle(
