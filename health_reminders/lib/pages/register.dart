@@ -3,7 +3,7 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class loginPage extends StatelessWidget {
+class registerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
@@ -22,10 +22,10 @@ class loginPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 150,
+                  height: 120,
                 ),
                 Text(
-                  'เข้าสู่ระบบ',
+                  'สมัครสมาชิก',
                   style: TextStyle(
                       color: Color.fromRGBO(107, 89, 24, 1),
                       fontFamily: 'Garuda',
@@ -61,7 +61,7 @@ class loginPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 5,
+                      height: 1,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -86,36 +86,36 @@ class loginPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 1,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 12.0),
+                      child: TextField(
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                          labelText: 'confirm password',
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 12.0, horizontal: 15.0),
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2.0),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1.0),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
 
                 //SizedBox(height: 5,),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 285,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            // Handle the "Forgot Password" action
-                            print('Forgot Password tapped');
-                          },
-                          child: Text(
-                            'ลืมรหัสผ่าน?',
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 43, 48,53), // You can change the color as needed
-                              decoration: TextDecoration.underline,
-                              fontFamily: 'Garuda',
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
 
                 SizedBox(
                   height: 10,
@@ -126,7 +126,7 @@ class loginPage extends StatelessWidget {
                     // Handle the first button press
                     print('Button 1 Pressed');
                   },
-                  child: Text('เข้าสู่ระบบ', style: TextStyles.Tlogin),
+                  child: Text('สมัคร', style: TextStyles.Tlogin),
                 ),
 
                 SizedBox(
@@ -146,10 +146,10 @@ class loginPage extends StatelessWidget {
                 GestureDetector(
                           onTap: () {
                             // Handle the "Forgot Password" action
-                            print('go to registerpage');
+                            print('go to loginpage');
                           },
                          
-                          child: Text('สมัครสมาชิก', style: TextStyle(
+                          child: Text('เข้าสู่ระบบ', style: TextStyle(
                               color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
                               fontSize: 14,
                               fontFamily: 'Garuda',

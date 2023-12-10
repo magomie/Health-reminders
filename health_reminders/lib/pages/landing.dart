@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/login.dart';
+import 'package:health_reminders/pages/register.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -52,6 +53,10 @@ class landingPage extends StatelessWidget {
                 onPressed: () {
                   // Handle the second button press
                   print('Button 2 Pressed');
+                   Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => registerPage()),
+                  );
                 },
                 child: Text(
                   'สมัครสมาชิก',
