@@ -72,7 +72,7 @@ class genderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center, 
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                              Icon(Icons.female,color: brown,),
+                              Icon(Icons.female, color: brown,),
                               Text('ผู้หญิง',
                                 style: TextStyles.login,
                               ),

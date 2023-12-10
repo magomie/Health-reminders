@@ -4,12 +4,24 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class informationPage extends StatelessWidget {
+class informationPage extends StatefulWidget {
+  @override
+  _informationPageState createState() => _informationPageState();
+}
+
+class _informationPageState extends State<informationPage> {
+  String? valueselect;
+  List listitem = [ "ไม่มีการออกกำลังกาย", 
+                    "ออกกำลังกายเล็กน้อยอาทิตย์ละ 1-3 วัน", 
+                    "ออกกำลังกายปานกลางอาทิตย์ละ 3-5 วัน", 
+                    "ออกกำลังกายอย่างหนักอาทิตย์ละ 6-7 วัน",
+                    "ออกกำลังกายอย่างหนักทุกวัน" ];
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
@@ -17,20 +29,20 @@ class informationPage extends StatelessWidget {
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
-        title: Text('ข้อมูล', 
-                    style: TextStyle(
-                      color: brown, 
-                      fontFamily: 'Garuda',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+        title: Text(
+          'ข้อมูล',
+          style: TextStyle(
+            color: brown,
+            fontFamily: 'Garuda',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
             child: Column(
               children: <Widget>[
-
                 SizedBox(
                   height: 120,
                 ),
@@ -42,7 +54,6 @@ class informationPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 24),
                 ),
-
                 Column(
                   children: [
                     SizedBox(
@@ -54,7 +65,12 @@ class informationPage extends StatelessWidget {
                       child: TextField(
                         controller: emailController,
                         decoration: InputDecoration(
-                          labelText: 'Email',
+                          labelText: 'ชื่อ',
+                          labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
+                                ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -71,7 +87,6 @@ class informationPage extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     SizedBox(
                       height: 1,
                     ),
@@ -81,7 +96,12 @@ class informationPage extends StatelessWidget {
                       child: TextField(
                         controller: passwordController,
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'อายุ',
+                          labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
+                                ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -98,7 +118,6 @@ class informationPage extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     SizedBox(
                       height: 1,
                     ),
@@ -109,6 +128,11 @@ class informationPage extends StatelessWidget {
                         controller: passwordController,
                         decoration: InputDecoration(
                           labelText: 'confirm password',
+                          labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
+                                ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -127,9 +151,58 @@ class informationPage extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 SizedBox(
-                  height: 10,
+                  height: 1,
+                ),
+                Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 12.0),
+
+                      child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey, // สีขอบ
+                          width: 1.0, // ขนาดความหนาขอบ
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      
+                      child: DropdownButton(
+                        hint: Text("ระดับการออกกำลังกาย",
+                        style: TextStyle(
+                        color: brown, // สีของ hint text
+                        fontSize: 16, // ขนาด font ของ hint text
+                        fontFamily: 'Garuda',
+                        ),
+                        ),
+                        icon: Icon(Icons.arrow_drop_down , color: brown,),
+                        iconSize: 36,
+                        style: TextStyle(
+                                          color: brown,
+                                          fontSize: 16,
+                                          fontFamily: 'Garuda',
+                                        ),
+                        value: valueselect,
+                        onChanged: (newValue) {
+                          setState(() {
+                            valueselect = newValue as String?;
+                          });
+                        },
+                        items: listitem.map((item) {
+                          return DropdownMenuItem(
+                            value: item as String?,
+                            child: Text(item! ,style: TextStyle(
+                                                color: brown, // สีของเนื้อหาใน DropdownMenuItem
+                                                fontSize: 16, // ขนาด font ของเนื้อหาใน DropdownMenuItem
+                                                fontFamily: 'Garuda',
+                                              ),),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+
+                //SizedBox(
+                 // height: 10,
                 ),
                 ElevatedButton(
                   style: buttonlgin,
@@ -137,40 +210,30 @@ class informationPage extends StatelessWidget {
                     // Handle the first button press
                     print('Button 1 Pressed');
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => genderPage()),
-                  );
+                      context,
+                      MaterialPageRoute(builder: (context) => genderPage()),
+                    );
                   },
-                  child: Text('สมัคร', style: TextStyles.Tlogin),
+                  child: Text('ยืนยัน', style: TextStyles.Tlogin),
                 ),
-
+               
                 SizedBox(
                   height: 10,
                 ),
                 GestureDetector(
-                         
-                          child: Text('หรือ', style: TextStyle(
-                              color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
-                              fontSize: 14,
-                              fontFamily: 'Garuda',
-                            ),
-                          ),
-                   ),
-        
-                SizedBox(height: 10,),
-                GestureDetector(
-                          onTap: () {
-                            // Handle the "Forgot Password" action
-                            print('go to loginpage');
-                          },
-                         
-                          child: Text('เข้าสู่ระบบ', style: TextStyle(
-                              color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
-                              fontSize: 14,
-                              fontFamily: 'Garuda',
-                          ),
-                        ),
-                      ),
+                  onTap: () {
+                    // Handle the "Forgot Password" action
+                    print('go to loginpage');
+                  },
+                  child: Text(
+                    'เข้าสู่ระบบ',
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 43, 48, 53),
+                      fontSize: 14,
+                      fontFamily: 'Garuda',
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

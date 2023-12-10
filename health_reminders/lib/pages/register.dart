@@ -47,6 +47,11 @@ class registerPage extends StatelessWidget {
                         controller: emailController,
                         decoration: InputDecoration(
                           labelText: 'Email',
+                          labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
+                                ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -74,6 +79,11 @@ class registerPage extends StatelessWidget {
                         controller: passwordController,
                         decoration: InputDecoration(
                           labelText: 'Password',
+                          labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
+                                ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -101,6 +111,11 @@ class registerPage extends StatelessWidget {
                         controller: passwordController,
                         decoration: InputDecoration(
                           labelText: 'confirm password',
+                          labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
+                                ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
