@@ -4,7 +4,7 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class registerPage extends StatelessWidget {
+class informationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
@@ -16,6 +16,14 @@ class registerPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: white,
         elevation: 0,
+        centerTitle: true,
+        title: Text('ข้อมูล', 
+                    style: TextStyle(
+                      color: brown, 
+                      fontFamily: 'Garuda',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -27,7 +35,7 @@ class registerPage extends StatelessWidget {
                   height: 120,
                 ),
                 Text(
-                  'สมัครสมาชิก',
+                  'ใส่รูปอย่างไร',
                   style: TextStyle(
                       color: Color.fromRGBO(107, 89, 24, 1),
                       fontFamily: 'Garuda',

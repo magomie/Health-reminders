@@ -53,7 +53,7 @@ class landingPage extends StatelessWidget {
                 onPressed: () {
                   // Handle the second button press
                   print('Button 2 Pressed');
-                   Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => registerPage()),
                   );

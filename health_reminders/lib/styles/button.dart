@@ -34,3 +34,25 @@ final ButtonStyle buttonlgin = ElevatedButton.styleFrom(
   shadowColor: brown,
   elevation: 1,
 );
+
+final ButtonStyle buttonwomen = ElevatedButton.styleFrom(
+  minimumSize: Size(281, 55),
+  primary: pink,
+  //elevation: 0,
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+  ),
+  shadowColor: brown,
+  elevation: 2,
+);
+
+final ButtonStyle buttonman = ElevatedButton.styleFrom(
+  minimumSize: Size(281, 55),
+  primary: blue,
+  //elevation: 0,
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+  ),
+  shadowColor: brown,
+  elevation: 2,
+);
