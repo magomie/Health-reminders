@@ -43,279 +43,288 @@ class _informationPageState extends State<informationPage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox(
-                  height: 50,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Stack(
-                      children: [
-                        CircleAvatar(
-                          radius: 64,
-                          backgroundColor: yellow,
-                        ),
-                        Positioned(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.photo_outlined,
-                              size: 50,
-                            ),
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              SizedBox(
+                height: 50,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 64,
+                        backgroundColor: yellow,
+                      ),
+                      Positioned(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.photo_outlined,
+                            size: 50,
                           ),
-                          top: 64 - 32,
-                          left: 64 - 32,
                         ),
-                      ],
+                        top: 64 - 32,
+                        left: 64 - 32,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0,
                     ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
+                    child: Text(
                       'กรุณากรอกข้อมูลทั้งหมด',
-                      textAlign: TextAlign.left,
+                      textAlign: TextAlign.end,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 12.0),
-                      child: TextField(
-                        controller: nameController,
-                        decoration: InputDecoration(
-                          labelText: 'ชื่อ',
-                          labelStyle: TextStyle(
-                              color: brown, // สีของ labelText
-                              fontSize: 16,
-                              fontFamily: 'Garuda' // ขนาด font ของ labelText
-                              ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 15.0),
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30.0, vertical: 12.0),
+                    child: TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        labelText: 'ชื่อ',
+                        labelStyle: TextStyle(
+                            color: brown, // สีของ labelText
+                            fontSize: 16,
+                            fontFamily: 'Garuda' // ขนาด font ของ labelText
+                            ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 15.0),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.grey, width: 2.0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.grey, width: 1.0),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 1,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 12.0),
-                      child: TextField(
-                        controller: ageController,
-                        decoration: InputDecoration(
-                          labelText: 'อายุ',
-                          labelStyle: TextStyle(
-                              color: brown, // สีของ labelText
-                              fontSize: 16,
-                              fontFamily: 'Garuda' // ขนาด font ของ labelText
-                              ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 15.0),
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
+                  ),
+                  SizedBox(
+                    height: 1,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30.0, vertical: 12.0),
+                    child: TextField(
+                      controller: ageController,
+                      decoration: InputDecoration(
+                        labelText: 'อายุ',
+                        labelStyle: TextStyle(
+                            color: brown, // สีของ labelText
+                            fontSize: 16,
+                            fontFamily: 'Garuda' // ขนาด font ของ labelText
+                            ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 15.0),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.grey, width: 2.0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.grey, width: 1.0),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment
-                          .spaceBetween, // Adjust the alignment as needed
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              right: 5.0,
-                              left: 30,
-                              top: 12,
-                              bottom: 12,
-                            ),
-                            child: TextField(
-                              controller: weightController,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                labelText: 'น้ำหนัก (กก.)',
-                                labelStyle: TextStyle(
-                                  color: Colors.brown,
-                                  fontSize: 16,
-                                  fontFamily: 'Garuda',
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 12.0, horizontal: 15.0),
-                                border: OutlineInputBorder(),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 2.0),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment
+                        .spaceBetween, // Adjust the alignment as needed
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            right: 5.0,
+                            left: 30,
+                            top: 12,
+                            bottom: 12,
+                          ),
+                          child: TextField(
+                            controller: weightController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              labelText: 'น้ำหนัก (กก.)',
+                              labelStyle: TextStyle(
+                                color: Colors.brown,
+                                fontSize: 16,
+                                fontFamily: 'Garuda',
+                              ),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 15.0),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 2.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(width: 5),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              right: 30.0,
-                              left: 5,
-                              top: 12,
-                              bottom: 12,
-                            ),
-                            child: TextField(
-                              controller: heightController,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                labelText: 'ส่วนสูง (ซม.) ',
-                                labelStyle: TextStyle(
-                                  color: Colors.brown,
-                                  fontSize: 16,
-                                  fontFamily: 'Garuda',
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 12.0, horizontal: 15.0),
-                                border: OutlineInputBorder(),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 2.0),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
+                      ),
+                      SizedBox(width: 5),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            right: 30.0,
+                            left: 5,
+                            top: 12,
+                            bottom: 12,
+                          ),
+                          child: TextField(
+                            controller: heightController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              labelText: 'ส่วนสูง (ซม.) ',
+                              labelStyle: TextStyle(
+                                color: Colors.brown,
+                                fontSize: 16,
+                                fontFamily: 'Garuda',
+                              ),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 15.0),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 2.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
                               ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 1,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 1,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 12.0),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 1,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 1,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 30.0, vertical: 12.0),
 
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey, // สีขอบ
-                        width: 1.0, // ขนาดความหนาขอบ
-                      ),
-                      borderRadius: BorderRadius.circular(10.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey, // สีขอบ
+                      width: 1.0, // ขนาดความหนาขอบ
                     ),
-                    child: DropdownButton(
-                      hint: Text(
-                        "ระดับการออกกำลังกาย",
-                        style: TextStyle(
-                          color: brown, // สีของ hint text
-                          fontSize: 16, // ขนาด font ของ hint text
-                          fontFamily: 'Garuda',
-                        ),
-                      ),
-                      icon: Icon(
-                        Icons.arrow_drop_down,
-                        color: brown,
-                      ),
-                      iconSize: 36,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: DropdownButton(
+                    hint: Text(
+                      "ระดับการออกกำลังกาย",
                       style: TextStyle(
-                        color: brown,
-                        fontSize: 16,
+                        color: brown, // สีของ hint text
+                        fontSize: 16, // ขนาด font ของ hint text
                         fontFamily: 'Garuda',
                       ),
-                      value: valueselect,
-                      onChanged: (newValue) {
-                        setState(() {
-                          valueselect = newValue as String?;
-                        });
-                      },
-                      items: listitem.map((item) {
-                        return DropdownMenuItem(
-                          value: item as String?,
-                          child: Text(
-                            item!,
-                            style: TextStyle(
-                              color: brown, // สีของเนื้อหาใน DropdownMenuItem
-                              fontSize:
-                                  16, // ขนาด font ของเนื้อหาใน DropdownMenuItem
-                              fontFamily: 'Garuda',
-                            ),
-                          ),
-                        );
-                      }).toList(),
                     ),
-                  ),
-
-                  //SizedBox(
-                  // height: 10,
-                ),
-                ElevatedButton(
-                  style: buttonlgin,
-                  onPressed: () {
-                    // Handle the first button press
-                    print('Button 1 Pressed');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => genderPage()),
-                    );
-                  },
-                  child: Text('ยืนยัน', style: TextStyles.Tlogin),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    // Handle the "Forgot Password" action
-                    print('go to loginpage');
-                  },
-                  child: Text(
-                    'เข้าสู่ระบบ',
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      color: brown,
+                    ),
+                    iconSize: 36,
                     style: TextStyle(
-                      color: const Color.fromARGB(255, 43, 48, 53),
-                      fontSize: 14,
+                      color: brown,
+                      fontSize: 16,
                       fontFamily: 'Garuda',
                     ),
+                    value: valueselect,
+                    onChanged: (newValue) {
+                      setState(() {
+                        valueselect = newValue as String?;
+                      });
+                    },
+                    items: listitem.map((item) {
+                      return DropdownMenuItem(
+                        value: item as String?,
+                        child: Text(
+                          item!,
+                          style: TextStyle(
+                            color: brown, // สีของเนื้อหาใน DropdownMenuItem
+                            fontSize:
+                                16, // ขนาด font ของเนื้อหาใน DropdownMenuItem
+                            fontFamily: 'Garuda',
+                          ),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
-              ],
-            ),
+
+                //SizedBox(
+                // height: 10,
+              ),
+              ElevatedButton(
+                style: buttonlgin,
+                onPressed: () {
+                  // Handle the first button press
+                  print('Button 1 Pressed');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => genderPage()),
+                  );
+                },
+                child: Text('ยืนยัน', style: TextStyles.Tlogin),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              GestureDetector(
+                onTap: () {
+                  // Handle the "Forgot Password" action
+                  print('go to loginpage');
+                },
+                child: Text(
+                  'เข้าสู่ระบบ',
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 43, 48, 53),
+                    fontSize: 14,
+                    fontFamily: 'Garuda',
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
