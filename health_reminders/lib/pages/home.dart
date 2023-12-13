@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/gender.dart';
-import 'package:health_reminders/pages/home.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class informationPage extends StatefulWidget {
+class homePage extends StatefulWidget {
   @override
   _informationPageState createState() => _informationPageState();
 }
 
-class _informationPageState extends State<informationPage> {
-  String? valueselect;
-  List listitem = [
-    "ไม่มีการออกกำลังกาย",
-    "ออกกำลังกายเล็กน้อยอาทิตย์ละ 1-3 วัน",
-    "ออกกำลังกายปานกลางอาทิตย์ละ 3-5 วัน",
-    "ออกกำลังกายอย่างหนักอาทิตย์ละ 6-7 วัน",
-    "ออกกำลังกายอย่างหนักทุกวัน"
-  ];
+class _informationPageState extends State<homePage> {
+ 
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
@@ -30,51 +22,98 @@ class _informationPageState extends State<informationPage> {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'ข้อมูล',
-          style: TextStyle(
-            color: brown,
-            fontFamily: 'Garuda',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+     
+     appBar:  AppBar(
+   automaticallyImplyLeading: false, // This property is redundant and not needed here
+  centerTitle: true,
+  title: Text(
+    'HEALTHREMINDER',
+    style: TextStyle(
+      color: Colors.brown, // Assuming 'brown' is a defined color variable
+      fontFamily: 'Garuda',
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      
+    ),
+  ),
+),
+
       body: SingleChildScrollView(
         child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: 50,
+             
+
+               
+
+               SizedBox(
+                height: 7,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 64,
-                        backgroundColor: yellow,
-                      ),
-                      Positioned(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.photo_outlined,
-                            size: 50,
-                          ),
+
+              Row(
+                  
+                  children: [
+
+                    
+                    SizedBox(width: 10,), 
+
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundColor: yellow,
+                            ),
+                            Positioned(
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.photo_outlined,
+                                  size: 50,
+                                ),
+                              ),
+                              top: 14 - 8,
+                              left: 14 - 7,
+                            ),
+                          ],
                         ),
-                        top: 64 - 32,
-                        left: 64 - 32,
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 1.0),
+                              child: Text('สมศักดิ์ ณ กทม'),
+                            ),
+                            
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(child: Text('อายุ : 23 ปี')),
+                                SizedBox(width: 10,),
+                                Expanded(child: Text('เพศ : ชาย'))
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                     SizedBox(width: 100,), 
+                  ],
+                ),
+
+
+              
+                
+              
               SizedBox(
                 height: 10,
               ),
@@ -245,59 +284,6 @@ class _informationPageState extends State<informationPage> {
                            
                 ),
 
-                child: Container(
-
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey, // สีขอบ
-                      width: 1.0, // ขนาดความหนาขอบ
-                    ),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric( vertical: 0.0, horizontal: 8.0),
-                    child: DropdownButton(
-                      hint: Text(
-                        "ระดับการออกกำลังกาย",
-                        style: TextStyle(
-                          color: brown, // สีของ hint text
-                          fontSize: 16, // ขนาด font ของ hint text
-                          fontFamily: 'Garuda',
-                        ),
-                      ),
-                      icon: Icon(
-                        Icons.arrow_drop_down,
-                        color: brown,
-                      ),
-                      iconSize: 36,
-                      style: TextStyle(
-                        color: brown,
-                        fontSize: 16,
-                        fontFamily: 'Garuda',
-                      ),
-                      value: valueselect,
-                      onChanged: (newValue) {
-                        setState(() {
-                          valueselect = newValue as String?;
-                        });
-                      },
-                      items: listitem.map((item) {
-                        return DropdownMenuItem(
-                          value: item as String?,
-                          child: Text(
-                            item!,
-                            style: TextStyle(
-                              color: brown, // สีของเนื้อหาใน DropdownMenuItem
-                              fontSize:
-                                  16, // ขนาด font ของเนื้อหาใน DropdownMenuItem
-                              fontFamily: 'Garuda',
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ),
 
                 //SizedBox(
                 // height: 10,
@@ -316,7 +302,7 @@ class _informationPageState extends State<informationPage> {
                   print('Button 1 Pressed');
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => homePage()),
+                    MaterialPageRoute(builder: (context) => genderPage()),
                   );
                 },
                 child: Text('ยืนยัน', style: TextStyles.Tlogin),

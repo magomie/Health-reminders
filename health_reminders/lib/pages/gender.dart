@@ -45,72 +45,84 @@ class genderPage extends StatelessWidget {
               SizedBox(
                 height: 190,
               ),
-              Text(
-                'เพศ',
-                style: TextStyle(
-                    color: Color.fromRGBO(107, 89, 24, 1),
-                    fontFamily: 'Garuda',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24),
+              Column(
+                children: [
+                  Text(
+                    'เพศ',
+                    style: TextStyle(
+                        color: Color.fromRGBO(107, 89, 24, 1),
+                        fontFamily: 'Garuda',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 20,
               ),
-              Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: ElevatedButton(
-                  style: buttonwomen,
-                  onPressed: () {
-                    // Handle the first button press
-                    print('Button 1 Pressed');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => informationPage()),
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center, 
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                              Icon(Icons.female, color: brown,),
-                              Text('ผู้หญิง',
-                                style: TextStyles.login,
-                              ),
-                  ],
-                  ) 
-                ),
+              Column(
+                children: [
+                  Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: ElevatedButton(
+                      style: buttonwomen,
+                      onPressed: () {
+                        // Handle the first button press
+                        print('Button 1 Pressed');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => informationPage()),
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center, 
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                                  Icon(Icons.female, color: brown,),
+                                  Text('ผู้หญิง',
+                                    style: TextStyles.login,
+                                  ),
+                      ],
+                      ) 
+                    ),
+                  ),
+                ],
               ),
               
               SizedBox(height: 10),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: ElevatedButton(
-                  
-                  style: buttonman,
-                  onPressed: () {
-                    // Handle the second button press
-                    print('Button 2 Pressed');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => informationPage()),
-                    );
-                  },
-                  
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center, // จัดตำแหน่ง
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(Icons.male,color: brown,),
-                      //SizedBox(width: 8),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: ElevatedButton(
                       
-                      Text(
-                        'ผู้ชาย',
-                        style: TextStyles.login,
-                      ),
-                  ],
-                ),
-                ),
+                      style: buttonman,
+                      onPressed: () {
+                        // Handle the second button press
+                        print('Button 2 Pressed');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => informationPage()),
+                        );
+                      },
+                      
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center, // จัดตำแหน่ง
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.male,color: brown,),
+                          //SizedBox(width: 8),
+                          
+                          Text(
+                            'ผู้ชาย',
+                            style: TextStyles.login,
+                          ),
+                      ],
+                    ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
