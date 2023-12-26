@@ -66,6 +66,102 @@ class NotificationPage extends StatelessWidget {
                 ],
               ),
 
+               SizedBox(
+                  height: 10,
+                ),
+                
+                Column(
+                children: [
+                  Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:Container(
+                      height: 60,
+                    child: ElevatedButton(
+                      style: buttonnoti,
+                      onPressed: () {
+                        // Handle the first button press
+                        print('Button 1 Pressed');
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center, 
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                                  Icon(Icons.female, color: brown,),
+                                  Text('ออกกำลังกาย',
+                                    style: TextStyles.login,
+                                  ),
+                      ],
+                      ) 
+                    ),
+                  ),
+                  ),
+                ],
+              ),
+
+              SizedBox(
+                  height: 10,
+                ),
+                
+                Column(
+                children: [
+                  Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:Container(
+                      height: 60,
+                    child: ElevatedButton(
+                      style: buttonnoti,
+                      onPressed: () {
+                        // Handle the first button press
+                        print('Button 1 Pressed');
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center, 
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                                  Icon(Icons.female, color: brown,),
+                                  Text('ออกกำลังกาย',
+                                    style: TextStyles.login,
+                                  ),
+                      ],
+                      ) 
+                    ),
+                  ),
+                  ),
+                ],
+              ),
+
+              SizedBox(
+                  height: 10,
+                ),
+                
+                Column(
+                children: [
+                  Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:Container(
+                      height: 60,
+                    child: ElevatedButton(
+                      style: buttonnoti,
+                      onPressed: () {
+                        // Handle the first button press
+                        print('Button 1 Pressed');
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center, 
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                                  Icon(Icons.female, color: brown,),
+                                  Text('ออกกำลังกาย',
+                                    style: TextStyles.login,
+                                  ),
+                      ],
+                      ) 
+                    ),
+                  ),
+                  ),
+                ],
+              ),
+
               ],
             ),
           ),
