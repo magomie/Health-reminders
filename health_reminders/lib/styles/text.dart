@@ -15,4 +15,20 @@ class TextStyles {
     color: brown,
     fontFamily: 'Garuda'
   );
+
+  static const TextStyle Thome = TextStyle(
+    fontSize: 14,
+    //fontWeight: FontWeight.bold,
+    color: brown,
+    fontFamily: 'Garuda'
+  );
+
+  static const TextStyle Thome1 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: brown,
+    fontFamily: 'Garuda'
+  );
+
 }
+

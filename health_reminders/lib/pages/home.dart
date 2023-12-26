@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/gender.dart';
+import 'package:health_reminders/pages/notification.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -106,224 +107,301 @@ class _informationPageState extends State<homePage> {
                         ),
                       ),
                     ),
+                    
                      SizedBox(width: 100,), 
                   ],
                 ),
 
+                 SizedBox(
+                  height: 10,
+                ),
 
-              
+                  //menu bmi
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0 , right: 20.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: Container(
+                                width: double.infinity,
+                                height: 65.0, // Set the desired height
+                              child: ElevatedButton(
+                                style: buttonlgin,
+                                onPressed: () {
+                                  // Handle the first button press
+                                  print('Button 1 Pressed');
+                                },
+                                child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text('น้ำหนัก', style: TextStyles.Thome),
+                                        Text('70', style: TextStyles.Thome1),
+                                        Text('กก.', style: TextStyles.Thome),
+                                      ],
+                                ),
+                              ),
+                            ),
+                            ),
+                          SizedBox(width: 10.0),
+                          Expanded(
+                              child: Container(
+                                width: double.infinity,
+                                height: 65.0, // Set the desired height
+                              child: ElevatedButton(
+                                style: buttonlgin,
+                                onPressed: () {
+                                  // Handle the first button press
+                                  print('Button 1 Pressed');
+                                },
+                                child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text('ส่วนสูง', style: TextStyles.Thome),
+                                        Text('178', style: TextStyles.Thome1),
+                                        Text('ซม.', style: TextStyles.Thome),
+                                      ],
+                                ),
+                              ),
+                            ),
+                            ),
+                          SizedBox(width: 10.0),
+                          Expanded(
+                            
+                              child: Container(
+                                width: double.infinity + 20,
+                                height: 65.0, // Set the desired height
+                              child: ElevatedButton(
+                                style: buttonbmi,
+                                onPressed: () {
+                                  // Handle the first button press
+                                  print('Button 1 Pressed');
+                                },
+                                child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text('BMI', style: TextStyles.Thome),
+                                        Text('22.09', style: TextStyles.Thome1),
+                                        Text('ปกติ', style: TextStyles.Thome),
+                                      ],
+                                ),
+                              ),
+                            ),
+                            ),
+                          
+                        ],
+                      ),
+                    ),
+
+      
+                            SizedBox(
+                              height: 20,
+                            ),
+
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 30.0,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.menu, color: brown,size: 15.0,),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        'เมนู',
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(
+                                height: 10,
+                              ),
+
+                              Padding(
+                              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      width: double.infinity,  // ตั้งค่าเป็น double.infinity เพื่อให้ช่องว่างทั้งหมดเท่ากัน
+                                      height: 100.0,
+                                      child: ElevatedButton(
+                                        style: buttonmanu,
+                                        onPressed: () {
+                                          // Handle the first button press
+                                          print('Button 1 Pressed');
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            //Icon(Icons.menu, color: brown,size: 15.0,),
+                                            Text('คำนวณแคลอรี่', style: TextStyles.Tlogin),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(width: 10.0),
+                                  Expanded(
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 100.0,
+                                      child: ElevatedButton(
+                                        style: buttonmanu,
+                                        onPressed: () {
+                                          // Handle the first button press
+                                          print('Button 2 Pressed');
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('อาหาร', style: TextStyles.Tlogin),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(width: 10.0),
+                                  Expanded(
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 100.0,
+                                      child: ElevatedButton(
+                                        style: buttonmanu,
+                                        onPressed: () {
+                                          // Handle the first button press
+                                          print('Button 3 Pressed');
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('น้ำ', style: TextStyles.Tlogin),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                             SizedBox(
+                                height: 10,
+                              ),
+
+                              Padding(
+                              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      width: double.infinity,  // ตั้งค่าเป็น double.infinity เพื่อให้ช่องว่างทั้งหมดเท่ากัน
+                                      height: 100.0,
+                                      child: ElevatedButton(
+                                        style: buttonmanu,
+                                        onPressed: () {
+                                          // Handle the first button press
+                                          print('Button 1 Pressed');
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('ออกกำลังกาย', style: TextStyles.Tlogin),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(width: 10.0),
+                                  Expanded(
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 100.0,
+                                      child: ElevatedButton(
+                                        style: buttonmanu,
+                                        onPressed: () {
+                                          // Handle the first button press
+                                          print('Button 2 Pressed');
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('BMI/BMR', style: TextStyles.Tlogin),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(width: 10.0),
+                                  Expanded(
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 100.0,
+                                      child: ElevatedButton(
+                                        style: buttonmanu,
+                                        onPressed: () {
+                                          // Handle the first button press
+                                          print('Button 3 Pressed');
+                                          Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => NotificationPage()),
+                                        );
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('แจ้งเตือน', style: TextStyles.Tlogin),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                             SizedBox(
+                                height: 10,
+                              ),
+
+                              Padding(
+                              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      width: 20.0,  // ตั้งค่าเป็น double.infinity เพื่อให้ช่องว่างทั้งหมดเท่ากัน
+                                      height: 100.0,
+                                      child: ElevatedButton(
+                                        style: buttonmanu,
+                                        onPressed: () {
+                                          // Handle the first button press
+                                          print('Button 1 Pressed');
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('ข่าวสารสุขภาพ', style: TextStyles.Tlogin),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
                 
-              
-              SizedBox(
-                height: 10,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30.0,
-                    ),
-                    child: Text(
-                      'กรุณากรอกข้อมูลทั้งหมด',
-                      textAlign: TextAlign.end,
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0, vertical: 12.0),
-                    child: TextField(
-                      controller: nameController,
-                      decoration: InputDecoration(
-                        labelText: 'ชื่อ',
-                        labelStyle: TextStyle(
-                            color: brown, // สีของ labelText
-                            fontSize: 16,
-                            fontFamily: 'Garuda' // ขนาด font ของ labelText
-                            ),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 15.0),
-                        border: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 2.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 1.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 1,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0, vertical: 12.0),
-                    child: TextField(
-                      controller: ageController,
-                      decoration: InputDecoration(
-                        labelText: 'อายุ',
-                        labelStyle: TextStyle(
-                            color: brown, // สีของ labelText
-                            fontSize: 16,
-                            fontFamily: 'Garuda' // ขนาด font ของ labelText
-                            ),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 15.0),
-                        border: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 2.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 1.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                   SizedBox(
-                    height: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment
-                        .spaceBetween, // Adjust the alignment as needed
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            right: 5.0,
-                            left: 30,
-                            top: 12.0,
-                            bottom: 12.0,
-                            
-                          ),
-                          child: TextField(
-                            controller: weightController,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              labelText: 'น้ำหนัก (กก.)',
-                              labelStyle: TextStyle(
-                                color: Colors.brown,
-                                fontSize: 16,
-                                fontFamily: 'Garuda',
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 12.0, horizontal: 15.0),
-                              border: OutlineInputBorder(),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 2.0),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 1.0),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 1),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            right: 30.0,
-                            left: 5,
-                            top: 12.0,
-                            bottom: 12.0,
-                            
-                          ),
-                          child: TextField(
-                            controller: heightController,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              labelText: 'ส่วนสูง (ซม.) ',
-                              labelStyle: TextStyle(
-                                color: Colors.brown,
-                                fontSize: 16,
-                                fontFamily: 'Garuda',
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 12.0, horizontal: 15.0),
-                              border: OutlineInputBorder(),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 2.0),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 1.0),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 1,
-                  ),
-              Padding(
-                padding: const EdgeInsets.only(
-                            right: 30.0, left: 30.0, top: 12.0 , bottom: 12.0,
-                           
-                ),
-
-
-                //SizedBox(
-                // height: 10,
-              ),
-
-                ],
-              ),
-              SizedBox(
-                height: 1,
-              ),
-              
-              ElevatedButton(
-                style: buttonlgin,
-                onPressed: () {
-                  // Handle the first button press
-                  print('Button 1 Pressed');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => genderPage()),
-                  );
-                },
-                child: Text('ยืนยัน', style: TextStyles.Tlogin),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: () {
-                  // Handle the "Forgot Password" action
-                  print('go to loginpage');
-                },
-                child: Text(
-                  'เข้าสู่ระบบ',
-                  style: TextStyle(
-                    color: const Color.fromARGB(255, 43, 48, 53),
-                    fontSize: 14,
-                    fontFamily: 'Garuda',
-                  ),
-                ),
-              ),
             ],
           ),
         ),
