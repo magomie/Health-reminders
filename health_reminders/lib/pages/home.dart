@@ -24,20 +24,20 @@ class _informationPageState extends State<homePage> {
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
      
-     appBar:  AppBar(
-   automaticallyImplyLeading: false, // This property is redundant and not needed here
-  centerTitle: true,
-  title: Text(
-    'HEALTHREMINDER',
-    style: TextStyle(
-      color: Colors.brown, // Assuming 'brown' is a defined color variable
-      fontFamily: 'Garuda',
-      fontSize: 20,
-      fontWeight: FontWeight.bold,
-      
+      appBar:  AppBar(
+      automaticallyImplyLeading: false, // This property is redundant and not needed here
+      centerTitle: true,
+      title: Text(
+        'HEALTHREMINDER',
+        style: TextStyle(
+          color: Colors.brown, // Assuming 'brown' is a defined color variable
+          fontFamily: 'Garuda',
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          
+        ),
+      ),
     ),
-  ),
-),
 
       body: SingleChildScrollView(
         child: Container(
@@ -53,11 +53,8 @@ class _informationPageState extends State<homePage> {
                 height: 7,
               ),
 
-              Row(
-                  
-                  children: [
-
-                    
+              Row(        
+                  children: [                 
                     SizedBox(width: 10,), 
 
                     Expanded(

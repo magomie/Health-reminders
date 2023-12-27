@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/notidrug.dart';
+import 'package:health_reminders/pages/notiexercise.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -41,7 +43,7 @@ class NotificationPage extends StatelessWidget {
                 Column(
                 children: [
                   Padding(
-                   padding: const EdgeInsets.symmetric(horizontal: 20),
+                   padding: const EdgeInsets.symmetric(horizontal: 25),
                     child:Container(
                       height: 60,
                     child: ElevatedButton(
@@ -49,13 +51,17 @@ class NotificationPage extends StatelessWidget {
                       onPressed: () {
                         // Handle the first button press
                         print('Button 1 Pressed');
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => notiexcerisePage()),
+                      );
                       },
+                      
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center, 
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                                   Icon(Icons.female, color: brown,),
-                                  Text('ออกกำลังกาย',
+                                  Text('เวลาออกกำลังกาย',
                                     style: TextStyles.login,
                                   ),
                       ],
@@ -73,21 +79,24 @@ class NotificationPage extends StatelessWidget {
                 Column(
                 children: [
                   Padding(
-                   padding: const EdgeInsets.symmetric(horizontal: 20),
+                   padding: const EdgeInsets.symmetric(horizontal: 25),
                     child:Container(
                       height: 60,
                     child: ElevatedButton(
                       style: buttonnoti,
                       onPressed: () {
                         // Handle the first button press
-                        print('Button 1 Pressed');
+                        print('go to drug notification');
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => notidrugPage()),
+                      );
                       },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center, 
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                                   Icon(Icons.female, color: brown,),
-                                  Text('ออกกำลังกาย',
+                                  Text('เวลารับประทานยา',
                                     style: TextStyles.login,
                                   ),
                       ],
@@ -105,7 +114,7 @@ class NotificationPage extends StatelessWidget {
                 Column(
                 children: [
                   Padding(
-                   padding: const EdgeInsets.symmetric(horizontal: 20),
+                   padding: const EdgeInsets.symmetric(horizontal: 25),
                     child:Container(
                       height: 60,
                     child: ElevatedButton(
@@ -115,11 +124,10 @@ class NotificationPage extends StatelessWidget {
                         print('Button 1 Pressed');
                       },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center, 
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                                   Icon(Icons.female, color: brown,),
-                                  Text('ออกกำลังกาย',
+                                  Text('เวลานัดพบแพทย์',
                                     style: TextStyles.login,
                                   ),
                       ],
@@ -137,7 +145,7 @@ class NotificationPage extends StatelessWidget {
                 Column(
                 children: [
                   Padding(
-                   padding: const EdgeInsets.symmetric(horizontal: 20),
+                   padding: const EdgeInsets.symmetric(horizontal: 25),
                     child:Container(
                       height: 60,
                     child: ElevatedButton(
@@ -147,11 +155,10 @@ class NotificationPage extends StatelessWidget {
                         print('Button 1 Pressed');
                       },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center, 
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                                   Icon(Icons.female, color: brown,),
-                                  Text('ออกกำลังกาย',
+                                  Text('เวลานอน',
                                     style: TextStyles.login,
                                   ),
                       ],
