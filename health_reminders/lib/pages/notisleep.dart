@@ -6,9 +6,7 @@ import 'package:health_reminders/styles/text.dart';
 class notisleepPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
+    
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,

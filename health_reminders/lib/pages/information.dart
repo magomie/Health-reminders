@@ -239,7 +239,7 @@ class _informationPageState extends State<informationPage> {
                   SizedBox(
                     height: 1,
                   ),
-              Padding(
+                Padding(
                 padding: const EdgeInsets.only(
                             right: 30.0, left: 30.0, top: 12.0 , bottom: 12.0,
                            

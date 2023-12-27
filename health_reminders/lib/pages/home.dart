@@ -11,13 +11,7 @@ class homePage extends StatefulWidget {
 }
 
 class _informationPageState extends State<homePage> {
- 
-
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
-  final TextEditingController weightController = TextEditingController();
-  final TextEditingController heightController = TextEditingController();
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

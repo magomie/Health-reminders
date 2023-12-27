@@ -7,9 +7,7 @@ import 'package:health_reminders/styles/text.dart';
 class notidrugPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
+    
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
@@ -44,7 +42,6 @@ class notidrugPage extends StatelessWidget {
         child: Center(
           child: Container(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                          
 
