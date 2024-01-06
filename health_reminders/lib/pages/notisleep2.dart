@@ -3,10 +3,10 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class notiexercise2Page extends StatelessWidget {
+class  notisleep2Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController exerciseController = TextEditingController();
+    
     final TextEditingController dateController = TextEditingController();
     final TextEditingController timeController = TextEditingController();
     final TextEditingController noteController = TextEditingController();
@@ -18,7 +18,7 @@ class notiexercise2Page extends StatelessWidget {
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
-        title: Text( 'เวลาออกกำลังกาย', 
+        title: Text( 'เวลานอน', 
             style: TextStyle(
             color: Colors.brown, // Assuming 'brown' is a defined color variable
             fontFamily: 'Garuda',
@@ -69,37 +69,6 @@ class notiexercise2Page extends StatelessWidget {
                   ),
                  ],
                 ),
-
-                Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0, vertical: 12.0),
-                    child: TextField(
-                      controller: exerciseController,
-                      decoration: InputDecoration(
-                        labelText: 'รูปแบบการออกกำลังกาย',
-                        labelStyle: TextStyle(
-                            color: brown, // สีของ labelText
-                            fontSize: 16,
-                            fontFamily: 'Garuda' // ขนาด font ของ labelText
-                            ),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 15.0),
-                        border: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 2.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 1.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
 
                    SizedBox(
                     height: 1,
@@ -221,11 +190,11 @@ class notiexercise2Page extends StatelessWidget {
                  ),
                 ],
                ),
-              ],
+              
              ),
             ),
           ),
-        ),
+        
       );
   }
 }

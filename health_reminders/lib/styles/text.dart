@@ -30,5 +30,14 @@ class TextStyles {
     fontFamily: 'Garuda'
   );
 
+   static const TextStyle Tunder = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    decoration: TextDecoration.underline,
+    decorationThickness: 4.0,
+    color: brown,
+    fontFamily: 'Garuda'
+  );
+
 }
 

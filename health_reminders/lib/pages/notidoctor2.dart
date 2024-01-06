@@ -3,10 +3,10 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class notiexercise2Page extends StatelessWidget {
+class notidoctor2Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController exerciseController = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
     final TextEditingController dateController = TextEditingController();
     final TextEditingController timeController = TextEditingController();
     final TextEditingController noteController = TextEditingController();
@@ -18,7 +18,7 @@ class notiexercise2Page extends StatelessWidget {
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
-        title: Text( 'เวลาออกกำลังกาย', 
+        title: Text( 'เวลานัดพบแพทย์', 
             style: TextStyle(
             color: Colors.brown, // Assuming 'brown' is a defined color variable
             fontFamily: 'Garuda',
@@ -76,9 +76,9 @@ class notiexercise2Page extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30.0, vertical: 12.0),
                     child: TextField(
-                      controller: exerciseController,
+                      controller: nameController,
                       decoration: InputDecoration(
-                        labelText: 'รูปแบบการออกกำลังกาย',
+                        labelText: 'หมายนัด',
                         labelStyle: TextStyle(
                             color: brown, // สีของ labelText
                             fontSize: 16,

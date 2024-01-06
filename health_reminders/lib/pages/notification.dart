@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/notidoctor2.dart';
 import 'package:health_reminders/pages/notidrug.dart';
 import 'package:health_reminders/pages/notiexercise.dart';
+import 'package:health_reminders/pages/notisleep.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -119,7 +121,11 @@ class NotificationPage extends StatelessWidget {
                       style: buttonnoti,
                       onPressed: () {
                         // Handle the first button press
-                        print('Button 1 Pressed');
+                        print('go to doctor notification');
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => notidoctor2Page()),
+                      );
                       },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -149,8 +155,12 @@ class NotificationPage extends StatelessWidget {
                     child: ElevatedButton(
                       style: buttonnoti,
                       onPressed: () {
-                        // Handle the first button press
-                        print('Button 1 Pressed');
+                        
+                        print('go to sleepy notification');
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => notisleepPage()),
+                      );
                       },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,

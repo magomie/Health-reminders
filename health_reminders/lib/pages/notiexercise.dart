@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/notiexercire2.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -30,7 +31,7 @@ class notiexcerisePage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => notiexcerisePage()),
+                        MaterialPageRoute(builder: (context) => notiexercise2Page()),
                       );
             },
           ),

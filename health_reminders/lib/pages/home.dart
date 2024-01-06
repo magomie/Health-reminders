@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/addmenu.dart';
+import 'package:health_reminders/pages/addmenucal.dart';
+import 'package:health_reminders/pages/addmenucal.dart';
 import 'package:health_reminders/pages/gender.dart';
 import 'package:health_reminders/pages/notification.dart';
 import 'package:health_reminders/styles/button.dart';
@@ -227,6 +230,10 @@ class _informationPageState extends State<homePage> {
                                         onPressed: () {
                                           // Handle the first button press
                                           print('Button 1 Pressed');
+                                          Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => addmenucalPage()),
+                                        );
                                         },
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -249,6 +256,10 @@ class _informationPageState extends State<homePage> {
                                         onPressed: () {
                                           // Handle the first button press
                                           print('Button 2 Pressed');
+                                          Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => addmenuPage()),
+                                        );
                                         },
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment.center,
