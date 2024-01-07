@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/addmenu.dart';
 import 'package:health_reminders/pages/addmenucal.dart';
 import 'package:health_reminders/pages/addmenucal.dart';
+import 'package:health_reminders/pages/exercise.dart';
 import 'package:health_reminders/pages/gender.dart';
 import 'package:health_reminders/pages/notification.dart';
 import 'package:health_reminders/styles/button.dart';
@@ -311,7 +312,11 @@ class _informationPageState extends State<homePage> {
                                         style: buttonmanu,
                                         onPressed: () {
                                           // Handle the first button press
-                                          print('Button 1 Pressed');
+                                          print('Button go to exercisepage');
+                                           Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => exercisePage()),
+                                        );
                                         },
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment.center,
