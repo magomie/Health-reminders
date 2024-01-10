@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/notidoctor2.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -24,6 +25,25 @@ class notidoctorPage extends StatelessWidget {
             
           ),
         ),
+
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: brown),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add_circle_outline , color: brown,),
+            onPressed: () {
+              Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => notidoctor2Page()),
+                      );
+            },
+          ),
+        ],
       ),
 
 

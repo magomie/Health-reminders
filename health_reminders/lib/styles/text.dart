@@ -30,11 +30,23 @@ class TextStyles {
     fontFamily: 'Garuda'
   );
 
-   static const TextStyle Tunder = TextStyle(
+  static const TextStyle Tunder = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
     decoration: TextDecoration.underline,
     decorationThickness: 4.0,
+    color: brown,
+    fontFamily: 'Garuda'
+  );
+
+  static const TextStyle common = TextStyle(
+    fontSize: 16,
+    color: brown,
+    fontFamily: 'Garuda'
+  );
+
+    static const TextStyle common2 = TextStyle(
+    fontSize: 14,
     color: brown,
     fontFamily: 'Garuda'
   );

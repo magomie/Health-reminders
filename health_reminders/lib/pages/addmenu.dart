@@ -27,6 +27,13 @@ class addmenuPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: brown),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
          actions: [
         Padding(
           padding: const EdgeInsets.all(8.0),

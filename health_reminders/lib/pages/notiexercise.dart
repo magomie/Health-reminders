@@ -25,9 +25,16 @@ class notiexcerisePage extends StatelessWidget {
           ),
         ),
 
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: brown),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+
           actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add_circle_outline , color: brown,),
             onPressed: () {
               Navigator.push(
                         context,

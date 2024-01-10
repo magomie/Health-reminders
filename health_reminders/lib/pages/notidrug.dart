@@ -26,7 +26,7 @@ class notidrugPage extends StatelessWidget {
 
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add_circle_outline , color: brown,),
             onPressed: () {
               Navigator.push(
                         context,
@@ -38,17 +38,19 @@ class notidrugPage extends StatelessWidget {
       ),
 
 
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+    
           child: Container(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                         
+                 Image.asset('asset/image/drug.png',width: 200,height: 200,)
 
               ],
             ),
           ),
-        ),
+    
       ),
     );
   }
