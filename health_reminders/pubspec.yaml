@@ -57,6 +57,7 @@ flutter:
   assets:
     - asset/image/drug.png
     - asset/image/mumu.jpg
+    - asset/image/run.jpg
 
   uses-material-design: true
 

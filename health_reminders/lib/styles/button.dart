@@ -89,3 +89,14 @@ final ButtonStyle buttonnoti = ElevatedButton.styleFrom(
   shadowColor: brown,
   elevation: 1,
 );
+
+final ButtonStyle calorie = ElevatedButton.styleFrom(
+  minimumSize: Size(281, 90),
+  //elevation: 0,
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+     side: BorderSide(color:brown),
+  ),
+  //shadowColor: yellow,
+  elevation: 1,
+);

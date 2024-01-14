@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/addmenu.dart';
 import 'package:health_reminders/pages/addmenucal.dart';
 import 'package:health_reminders/pages/addmenucal.dart';
+import 'package:health_reminders/pages/calcalorie.dart';
 import 'package:health_reminders/pages/exercise.dart';
 import 'package:health_reminders/pages/food.dart';
 import 'package:health_reminders/pages/gender.dart';
@@ -39,8 +40,8 @@ class _informationPageState extends State<homePage> {
       body: SingleChildScrollView(
         child: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
+             mainAxisAlignment: MainAxisAlignment.center,
+            
             children: <Widget>[
               SizedBox(
                 height: 5,
@@ -225,7 +226,7 @@ class _informationPageState extends State<homePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => addmenucalPage()),
+                                  builder: (context) => calcaloriePage()),
                             );
                           },
                           child: Column(

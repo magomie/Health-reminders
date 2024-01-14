@@ -72,9 +72,10 @@ class newsPage extends StatelessWidget {
                               softWrap: true,
                               overflow: TextOverflow.visible,
                             ),
-                            TextButton(onPressed: () {
-            
-          }, child: Text('อ่านเพิ่มเติม'))
+                            TextButton(
+                              onPressed: () {},
+                              child: Text('อ่านเพิ่มเติม'),
+                            ),
                           ],
                         ),
                       ),

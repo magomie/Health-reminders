@@ -3,6 +3,7 @@ import 'package:health_reminders/pages/notidoctor2.dart';
 import 'package:health_reminders/pages/notidrug.dart';
 import 'package:health_reminders/pages/notiexercise.dart';
 import 'package:health_reminders/pages/notisleep.dart';
+import 'package:health_reminders/pages/run.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -53,7 +54,7 @@ class exercisePage extends StatelessWidget {
                         print('Button 1 Pressed');
                         Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => notiexcerisePage()),
+                        MaterialPageRoute(builder: (context) => runPage()),
                       );
                       },
                       
