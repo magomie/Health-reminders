@@ -7,5 +7,6 @@ const Color pink = Color(0xFFF7CFF0);
 const Color blue = Color(0xFFC7E4FF); 
 const Color green = Color(0xFFC82EA99); 
 const Color manu = Color(0xFFFFFFFF); 
-const Color noti = Color(0xFFF9F9F9); 
+const Color noti = Color(0xFFF9F9F9);
+const Color aa = Color.fromARGB(255, 226, 226, 214);  
 

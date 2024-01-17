@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/addmenu.dart';
 import 'package:health_reminders/pages/addmenucal.dart';
 import 'package:health_reminders/pages/addmenucal.dart';
+import 'package:health_reminders/pages/bmr_bmr_page.dart';
 import 'package:health_reminders/pages/calcalorie.dart';
 import 'package:health_reminders/pages/exercise.dart';
 import 'package:health_reminders/pages/food.dart';
 import 'package:health_reminders/pages/gender.dart';
 import 'package:health_reminders/pages/news.dart';
 import 'package:health_reminders/pages/notification.dart';
+import 'package:health_reminders/pages/water.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -248,7 +250,7 @@ class _informationPageState extends State<homePage> {
                           style: buttonmanu,
                           onPressed: () {
                             // Handle the first button press
-                            print('Button 2 Pressed');
+                            print('go to foodpage');
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -273,7 +275,12 @@ class _informationPageState extends State<homePage> {
                           style: buttonmanu,
                           onPressed: () {
                             // Handle the first button press
-                            print('Button 3 Pressed');
+                            print('go to waterpage');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => waterPage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -331,6 +338,7 @@ class _informationPageState extends State<homePage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 2 Pressed');
+                            Navigator.push(context, MaterialPageRoute(builder:(context)=>bmi_bmr_page()),);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

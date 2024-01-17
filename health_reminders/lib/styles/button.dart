@@ -91,7 +91,7 @@ final ButtonStyle buttonnoti = ElevatedButton.styleFrom(
 );
 
 final ButtonStyle calorie = ElevatedButton.styleFrom(
-  minimumSize: Size(281, 90),
+  minimumSize: Size(281, 100),
   //elevation: 0,
   shape: const RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -99,4 +99,27 @@ final ButtonStyle calorie = ElevatedButton.styleFrom(
   ),
   //shadowColor: yellow,
   elevation: 1,
+);
+
+final ButtonStyle sosweetfat = ElevatedButton.styleFrom(
+  minimumSize: Size(130, 100),
+  primary: manu,
+  //elevation: 0,
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+    side: BorderSide(color:brown),
+  ),
+  //shadowColor: brown,
+  elevation: 1,
+);
+
+final ButtonStyle foodbutton = ElevatedButton.styleFrom(
+  minimumSize: Size(281, 61),
+  primary: noti,
+  //elevation: 0,
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+  ),
+  //shadowColor: brown,
+  //elevation: 1,
 );
