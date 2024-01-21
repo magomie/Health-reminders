@@ -58,5 +58,12 @@ class TextStyles {
     fontFamily: 'Garuda'
   );
 
+   static const TextStyle common4 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: brown,
+    fontFamily: 'Garuda'
+  );
+
 }
 
