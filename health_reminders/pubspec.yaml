@@ -39,6 +39,7 @@ dependencies:
   intl: ^0.17.0
   animated_toggle_switch: ^0.8.0
   toggle_switch: ^2.1.0
+  page_transition: ^2.1.0
 
 dev_dependencies:
   flutter_test:

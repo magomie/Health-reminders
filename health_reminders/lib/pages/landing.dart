@@ -4,6 +4,7 @@ import 'package:health_reminders/pages/register.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:page_transition/page_transition.dart';
 
 class landingPage extends StatelessWidget {
   @override
@@ -39,7 +40,10 @@ class landingPage extends StatelessWidget {
                   print('Button 1 Pressed');
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => loginPage()),
+                    PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: loginPage(),
+                  ),
                   );
                 },
                 child: Text(
@@ -55,7 +59,10 @@ class landingPage extends StatelessWidget {
                   print('Button 2 Pressed');
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => registerPage()),
+                    PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: registerPage(),
+                  ),
                   );
                 },
                 child: Text(

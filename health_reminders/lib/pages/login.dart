@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/register.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:page_transition/page_transition.dart';
 
 class loginPage extends StatelessWidget {
   @override
@@ -45,10 +47,10 @@ class loginPage extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'Email',
                           labelStyle: TextStyle(
-                                  color: brown, // สีของ labelText
-                                  fontSize: 16,
-                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
-                                ),
+                              color: brown, // สีของ labelText
+                              fontSize: 16,
+                              fontFamily: 'Garuda' // ขนาด font ของ labelText
+                              ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -76,10 +78,10 @@ class loginPage extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'Password',
                           labelStyle: TextStyle(
-                                  color: brown, // สีของ labelText
-                                  fontSize: 16,
-                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
-                                ),
+                              color: brown, // สีของ labelText
+                              fontSize: 16,
+                              fontFamily: 'Garuda' // ขนาด font ของ labelText
+                              ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -115,7 +117,8 @@ class loginPage extends StatelessWidget {
                           child: Text(
                             'ลืมรหัสผ่าน?',
                             style: TextStyle(
-                              color: const Color.fromARGB(255, 43, 48,53), // You can change the color as needed
+                              color: const Color.fromARGB(255, 43, 48,
+                                  53), // You can change the color as needed
                               decoration: TextDecoration.underline,
                               fontFamily: 'Garuda',
                               fontSize: 14,
@@ -134,7 +137,7 @@ class loginPage extends StatelessWidget {
                   style: buttonlgin,
                   onPressed: () {
                     // Handle the first button press
-                    print('Button 1 Pressed');
+                    print('เข้าสู่ระบบ');
                   },
                   child: Text('เข้าสู่ระบบ', style: TextStyles.Tlogin),
                 ),
@@ -143,29 +146,42 @@ class loginPage extends StatelessWidget {
                   height: 10,
                 ),
                 GestureDetector(
-                         
-                          child: Text('หรือ', style: TextStyle(
-                              color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
-                              fontSize: 14,
-                              fontFamily: 'Garuda',
-                            ),
-                          ),
-                   ),
-        
-                SizedBox(height: 10,),
+                  child: Text(
+                    'หรือ',
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 43, 48,
+                          53), // You can change the color as needed
+                      fontSize: 14,
+                      fontFamily: 'Garuda',
+                    ),
+                  ),
+                ),
+
+                SizedBox(
+                  height: 10,
+                ),
                 GestureDetector(
-                          onTap: () {
-                            // Handle the "Forgot Password" action
-                            print('go to registerpage');
-                          },
-                         
-                          child: Text('สมัครสมาชิก', style: TextStyle(
-                              color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
-                              fontSize: 14,
-                              fontFamily: 'Garuda',
-                          ),
-                        ),
+                  onTap: () {
+                    // Handle the "Forgot Password" action
+                    print('go to registerpage');
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: registerPage(),
                       ),
+                    );
+                  },
+                  child: Text(
+                    'สมัครสมาชิก',
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 43, 48,
+                          53), // You can change the color as needed
+                      fontSize: 14,
+                      fontFamily: 'Garuda',
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

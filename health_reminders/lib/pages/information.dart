@@ -4,6 +4,7 @@ import 'package:health_reminders/pages/home.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:page_transition/page_transition.dart';
 
 class informationPage extends StatefulWidget {
   @override
@@ -154,7 +155,7 @@ class _informationPageState extends State<informationPage> {
                       ),
                     ),
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 1,
                   ),
                   Row(
@@ -168,7 +169,6 @@ class _informationPageState extends State<informationPage> {
                             left: 30,
                             top: 12.0,
                             bottom: 12.0,
-                            
                           ),
                           child: TextField(
                             controller: weightController,
@@ -205,7 +205,6 @@ class _informationPageState extends State<informationPage> {
                             left: 5,
                             top: 12.0,
                             bottom: 12.0,
-                            
                           ),
                           child: TextField(
                             controller: heightController,
@@ -239,76 +238,77 @@ class _informationPageState extends State<informationPage> {
                   SizedBox(
                     height: 1,
                   ),
-                Padding(
-                padding: const EdgeInsets.only(
-                            right: 30.0, left: 30.0, top: 12.0 , bottom: 12.0,
-                           
-                ),
-
-                child: Container(
-
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey, // สีขอบ
-                      width: 1.0, // ขนาดความหนาขอบ
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      right: 30.0,
+                      left: 30.0,
+                      top: 12.0,
+                      bottom: 12.0,
                     ),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric( vertical: 0.0, horizontal: 8.0),
-                    child: DropdownButton(
-                      hint: Text(
-                        "ระดับการออกกำลังกาย",
-                        style: TextStyle(
-                          color: brown, // สีของ hint text
-                          fontSize: 16, // ขนาด font ของ hint text
-                          fontFamily: 'Garuda',
+
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey, // สีขอบ
+                          width: 1.0, // ขนาดความหนาขอบ
                         ),
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      icon: Icon(
-                        Icons.arrow_drop_down,
-                        color: brown,
-                      ),
-                      iconSize: 36,
-                      style: TextStyle(
-                        color: brown,
-                        fontSize: 16,
-                        fontFamily: 'Garuda',
-                      ),
-                      value: valueselect,
-                      onChanged: (newValue) {
-                        setState(() {
-                          valueselect = newValue as String?;
-                        });
-                      },
-                      items: listitem.map((item) {
-                        return DropdownMenuItem(
-                          value: item as String?,
-                          child: Text(
-                            item!,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 0.0, horizontal: 8.0),
+                        child: DropdownButton(
+                          hint: Text(
+                            "ระดับการออกกำลังกาย",
                             style: TextStyle(
-                              color: brown, // สีของเนื้อหาใน DropdownMenuItem
-                              fontSize:
-                                  16, // ขนาด font ของเนื้อหาใน DropdownMenuItem
+                              color: brown, // สีของ hint text
+                              fontSize: 16, // ขนาด font ของ hint text
                               fontFamily: 'Garuda',
                             ),
                           ),
-                        );
-                      }).toList(),
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: brown,
+                          ),
+                          iconSize: 36,
+                          style: TextStyle(
+                            color: brown,
+                            fontSize: 16,
+                            fontFamily: 'Garuda',
+                          ),
+                          value: valueselect,
+                          onChanged: (newValue) {
+                            setState(() {
+                              valueselect = newValue as String?;
+                            });
+                          },
+                          items: listitem.map((item) {
+                            return DropdownMenuItem(
+                              value: item as String?,
+                              child: Text(
+                                item!,
+                                style: TextStyle(
+                                  color:
+                                      brown, // สีของเนื้อหาใน DropdownMenuItem
+                                  fontSize:
+                                      16, // ขนาด font ของเนื้อหาใน DropdownMenuItem
+                                  fontFamily: 'Garuda',
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
                     ),
+
+                    //SizedBox(
+                    // height: 10,
                   ),
-                ),
-
-                //SizedBox(
-                // height: 10,
-              ),
-
                 ],
               ),
               SizedBox(
                 height: 1,
               ),
-              
               ElevatedButton(
                 style: buttonlgin,
                 onPressed: () {
@@ -316,27 +316,10 @@ class _informationPageState extends State<informationPage> {
                   print('Button 1 Pressed');
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => homePage()),
+                    PageTransition(child: homePage(), type: PageTransitionType.rightToLeft),
                   );
                 },
                 child: Text('ยืนยัน', style: TextStyles.Tlogin),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: () {
-                  // Handle the "Forgot Password" action
-                  print('go to loginpage');
-                },
-                child: Text(
-                  'เข้าสู่ระบบ',
-                  style: TextStyle(
-                    color: const Color.fromARGB(255, 43, 48, 53),
-                    fontSize: 14,
-                    fontFamily: 'Garuda',
-                  ),
-                ),
               ),
             ],
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/addmenu.dart';
 import 'package:health_reminders/pages/addmenucal.dart';
 import 'package:health_reminders/pages/addmenucal.dart';
+import 'package:health_reminders/pages/admin.dart';
 import 'package:health_reminders/pages/bmr_bmr_page.dart';
 import 'package:health_reminders/pages/calcalorie.dart';
 import 'package:health_reminders/pages/exercise.dart';
@@ -38,6 +39,26 @@ class _informationPageState extends State<homePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: brown),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.add_circle_outline,
+              color: brown,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => adminPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -434,6 +455,7 @@ class _informationPageState extends State<homePage> {
                   ],
                 ),
               ),
+              
             ],
           ),
         ),

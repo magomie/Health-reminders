@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/gender.dart';
+import 'package:health_reminders/pages/login.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:page_transition/page_transition.dart';
 
 class registerPage extends StatelessWidget {
   @override
@@ -22,7 +24,6 @@ class registerPage extends StatelessWidget {
           child: Container(
             child: Column(
               children: <Widget>[
-
                 SizedBox(
                   height: 120,
                 ),
@@ -34,7 +35,6 @@ class registerPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 24),
                 ),
-
                 Column(
                   children: [
                     SizedBox(
@@ -48,10 +48,10 @@ class registerPage extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'Email',
                           labelStyle: TextStyle(
-                                  color: brown, // สีของ labelText
-                                  fontSize: 16,
-                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
-                                ),
+                              color: brown, // สีของ labelText
+                              fontSize: 16,
+                              fontFamily: 'Garuda' // ขนาด font ของ labelText
+                              ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -68,7 +68,6 @@ class registerPage extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     SizedBox(
                       height: 1,
                     ),
@@ -80,10 +79,10 @@ class registerPage extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'Password',
                           labelStyle: TextStyle(
-                                  color: brown, // สีของ labelText
-                                  fontSize: 16,
-                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
-                                ),
+                              color: brown, // สีของ labelText
+                              fontSize: 16,
+                              fontFamily: 'Garuda' // ขนาด font ของ labelText
+                              ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -100,7 +99,6 @@ class registerPage extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     SizedBox(
                       height: 1,
                     ),
@@ -112,10 +110,10 @@ class registerPage extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'confirm password',
                           labelStyle: TextStyle(
-                                  color: brown, // สีของ labelText
-                                  fontSize: 16,
-                                  fontFamily: 'Garuda' // ขนาด font ของ labelText
-                                ),
+                              color: brown, // สีของ labelText
+                              fontSize: 16,
+                              fontFamily: 'Garuda' // ขนาด font ของ labelText
+                              ),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 15.0),
                           border: OutlineInputBorder(),
@@ -134,7 +132,6 @@ class registerPage extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
@@ -144,40 +141,50 @@ class registerPage extends StatelessWidget {
                     // Handle the first button press
                     print('Button 1 Pressed');
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => genderPage()),
-                  );
+                      context,
+                      PageTransition(child: genderPage(), type: PageTransitionType.rightToLeft),
+                    );
                   },
                   child: Text('สมัคร', style: TextStyles.Tlogin),
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
                 GestureDetector(
-                         
-                          child: Text('หรือ', style: TextStyle(
-                              color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
-                              fontSize: 14,
-                              fontFamily: 'Garuda',
-                            ),
-                          ),
-                   ),
-        
-                SizedBox(height: 10,),
+                  child: Text(
+                    'หรือ',
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 43, 48,
+                          53), // You can change the color as needed
+                      fontSize: 14,
+                      fontFamily: 'Garuda',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 GestureDetector(
-                          onTap: () {
-                            // Handle the "Forgot Password" action
-                            print('go to loginpage');
-                          },
-                         
-                          child: Text('เข้าสู่ระบบ', style: TextStyle(
-                              color: const Color.fromARGB(255, 43, 48, 53), // You can change the color as needed
-                              fontSize: 14,
-                              fontFamily: 'Garuda',
-                          ),
-                        ),
-                      ),
+                  onTap: () {
+                    // Handle the "Forgot Password" action
+                    print('go to loginpage');
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                          child: loginPage(),
+                          type: PageTransitionType.rightToLeft),
+                    );
+                  },
+                  child: Text(
+                    'เข้าสู่ระบบ',
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 43, 48,
+                          53), // You can change the color as needed
+                      fontSize: 14,
+                      fontFamily: 'Garuda',
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

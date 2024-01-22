@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/home.dart';
 import 'package:health_reminders/pages/information.dart';
 import 'package:health_reminders/pages/login.dart';
 import 'package:health_reminders/pages/register.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:page_transition/page_transition.dart';
 
 class genderPage extends StatelessWidget {
   @override
@@ -19,6 +21,7 @@ class genderPage extends StatelessWidget {
             onTap: () {
               // Handle the "ข้าม" action
               print('skip');
+              Navigator.push(context, PageTransition(child: homePage(), type: PageTransitionType.rightToLeft));
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -71,7 +74,7 @@ class genderPage extends StatelessWidget {
                         print('Button 1 Pressed');
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => informationPage()),
+                          PageTransition(child:informationPage() , type: PageTransitionType.rightToLeft),
                         );
                       },
                       child: Row(
@@ -103,7 +106,7 @@ class genderPage extends StatelessWidget {
                         print('Button 2 Pressed');
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => informationPage()),
+                          PageTransition(child: informationPage() , type: PageTransitionType.rightToLeft),
                         );
                       },
                       
