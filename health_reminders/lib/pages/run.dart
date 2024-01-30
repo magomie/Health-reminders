@@ -24,8 +24,8 @@ class _informationPageState extends State<runPage> {
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        automaticallyImplyLeading:
-            false, // This property is redundant and not needed here
+        backgroundColor: white,
+        elevation: 0,
         centerTitle: true,
         title: Text(
           'การวิ่ง',
