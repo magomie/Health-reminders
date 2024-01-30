@@ -5,11 +5,12 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class food_adminPage extends StatelessWidget {
+enum SampleItem {
+  edit,
+  delete,
+}
 
-  String? adminselect;
-  List adminlist = ["แก้ไข", "ลบ"];
-  
+class food_adminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,58 +66,75 @@ class food_adminPage extends StatelessWidget {
                             //blurRadius: 5.0,
                           ),
                         ]),
-                    child: Row(children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: Image.asset(
-                          'asset/image/mumu.jpg',
-                          width: 110,
-                          height: 110,
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.asset(
+                            'asset/image/mumu.jpg',
+                            width: 110,
+                            height: 110,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 0.0, bottom: 0.0, left: 15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('ข้าวหมูกรอบ', style: TextStyles.Tlogin),
-                            Text('แคลอรี่ : 490 แคล', style: TextStyles.common),
-                            Text('น้ำตาล : 20.4 กรัม',
-                                style: TextStyles.common),
-                            Text('โซเดียม : 20.0 กรัม',
-                                style: TextStyles.common),
-                            Text('ไขมัน : 21.8 กรัม', style: TextStyles.common),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 50.0,
-                      ),
-                      Row(
-                        children: [
-                          Column(
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 0.0, bottom: 0.0, left: 15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.more_vert,
-                                  color: brown,
-                                ),
-                                onPressed: () {
-                                  /*Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(builder: (context) => notidrug2Page()),
-                                                    );*/
-                                },
-                              ),
-                              SizedBox(
-                                height: 80.0,
-                              ),
+                              Text('ข้าวหมูกรอบ', style: TextStyles.Tlogin),
+                              Text('แคลอรี่ : 490 แคล',
+                                  style: TextStyles.common),
+                              Text('น้ำตาล : 20.4 กรัม',
+                                  style: TextStyles.common),
+                              Text('โซเดียม : 20.0 กรัม',
+                                  style: TextStyles.common),
+                              Text('ไขมัน : 21.8 กรัม',
+                                  style: TextStyles.common),
                             ],
                           ),
-                        ],
-                      )
-                    ]),
+                        ),
+                        SizedBox(
+                          width: 50.0,
+                        ),
+                        Row(children: [
+                          Column(
+                            children: [
+                              PopupMenuButton<SampleItem>(
+                                onSelected: (SampleItem item) {
+                                  // จัดการตามที่เลือก
+                                  if (item == SampleItem.edit) {
+                                    // จัดการกรณีแก้ไข
+                                  } else if (item == SampleItem.delete) {
+                                    // จัดการกรณีลบ
+                                  }
+                                },
+                                itemBuilder: (BuildContext context) =>
+                                    <PopupMenuEntry<SampleItem>>[
+                                  const PopupMenuItem<SampleItem>(
+                                    value: SampleItem.edit,
+                                    child: Text('แก้ไข'),
+                                  ),
+                                  const PopupMenuItem<SampleItem>(
+                                    value: SampleItem.delete,
+                                    child: Text('ลบ'),
+                                  ),
+                                ],
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.more_vert,
+                                    color: brown,
+                                  ),
+                                  onPressed: () {
+                                    // จัดการเหตุการณ์เมื่อปุ่มถูกกด
+                                  },
+                                ),
+                              ),
+                            ],
+                          )
+                        ]),
+                      ],
+                    ),
                   );
                 })),
       ),
