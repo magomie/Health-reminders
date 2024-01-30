@@ -63,8 +63,7 @@ class _informationPageState extends State<homePage> {
       body: SingleChildScrollView(
         child: Container(
           child: Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-            
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(
                 height: 5,
@@ -88,8 +87,6 @@ class _informationPageState extends State<homePage> {
                       ),
                     ),
                   ),
-
-                  
                   Expanded(
                     child: Align(
                       alignment: Alignment.center,
@@ -98,16 +95,25 @@ class _informationPageState extends State<homePage> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 1.0),
-                            child: Text('สมศักดิ์ ณ กทม',style: TextStyles.common2),
+                            child: Text('สมศักดิ์ ณ กทม',
+                                style: TextStyles.common2),
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Expanded(child: Text('อายุ : 23 ปี',style: TextStyles.common2,),),
+                              Expanded(
+                                child: Text(
+                                  'อายุ : 23 ปี',
+                                  style: TextStyles.common2,
+                                ),
+                              ),
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: Text('เพศ : ชาย',style: TextStyles.common2),),
+                              Expanded(
+                                child: Text('เพศ : ชาย',
+                                    style: TextStyles.common2),
+                              ),
                             ],
                           ),
                         ],
@@ -131,10 +137,10 @@ class _informationPageState extends State<homePage> {
                   children: [
                     Expanded(
                       child: Container(
-                       height: 75,
-                       width: 330,// Set the desired height
+                        height: 75,
+                        width: 330, // Set the desired height
                         decoration: BoxDecoration(
-                  //border: Border.all(color: brown, width: 1.0),
+                          //border: Border.all(color: brown, width: 1.0),
                           boxShadow: [
                             BoxShadow(
                               color: bb,
@@ -143,24 +149,23 @@ class _informationPageState extends State<homePage> {
                           ],
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('น้ำหนัก', style: TextStyles.Thome),
-                              Text('70', style: TextStyles.Thome1),
-                              Text('กก.', style: TextStyles.Thome),
-                            ],
-                          ),
-                        
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('น้ำหนัก', style: TextStyles.Thome),
+                            Text('70', style: TextStyles.Thome1),
+                            Text('กก.', style: TextStyles.Thome),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(width: 10.0),
                     Expanded(
                       child: Container(
                         height: 75,
-                       width: 330,// Set the desired height
+                        width: 330, // Set the desired height
                         decoration: BoxDecoration(
-                  //border: Border.all(color: brown, width: 1.0),
+                          //border: Border.all(color: brown, width: 1.0),
                           boxShadow: [
                             BoxShadow(
                               color: bb,
@@ -169,24 +174,23 @@ class _informationPageState extends State<homePage> {
                           ],
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('ส่วนสูง', style: TextStyles.Thome),
-                              Text('178', style: TextStyles.Thome1),
-                              Text('ซม.', style: TextStyles.Thome),
-                            ],
-                          ),
-                        
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('ส่วนสูง', style: TextStyles.Thome),
+                            Text('178', style: TextStyles.Thome1),
+                            Text('ซม.', style: TextStyles.Thome),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(width: 10.0),
                     Expanded(
                       child: Container(
                         height: 75,
-                       width: 330,// Set the desired height
+                        width: 330, // Set the desired height
                         decoration: BoxDecoration(
-                  //border: Border.all(color: brown, width: 1.0),
+                          //border: Border.all(color: brown, width: 1.0),
                           boxShadow: [
                             BoxShadow(
                               color: gg,
@@ -195,15 +199,14 @@ class _informationPageState extends State<homePage> {
                           ],
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('BMI', style: TextStyles.Thome),
-                              Text('22.09', style: TextStyles.Thome1),
-                              Text('ปกติ', style: TextStyles.Thome),
-                            ],
-                          ),
-                        
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('BMI', style: TextStyles.Thome),
+                            Text('22.09', style: TextStyles.Thome1),
+                            Text('ปกติ', style: TextStyles.Thome),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -371,7 +374,11 @@ class _informationPageState extends State<homePage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 2 Pressed');
-                            Navigator.push(context, MaterialPageRoute(builder:(context)=>bmi_bmr_page()),);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => bmi_bmr_page()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -463,11 +470,9 @@ class _informationPageState extends State<homePage> {
                       ),
                     ),
                     SizedBox(width: 10.0),
-                    
                   ],
                 ),
               ),
-              
             ],
           ),
         ),

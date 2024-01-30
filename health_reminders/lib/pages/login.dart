@@ -5,6 +5,8 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../styles/CustomAppBar.dart';
+
 class loginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,9 +16,11 @@ class loginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
+      appBar: CustomAppBar(
+        onBackButtonPressed: () {
+          Navigator.pop(context);
+        },
+        title: '',
       ),
       body: SingleChildScrollView(
         child: Center(

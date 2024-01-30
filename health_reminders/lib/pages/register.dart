@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/gender.dart';
 import 'package:health_reminders/pages/login.dart';
+import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -15,10 +16,11 @@ class registerPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-      ),
+      appBar: CustomAppBar(
+          onBackButtonPressed: () {
+            Navigator.pop(context);
+          },
+          title: ''),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
@@ -142,7 +144,9 @@ class registerPage extends StatelessWidget {
                     print('Button 1 Pressed');
                     Navigator.push(
                       context,
-                      PageTransition(child: genderPage(), type: PageTransitionType.rightToLeft),
+                      PageTransition(
+                          child: genderPage(),
+                          type: PageTransitionType.rightToLeft),
                     );
                   },
                   child: Text('สมัคร', style: TextStyles.Tlogin),

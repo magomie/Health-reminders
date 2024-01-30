@@ -41,9 +41,9 @@ class landingPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: loginPage(),
-                  ),
+                      type: PageTransitionType.rightToLeft,
+                      child: loginPage(),
+                    ),
                   );
                 },
                 child: Text(
@@ -60,9 +60,9 @@ class landingPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: registerPage(),
-                  ),
+                      type: PageTransitionType.rightToLeft,
+                      child: registerPage(),
+                    ),
                   );
                 },
                 child: Text(
