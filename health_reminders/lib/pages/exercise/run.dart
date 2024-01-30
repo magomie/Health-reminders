@@ -8,6 +8,7 @@ import 'package:health_reminders/pages/food.dart';
 import 'package:health_reminders/pages/gender.dart';
 import 'package:health_reminders/pages/news.dart';
 import 'package:health_reminders/pages/notification.dart';
+import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -23,20 +24,11 @@ class _informationPageState extends State<runPage> {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'การวิ่ง',
-          style: TextStyle(
-            color: Colors.brown, // Assuming 'brown' is a defined color variable
-            fontFamily: 'Garuda',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(
+          onBackButtonPressed: () {
+            Navigator.pop(context);
+          },
+          title: "การวิ่ง"),
       body: SingleChildScrollView(
         child: Container(
           child: Column(

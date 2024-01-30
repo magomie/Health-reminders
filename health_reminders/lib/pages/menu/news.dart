@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/Addmenu_Page.dart';
+import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -10,26 +11,11 @@ class newsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: white,
       //resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'ข่าวสารสุขภาพ',
-          style: TextStyle(
-            color: Colors.brown, // Assuming 'brown' is a defined color variable
-            fontFamily: 'Garuda',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: brown),
-          onPressed: () {
+      appBar: CustomAppBar(
+          onBackButtonPressed: () {
             Navigator.pop(context);
           },
-        ),
-      ),
+          title: "ข่าวสารสุขภาพ"),
       body: SafeArea(
         child: Expanded(
           child: ListView.builder(

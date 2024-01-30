@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -32,20 +33,11 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'BMI/BMR',
-          style: TextStyle(
-            color: Colors.brown,
-            fontFamily: 'Garuda',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(
+          onBackButtonPressed: () {
+            Navigator.pop(context);
+          },
+          title: "BMI/BMR"),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

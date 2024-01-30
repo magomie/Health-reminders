@@ -4,31 +4,23 @@ import 'package:health_reminders/pages/notidrug.dart';
 import 'package:health_reminders/pages/notiexercise.dart';
 import 'package:health_reminders/pages/notisleep.dart';
 import 'package:health_reminders/pages/run.dart';
+import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class exercisePage extends StatelessWidget {
+class exercise_adminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-         centerTitle: true,
-        title: Text( 'ออกกำลังกาย', 
-            style: TextStyle(
-            color: Colors.brown, // Assuming 'brown' is a defined color variable
-            fontFamily: 'Garuda',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(
+          onBackButtonPressed: () {
+            Navigator.pop(context);
+          },
+          title: "ออกกำลังกาย"),
 
 
       body: SingleChildScrollView(

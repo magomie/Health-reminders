@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/gender.dart';
 import 'package:health_reminders/pages/home.dart';
+import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -31,19 +32,11 @@ class _informationPageState extends State<informationPage> {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'ข้อมูล',
-          style: TextStyle(
-            color: brown,
-            fontFamily: 'Garuda',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar:CustomAppBar(
+          onBackButtonPressed: () {
+            Navigator.pop(context);
+          },
+          title: "ข้อมูล"),
       body: SingleChildScrollView(
         child: Container(
           child: Column(

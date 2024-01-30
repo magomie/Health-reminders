@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/exercise_admin.dart';
 import 'package:health_reminders/pages/food_admin.dart';
 import 'package:health_reminders/pages/news_admin.dart';
+import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -14,20 +15,11 @@ class adminPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-         centerTitle: true,
-        title: Text( 'ADMIN', 
-            style: TextStyle(
-            color: Colors.brown, // Assuming 'brown' is a defined color variable
-            fontFamily: 'Garuda',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(
+          onBackButtonPressed: () {
+            Navigator.pop(context);
+          },
+          title: "ADMIN"),
 
 
       body: SingleChildScrollView(
