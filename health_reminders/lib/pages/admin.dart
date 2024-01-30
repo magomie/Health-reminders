@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/exercise_admin.dart';
 import 'package:health_reminders/pages/food_admin.dart';
 import 'package:health_reminders/pages/news_admin.dart';
 import 'package:health_reminders/styles/button.dart';
@@ -48,7 +49,7 @@ class adminPage extends StatelessWidget {
                     child: ElevatedButton(
                       style: buttonnoti,
                       onPressed: () {
-                        print('Button 1 Pressed');
+                        print('go to foodadmin');
                         Navigator.push(
                           context,
                             MaterialPageRoute(builder: (context) => food_adminPage()),
@@ -84,7 +85,11 @@ class adminPage extends StatelessWidget {
                       style: buttonnoti,
                       onPressed: () {
                         // Handle the first button press
-                        print('go to drug notification');
+                        print('go to exerciseadmin ');
+                        Navigator.push(
+                          context,
+                            MaterialPageRoute(builder: (context) => exercise_adminPage()),
+                        );
                         
                       },
                       child: Row(
@@ -116,7 +121,7 @@ class adminPage extends StatelessWidget {
                       style: buttonnoti,
                       onPressed: () {
                         // Handle the first button press
-                        print('go to drug notification');
+                        print('go to newsadmin');
                          Navigator.push(
                           context,
                             MaterialPageRoute(builder: (context) => news_adminPage()),
