@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/Addmenu_Page.dart';
 import 'package:health_reminders/pages/Addmenucal_Page.dart';
 import 'package:health_reminders/pages/Addmenucal_Page.dart';
-import 'package:health_reminders/pages/admin.dart';
-import 'package:health_reminders/pages/bmr_bmr_page.dart';
-import 'package:health_reminders/pages/calcalorie.dart';
-import 'package:health_reminders/pages/exercise.dart';
-import 'package:health_reminders/pages/food.dart';
-import 'package:health_reminders/pages/gender.dart';
-import 'package:health_reminders/pages/news.dart';
-import 'package:health_reminders/pages/notification.dart';
-import 'package:health_reminders/pages/water.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+
+import '../admin/admin.dart';
+import '../exercise/exercise.dart';
+import '../menu/bmr_bmr_page.dart';
+import '../menu/calcalorie.dart';
+import '../menu/food.dart';
+import '../menu/news.dart';
+import '../menu/water.dart';
+import '../notification/notification.dart';
 
 class homePage extends StatefulWidget {
   @override
@@ -27,9 +27,9 @@ class _informationPageState extends State<homePage> {
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        automaticallyImplyLeading:
-            false, // This property is redundant and not needed here
+        backgroundColor: white,
         centerTitle: true,
+        elevation: 0.0,
         title: Text(
           'HEALTHREMINDER',
           style: TextStyle(
@@ -39,26 +39,6 @@ class _informationPageState extends State<homePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: brown),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.add_circle_outline,
-              color: brown,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => adminPage()),
-              );
-            },
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -137,7 +117,7 @@ class _informationPageState extends State<homePage> {
                   children: [
                     Expanded(
                       child: Container(
-                        height: 75,
+                        height: 80,
                         width: 330, // Set the desired height
                         decoration: BoxDecoration(
                           //border: Border.all(color: brown, width: 1.0),
@@ -162,7 +142,7 @@ class _informationPageState extends State<homePage> {
                     SizedBox(width: 10.0),
                     Expanded(
                       child: Container(
-                        height: 75,
+                        height: 80,
                         width: 330, // Set the desired height
                         decoration: BoxDecoration(
                           //border: Border.all(color: brown, width: 1.0),
@@ -187,7 +167,7 @@ class _informationPageState extends State<homePage> {
                     SizedBox(width: 10.0),
                     Expanded(
                       child: Container(
-                        height: 75,
+                        height: 80,
                         width: 330, // Set the desired height
                         decoration: BoxDecoration(
                           //border: Border.all(color: brown, width: 1.0),

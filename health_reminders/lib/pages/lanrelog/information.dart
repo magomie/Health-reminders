@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/gender.dart';
-import 'package:health_reminders/pages/home.dart';
+import 'package:health_reminders/pages/lanrelog/home.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
@@ -32,7 +31,7 @@ class _informationPageState extends State<informationPage> {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar:CustomAppBar(
+      appBar: CustomAppBar(
           onBackButtonPressed: () {
             Navigator.pop(context);
           },
@@ -309,7 +308,9 @@ class _informationPageState extends State<informationPage> {
                   print('Button 1 Pressed');
                   Navigator.push(
                     context,
-                    PageTransition(child: homePage(), type: PageTransitionType.rightToLeft),
+                    PageTransition(
+                        child: homePage(),
+                        type: PageTransitionType.rightToLeft),
                   );
                 },
                 child: Text('ยืนยัน', style: TextStyles.Tlogin),

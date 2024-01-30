@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/notiexercire2.dart';
+import 'package:health_reminders/pages/notification/notiexercire2.dart';
+
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -7,7 +8,6 @@ import 'package:health_reminders/styles/text.dart';
 class notiexcerisePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
@@ -15,46 +15,41 @@ class notiexcerisePage extends StatelessWidget {
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
-        title: Text( 'เวลาออกกำลังกาย', 
-            style: TextStyle(
+        title: Text(
+          'เวลาออกกำลังกาย',
+          style: TextStyle(
             color: Colors.brown, // Assuming 'brown' is a defined color variable
             fontFamily: 'Garuda',
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            
           ),
         ),
-
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: brown),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-
-          actions: [
+        actions: [
           IconButton(
-            icon: Icon(Icons.add_circle_outline , color: brown,),
+            icon: Icon(
+              Icons.add_circle_outline,
+              color: brown,
+            ),
             onPressed: () {
               Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => notiexercise2Page()),
-                      );
+                context,
+                MaterialPageRoute(builder: (context) => notiexercise2Page()),
+              );
             },
           ),
         ],
       ),
-
-
       body: SingleChildScrollView(
         child: Center(
           child: Container(
             child: Column(
-              children: <Widget>[
-
-  
-
-              ],
+              children: <Widget>[],
             ),
           ),
         ),

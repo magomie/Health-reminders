@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/notidoctor2.dart';
-import 'package:health_reminders/pages/notidrug.dart';
-import 'package:health_reminders/pages/notiexercise.dart';
-import 'package:health_reminders/pages/notisleep.dart';
+import 'package:health_reminders/pages/notification/notidoctor2.dart';
+import 'package:health_reminders/pages/notification/notidrug.dart';
+import 'package:health_reminders/pages/notification/notiexercise.dart';
+import 'package:health_reminders/pages/notification/notisleep.dart';
+
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -60,7 +61,9 @@ class NotificationPage extends StatelessWidget {
                                   width: 24.0,
                                   height: 24.0,
                                 ),
-                                SizedBox(width: 15,),
+                                SizedBox(
+                                  width: 15,
+                                ),
                                 Text(
                                   'เวลาออกกำลังกาย',
                                   style: TextStyles.head,
@@ -99,7 +102,9 @@ class NotificationPage extends StatelessWidget {
                                   width: 24.0,
                                   height: 24.0,
                                 ),
-                                SizedBox(width: 15,),
+                                SizedBox(
+                                  width: 15,
+                                ),
                                 Text(
                                   'เวลารับประทานยา',
                                   style: TextStyles.head,
@@ -138,7 +143,9 @@ class NotificationPage extends StatelessWidget {
                                   width: 24.0,
                                   height: 24.0,
                                 ),
-                                SizedBox(width: 15,),
+                                SizedBox(
+                                  width: 15,
+                                ),
                                 Text(
                                   'เวลานัดพบแพทย์',
                                   style: TextStyles.head,
@@ -171,12 +178,14 @@ class NotificationPage extends StatelessWidget {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                               Image.asset(
+                                Image.asset(
                                   'asset/image/sleep.png',
                                   width: 24.0,
                                   height: 24.0,
                                 ),
-                                SizedBox(width: 15,),
+                                SizedBox(
+                                  width: 15,
+                                ),
                                 Text(
                                   'เวลานอน',
                                   style: TextStyles.head,

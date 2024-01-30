@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/register.dart';
+import 'package:health_reminders/pages/lanrelog/register.dart';
+import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:page_transition/page_transition.dart';
-
-import '../styles/CustomAppBar.dart';
 
 class loginPage extends StatelessWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/gender.dart';
-import 'package:health_reminders/pages/login.dart';
+import 'package:health_reminders/pages/lanrelog/gender.dart';
+import 'package:health_reminders/pages/lanrelog/login.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';

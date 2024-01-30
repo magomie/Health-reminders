@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/landing.dart';
+import 'package:health_reminders/pages/lanrelog/landing.dart';
 import 'package:health_reminders/styles/color.dart';
 
 void main() {
