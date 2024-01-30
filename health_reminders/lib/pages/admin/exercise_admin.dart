@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/notidoctor2.dart';
-import 'package:health_reminders/pages/notidrug.dart';
-import 'package:health_reminders/pages/notiexercise.dart';
-import 'package:health_reminders/pages/notisleep.dart';
-import 'package:health_reminders/pages/run.dart';
+import 'package:health_reminders/pages/notification/notidoctor2.dart';
+import 'package:health_reminders/pages/notification/notidrug.dart';
+import 'package:health_reminders/pages/notification/notiexercise.dart';
+import 'package:health_reminders/pages/notification/notisleep.dart';
+import 'package:health_reminders/pages/exercise/run.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
@@ -85,10 +85,7 @@ class exercise_adminPage extends StatelessWidget {
                       onPressed: () {
                         // Handle the first button press
                         print('go to drug notification');
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => notidrugPage()),
-                      );
+                        
                       },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,10 +122,7 @@ class exercise_adminPage extends StatelessWidget {
                       onPressed: () {
                         // Handle the first button press
                         print('go to doctor notification');
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => notidoctor2Page()),
-                      );
+                       
                       },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -165,10 +159,7 @@ class exercise_adminPage extends StatelessWidget {
                       onPressed: () {
                         
                         print('go to sleepy notification');
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => notisleepPage()),
-                      );
+                        
                       },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
