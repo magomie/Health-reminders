@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/addmenu.dart';
+import 'package:health_reminders/pages/Addmenu_Page.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';

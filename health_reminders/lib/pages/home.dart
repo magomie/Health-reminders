@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/addmenu.dart';
-import 'package:health_reminders/pages/addmenucal.dart';
-import 'package:health_reminders/pages/addmenucal.dart';
+import 'package:health_reminders/pages/Addmenu_Page.dart';
+import 'package:health_reminders/pages/Addmenucal_Page.dart';
+import 'package:health_reminders/pages/Addmenucal_Page.dart';
 import 'package:health_reminders/pages/admin.dart';
 import 'package:health_reminders/pages/bmr_bmr_page.dart';
 import 'package:health_reminders/pages/calcalorie.dart';
@@ -131,14 +131,18 @@ class _informationPageState extends State<homePage> {
                   children: [
                     Expanded(
                       child: Container(
-                        width: double.infinity,
-                        height: 65.0, // Set the desired height
-                        child: ElevatedButton(
-                          style: buttonlgin,
-                          onPressed: () {
-                            // Handle the first button press
-                            print('Button 1 Pressed');
-                          },
+                       height: 75,
+                       width: 330,// Set the desired height
+                        decoration: BoxDecoration(
+                  //border: Border.all(color: brown, width: 1.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: bb,
+                              // blurRadius:5.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -147,20 +151,24 @@ class _informationPageState extends State<homePage> {
                               Text('กก.', style: TextStyles.Thome),
                             ],
                           ),
-                        ),
+                        
                       ),
                     ),
                     SizedBox(width: 10.0),
                     Expanded(
                       child: Container(
-                        width: double.infinity,
-                        height: 65.0, // Set the desired height
-                        child: ElevatedButton(
-                          style: buttonlgin,
-                          onPressed: () {
-                            // Handle the first button press
-                            print('Button 1 Pressed');
-                          },
+                        height: 75,
+                       width: 330,// Set the desired height
+                        decoration: BoxDecoration(
+                  //border: Border.all(color: brown, width: 1.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: bb,
+                              // blurRadius:5.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -169,20 +177,24 @@ class _informationPageState extends State<homePage> {
                               Text('ซม.', style: TextStyles.Thome),
                             ],
                           ),
-                        ),
+                        
                       ),
                     ),
                     SizedBox(width: 10.0),
                     Expanded(
                       child: Container(
-                        width: double.infinity + 20,
-                        height: 65.0, // Set the desired height
-                        child: ElevatedButton(
-                          style: buttonbmi,
-                          onPressed: () {
-                            // Handle the first button press
-                            print('Button 1 Pressed');
-                          },
+                        height: 75,
+                       width: 330,// Set the desired height
+                        decoration: BoxDecoration(
+                  //border: Border.all(color: brown, width: 1.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: gg,
+                              // blurRadius:5.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -191,7 +203,7 @@ class _informationPageState extends State<homePage> {
                               Text('ปกติ', style: TextStyles.Thome),
                             ],
                           ),
-                        ),
+                        
                       ),
                     ),
                   ],

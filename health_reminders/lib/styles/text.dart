@@ -9,6 +9,13 @@ class TextStyles {
     fontFamily: 'Garuda'
   );
 
+    static const TextStyle head = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: brown,
+    fontFamily: 'Garuda'
+  );
+
   static const TextStyle Tlogin = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,

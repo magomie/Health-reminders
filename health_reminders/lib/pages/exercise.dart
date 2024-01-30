@@ -61,9 +61,14 @@ class exercisePage extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                                  Icon(Icons.female, color: brown,),
+                                  Image.asset(
+                                  'asset/image/exercise.png',
+                                  width: 24.0,
+                                  height: 24.0,
+                                ),
+                                SizedBox(width: 15,),
                                   Text('การวิ่ง',
-                                    style: TextStyles.login,
+                                    style: TextStyles.head,
                                   ),
                       ],
                       ) 
@@ -96,9 +101,14 @@ class exercisePage extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                                  Icon(Icons.female, color: brown,),
+                                  Image.asset(
+                                  'asset/image/cardio.png',
+                                  width: 24.0,
+                                  height: 24.0,
+                                ),
+                                SizedBox(width: 15,),
                                   Text('คาดิโอ',
-                                    style: TextStyles.login,
+                                    style: TextStyles.head,
                                   ),
                       ],
                       ) 
@@ -131,9 +141,14 @@ class exercisePage extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                                  Icon(Icons.female, color: brown,),
+                                 Image.asset(
+                                  'asset/image/yoga.png',
+                                  width: 24.0,
+                                  height: 24.0,
+                                ),
+                                SizedBox(width: 15,),
                                   Text('โยคะ',
-                                    style: TextStyles.login,
+                                    style: TextStyles.head,
                                   ),
                       ],
                       ) 
@@ -166,9 +181,14 @@ class exercisePage extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                                  Icon(Icons.female, color: brown,),
+                                 Image.asset(
+                                  'asset/image/aerobic.png',
+                                  width: 24.0,
+                                  height: 24.0,
+                                ),
+                                SizedBox(width: 15,),
                                   Text('แอโรบิค',
-                                    style: TextStyles.login,
+                                    style: TextStyles.head,
                                   ),
                       ],
                       ) 

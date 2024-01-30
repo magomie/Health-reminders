@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/Threshold.dart';
-import 'package:health_reminders/pages/addmenu.dart';
-import 'package:health_reminders/pages/addmenucal.dart';
-import 'package:health_reminders/pages/addmenucal.dart';
+import 'package:health_reminders/pages/Addmenu_Page.dart';
+import 'package:health_reminders/pages/Addmenucal_Page.dart';
+import 'package:health_reminders/pages/Addmenucal_Page.dart';
 import 'package:health_reminders/pages/exercise.dart';
 import 'package:health_reminders/pages/food.dart';
 import 'package:health_reminders/pages/gender.dart';

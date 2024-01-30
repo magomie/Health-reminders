@@ -62,6 +62,13 @@ flutter:
     - asset/image/drug.png
     - asset/image/mumu.jpg
     - asset/image/run.jpg
+    - asset/image/icondrug.png
+    - asset/image/sleep.png
+    - asset/image/exercise.png
+    - asset/image/doctor.png
+    - asset/image/cardio.png
+    - asset/image/aerobic.png
+    - asset/image/yoga.png
 
   uses-material-design: true
 
