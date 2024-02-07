@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/pages/lanrelog/home.dart';
 import 'package:health_reminders/pages/lanrelog/landing.dart';
 import 'package:health_reminders/styles/color.dart';
 
@@ -14,6 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: landingPage(),
+      routes: {
+        '/home': (context) => homePage(),
+      },
     );
   }
 }

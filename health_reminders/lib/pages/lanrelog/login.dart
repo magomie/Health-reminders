@@ -6,12 +6,21 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:page_transition/page_transition.dart';
 
-class loginPage extends StatelessWidget {
+import '../../controller/operator.dart';
+
+class loginPage extends StatefulWidget {
+  @override
+  _loginPageState createState() => _loginPageState();
+}
+
+class _loginPageState extends State<loginPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  bool obscureText = true; // ประกาศตัวแปรสำหรับเก็บสถานะการแสดงรหัสผ่าน
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
@@ -32,10 +41,11 @@ class loginPage extends StatelessWidget {
                 Text(
                   'เข้าสู่ระบบ',
                   style: TextStyle(
-                      color: Color.fromRGBO(107, 89, 24, 1),
-                      fontFamily: 'Garuda',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24),
+                    color: Color.fromRGBO(107, 89, 24, 1),
+                    fontFamily: 'Garuda',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
                 ),
                 Column(
                   children: [
@@ -44,27 +54,35 @@ class loginPage extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 12.0),
+                        horizontal: 30.0,
+                        vertical: 12.0,
+                      ),
                       child: TextField(
                         controller: emailController,
                         decoration: InputDecoration(
                           labelText: 'Email',
                           labelStyle: TextStyle(
-                              color: brown, // สีของ labelText
-                              fontSize: 16,
-                              fontFamily: 'Garuda' // ขนาด font ของ labelText
-                              ),
+                            color: brown,
+                            fontSize: 16,
+                            fontFamily: 'Garuda',
+                          ),
                           contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 15.0),
+                            vertical: 12.0,
+                            horizontal: 15.0,
+                          ),
                           border: OutlineInputBorder(),
                           focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 2.0,
+                            ),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.0,
+                            ),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
@@ -75,36 +93,58 @@ class loginPage extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 12.0),
+                        horizontal: 30.0,
+                        vertical: 12.0,
+                      ),
                       child: TextField(
                         controller: passwordController,
+                        obscureText:
+                            obscureText, // ใช้ค่าของ obscureText ที่ประกาศไว้
                         decoration: InputDecoration(
                           labelText: 'Password',
                           labelStyle: TextStyle(
-                              color: brown, // สีของ labelText
-                              fontSize: 16,
-                              fontFamily: 'Garuda' // ขนาด font ของ labelText
-                              ),
+                            color: brown,
+                            fontSize: 16,
+                            fontFamily: 'Garuda',
+                          ),
                           contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 15.0),
+                            vertical: 12.0,
+                            horizontal: 15.0,
+                          ),
                           border: OutlineInputBorder(),
                           focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 2.0,
+                            ),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.0,
+                            ),
                             borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                // สลับค่าให้กับ obscureText เมื่อปุ่มถูกกด
+                                obscureText = !obscureText;
+                              });
+                            },
+                            icon: Icon(
+                              obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: obscureText ? Colors.grey : Colors.blue,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ],
                 ),
-
-                //SizedBox(height: 5,),
                 Column(
                   children: [
                     Row(
@@ -120,8 +160,12 @@ class loginPage extends StatelessWidget {
                           child: Text(
                             'ลืมรหัสผ่าน?',
                             style: TextStyle(
-                              color: const Color.fromARGB(255, 43, 48,
-                                  53), // You can change the color as needed
+                              color: const Color.fromARGB(
+                                255,
+                                43,
+                                48,
+                                53,
+                              ),
                               decoration: TextDecoration.underline,
                               fontFamily: 'Garuda',
                               fontSize: 14,
@@ -132,34 +176,57 @@ class loginPage extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
                 ElevatedButton(
                   style: buttonlgin,
                   onPressed: () {
-                    // Handle the first button press
-                    print('เข้าสู่ระบบ');
+                    if (emailController.text.isEmpty ||
+                        passwordController.text.isEmpty) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('แจ้งเตือน'),
+                            content: Text('กรุณากรอกข้อมูลให้ครบถ้วน'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('ตกลง'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      // Proceed with login
+                      print('รอ.........');
+                      UserOperator.login(context, emailController.text,
+                          passwordController.text);
+                      print('เข้าสู่ระบบ');
+                    }
                   },
                   child: Text('เข้าสู่ระบบ', style: TextStyles.Tlogin),
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
-                GestureDetector(
-                  child: Text(
-                    'หรือ',
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 43, 48,
-                          53), // You can change the color as needed
-                      fontSize: 14,
-                      fontFamily: 'Garuda',
+                Text(
+                  'หรือ',
+                  style: TextStyle(
+                    color: const Color.fromARGB(
+                      255,
+                      43,
+                      48,
+                      53,
                     ),
+                    fontSize: 14,
+                    fontFamily: 'Garuda',
                   ),
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
@@ -178,8 +245,7 @@ class loginPage extends StatelessWidget {
                   child: Text(
                     'สมัครสมาชิก',
                     style: TextStyle(
-                      color: const Color.fromARGB(255, 43, 48,
-                          53), // You can change the color as needed
+                      color: const Color.fromARGB(255, 43, 48, 53),
                       fontSize: 14,
                       fontFamily: 'Garuda',
                     ),
