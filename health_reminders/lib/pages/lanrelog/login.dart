@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/pages/lanrelog/register.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
@@ -17,7 +18,7 @@ class _loginPageState extends State<loginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  bool obscureText = true; // ประกาศตัวแปรสำหรับเก็บสถานะการแสดงรหัสผ่าน
+  bool obscureText = true; //เก็บสถานะการแสดงรหัสผ่าน
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +182,7 @@ class _loginPageState extends State<loginPage> {
                 ),
                 ElevatedButton(
                   style: buttonlgin,
-                  onPressed: () {
+                  onPressed: () async {
                     if (emailController.text.isEmpty ||
                         passwordController.text.isEmpty) {
                       showDialog(
@@ -203,10 +204,15 @@ class _loginPageState extends State<loginPage> {
                       );
                     } else {
                       // Proceed with login
-                      print('รอ.........');
-                      UserOperator.login(context, emailController.text,
-                          passwordController.text);
-                      print('เข้าสู่ระบบ');
+                      bool success = await UserOperator.login(context,
+                          emailController.text, passwordController.text);
+                      if (success) {
+                        // กำหนดค่า isLoggedIn เป็น true เมื่อเข้าสู่ระบบสำเร็จ
+                        SessionManagerPlugin.isLoggedIn = true;
+                        print('เข้าสู่ระบบ');
+                      } else {
+                        print('ไม่สามารถเข้าสู่ระบบได้');
+                      }
                     }
                   },
                   child: Text('เข้าสู่ระบบ', style: TextStyles.Tlogin),

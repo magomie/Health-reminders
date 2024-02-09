@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/plugin.dart';
 import 'package:http/http.dart' as http;
 import 'package:page_transition/page_transition.dart';
 
@@ -26,10 +27,11 @@ class APIEndpoint {
         // ตรวจสอบว่าการเข้าสู่ระบบสำเร็จหรือไม่
         if (data['message'] == 'Login successful') {
           // สามารถเข้าสู่ระบบได้
+          SessionManagerPlugin.isLoggedIn = true;
           Navigator.pushReplacement(
             context,
             PageTransition(
-              type: PageTransitionType.fade,
+              type: PageTransitionType.rightToLeft,
               child: homePage(),
             ),
           );

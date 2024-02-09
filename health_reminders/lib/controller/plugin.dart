@@ -12,3 +12,7 @@ class NavigationPlugin {
     );
   }
 }
+
+class SessionManagerPlugin {
+  static bool isLoggedIn = false;
+}
