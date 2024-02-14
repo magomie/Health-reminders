@@ -7,11 +7,20 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:page_transition/page_transition.dart';
 
-class registerPage extends StatelessWidget {
+class signUpScreen extends StatefulWidget {
+  @override
+  _signUpScreenState createState() => _signUpScreenState();
+}
+
+class _signUpScreenState extends State<signUpScreen> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    final TextEditingController passwordConfirmController =
+        TextEditingController();
+
+    bool obscureText = true;
 
     return Scaffold(
       backgroundColor: white,
@@ -42,6 +51,7 @@ class registerPage extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
+                    //ช่องกรอกอีเมล์
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 12.0),
@@ -73,6 +83,8 @@ class registerPage extends StatelessWidget {
                     SizedBox(
                       height: 1,
                     ),
+
+                    //ช่องกรอก รหัส
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 12.0),
@@ -98,17 +110,33 @@ class registerPage extends StatelessWidget {
                                 BorderSide(color: Colors.grey, width: 1.0),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                // สลับค่าให้กับ obscureText เมื่อปุ่มถูกกด
+                                obscureText = !obscureText;
+                              });
+                            },
+                            icon: Icon(
+                              obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: obscureText ? Colors.grey : Colors.blue,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(
                       height: 1,
                     ),
+
+                    //ช่องคอน รหัส
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 12.0),
                       child: TextField(
-                        controller: passwordController,
+                        controller: passwordConfirmController,
                         decoration: InputDecoration(
                           labelText: 'confirm password',
                           labelStyle: TextStyle(
@@ -129,6 +157,20 @@ class registerPage extends StatelessWidget {
                                 BorderSide(color: Colors.grey, width: 1.0),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                // สลับค่าให้กับ obscureText เมื่อปุ่มถูกกด
+                                obscureText = !obscureText;
+                              });
+                            },
+                            icon: Icon(
+                              obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: obscureText ? Colors.grey : Colors.blue,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -137,6 +179,8 @@ class registerPage extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
+
+                //ปุ่มยืนยัน
                 ElevatedButton(
                   style: buttonlgin,
                   onPressed: () {

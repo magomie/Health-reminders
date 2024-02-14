@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:js_util';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -60,7 +59,7 @@ class APIEndpoint {
     }
   }*/
 
-  static Future<bool> singIn(
+  static Future<bool> signIn(
       BuildContext context, String email, String password) async {
     try {
       final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -80,7 +79,32 @@ class APIEndpoint {
       return true;
     } on Exception catch (e) {
       // TODO
-      print("singIn Err : $e");
+      print("signIn Err : $e");
+      return false;
+    }
+  }
+
+  static Future<bool> signUp(
+      BuildContext context, String email, String password) async {
+    try {
+      final FirebaseAuth _auth = FirebaseAuth.instance;
+      final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+
+      Navigator.pushReplacement(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: homePage(),
+        ),
+      );
+
+      return true;
+    } on Exception catch (e) {
+      // TODO
+      print("signUp Err : $e");
       return false;
     }
   }
