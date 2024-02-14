@@ -41,7 +41,8 @@ dependencies:
   toggle_switch: ^2.1.0
   page_transition: ^2.1.0
   http: ^0.13.5
-  firebase_core: ^2.11.0
+  firebase_core: ^2.16.0
+  cloud_firestore: ^4.4.5
 
 dev_dependencies:
   flutter_test:
