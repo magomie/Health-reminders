@@ -1,19 +1,50 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/pages/lanrelog/home.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
 
 class informationPage extends StatefulWidget {
+  final String userId;
+  final String gender;
+  final String email;
+  final String password;
+
+  informationPage(
+      {required this.userId,
+      required this.gender,
+      required this.email,
+      required this.password});
+
   @override
-  _informationPageState createState() => _informationPageState();
+  _informationPageState createState() => _informationPageState(
+      userId: userId, gender: gender, email: email, password: password);
 }
 
 class _informationPageState extends State<informationPage> {
-  String? valueselect;
-  List listitem = [
+  final String userId;
+  final String gender;
+  final String email;
+  final String password;
+
+  _informationPageState(
+      {required this.userId,
+      required this.gender,
+      required this.email,
+      required this.password});
+
+  final ImagePicker _picker = ImagePicker();
+  File? _file;
+  int? activityLevel;
+
+  List<String> listitem = [
     "ไม่มีการออกกำลังกาย",
     "ออกกำลังกายเล็กน้อยอาทิตย์ละ 1-3 วัน",
     "ออกกำลังกายปานกลางอาทิตย์ละ 3-5 วัน",
@@ -25,6 +56,16 @@ class _informationPageState extends State<informationPage> {
   final TextEditingController ageController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   final TextEditingController heightController = TextEditingController();
+
+  Future<void> pickImage() async {
+    final PickedFile? pickedFile =
+        await _picker.getImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _file = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,44 +82,44 @@ class _informationPageState extends State<informationPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              SizedBox(
-                height: 50,
-              ),
+              SizedBox(height: 50),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Stack(
                     children: [
-                      CircleAvatar(
-                        radius: 64,
-                        backgroundColor: yellow,
-                      ),
-                      Positioned(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.photo_outlined,
-                            size: 50,
-                          ),
+                      GestureDetector(
+                        onTap: pickImage,
+                        child: Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: yellow),
+                          child: _file != null
+                              ? ClipOval(
+                                  child: Image.file(
+                                    _file!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                              : Icon(
+                                  Icons.photo_outlined,
+                                  size: 60,
+                                  color: brown,
+                                ),
                         ),
-                        top: 64 - 32,
-                        left: 64 - 32,
-                      ),
+                      )
                     ],
                   ),
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30.0,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Text(
                       'กรุณากรอกข้อมูลทั้งหมด',
                       textAlign: TextAlign.end,
@@ -96,10 +137,7 @@ class _informationPageState extends State<informationPage> {
                       decoration: InputDecoration(
                         labelText: 'ชื่อ',
                         labelStyle: TextStyle(
-                            color: brown, // สีของ labelText
-                            fontSize: 16,
-                            fontFamily: 'Garuda' // ขนาด font ของ labelText
-                            ),
+                            color: brown, fontSize: 16, fontFamily: 'Garuda'),
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 12.0, horizontal: 15.0),
                         border: OutlineInputBorder(),
@@ -116,21 +154,17 @@ class _informationPageState extends State<informationPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 1,
-                  ),
+                  SizedBox(height: 1),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30.0, vertical: 12.0),
                     child: TextField(
                       controller: ageController,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         labelText: 'อายุ',
                         labelStyle: TextStyle(
-                            color: brown, // สีของ labelText
-                            fontSize: 16,
-                            fontFamily: 'Garuda' // ขนาด font ของ labelText
-                            ),
+                            color: brown, fontSize: 16, fontFamily: 'Garuda'),
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 12.0, horizontal: 15.0),
                         border: OutlineInputBorder(),
@@ -147,24 +181,17 @@ class _informationPageState extends State<informationPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 1,
-                  ),
+                  SizedBox(height: 1),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment
-                        .spaceBetween, // Adjust the alignment as needed
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(
-                            right: 5.0,
-                            left: 30,
-                            top: 12.0,
-                            bottom: 12.0,
-                          ),
+                              right: 5.0, left: 30, top: 12.0, bottom: 12.0),
                           child: TextField(
                             controller: weightController,
-                            obscureText: true,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: 'น้ำหนัก (กก.)',
                               labelStyle: TextStyle(
@@ -193,16 +220,12 @@ class _informationPageState extends State<informationPage> {
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(
-                            right: 30.0,
-                            left: 5,
-                            top: 12.0,
-                            bottom: 12.0,
-                          ),
+                              right: 30.0, left: 5, top: 12.0, bottom: 12.0),
                           child: TextField(
                             controller: heightController,
-                            obscureText: true,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
-                              labelText: 'ส่วนสูง (ซม.) ',
+                              labelText: 'ส่วนสูง (ซม.)',
                               labelStyle: TextStyle(
                                 color: Colors.brown,
                                 fontSize: 16,
@@ -227,22 +250,15 @@ class _informationPageState extends State<informationPage> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 1,
-                  ),
+                  SizedBox(height: 1),
                   Padding(
                     padding: const EdgeInsets.only(
-                      right: 30.0,
-                      left: 30.0,
-                      top: 12.0,
-                      bottom: 12.0,
-                    ),
-
+                        right: 30.0, left: 30.0, top: 12.0, bottom: 12.0),
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.grey, // สีขอบ
-                          width: 1.0, // ขนาดความหนาขอบ
+                          color: Colors.grey,
+                          width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -253,8 +269,8 @@ class _informationPageState extends State<informationPage> {
                           hint: Text(
                             "ระดับการออกกำลังกาย",
                             style: TextStyle(
-                              color: brown, // สีของ hint text
-                              fontSize: 16, // ขนาด font ของ hint text
+                              color: brown,
+                              fontSize: 16,
                               fontFamily: 'Garuda',
                             ),
                           ),
@@ -268,22 +284,22 @@ class _informationPageState extends State<informationPage> {
                             fontSize: 16,
                             fontFamily: 'Garuda',
                           ),
-                          value: valueselect,
+                          value: activityLevel != null
+                              ? listitem[activityLevel!]
+                              : null,
                           onChanged: (newValue) {
                             setState(() {
-                              valueselect = newValue as String?;
+                              activityLevel = listitem.indexOf(newValue!);
                             });
                           },
                           items: listitem.map((item) {
                             return DropdownMenuItem(
-                              value: item as String?,
+                              value: item,
                               child: Text(
-                                item!,
+                                item,
                                 style: TextStyle(
-                                  color:
-                                      brown, // สีของเนื้อหาใน DropdownMenuItem
-                                  fontSize:
-                                      16, // ขนาด font ของเนื้อหาใน DropdownMenuItem
+                                  color: brown,
+                                  fontSize: 16,
                                   fontFamily: 'Garuda',
                                 ),
                               ),
@@ -292,26 +308,35 @@ class _informationPageState extends State<informationPage> {
                         ),
                       ),
                     ),
-
-                    //SizedBox(
-                    // height: 10,
                   ),
                 ],
               ),
-              SizedBox(
-                height: 1,
-              ),
+              SizedBox(height: 1),
               ElevatedButton(
                 style: buttonlgin,
                 onPressed: () {
-                  // Handle the first button press
-                  print('Button 1 Pressed');
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                        child: homePage(),
-                        type: PageTransitionType.rightToLeft),
-                  );
+                  // Handle the button press to save data
+                  if (activityLevel != null) {
+                    // Save or process data accordingly
+                    print('ชื่อ: ${nameController.text}');
+                    print('อายุ: ${ageController.text}');
+                    print('น้ำหนัก: ${weightController.text}');
+                    print('ส่วนสูง: ${heightController.text}');
+                    print('ระดับการออกกำลังกาย: $activityLevel');
+                    UserOperator.addInfo(
+                        context,
+                        email,
+                        password,
+                        userId,
+                        nameController.text.trim(),
+                        gender,
+                        int.parse(ageController.text.trim()),
+                        double.parse(weightController.text.trim()),
+                        double.parse(heightController.text.trim()),
+                        activityLevel!);
+                  } else {
+                    print('โปรดเลือกระดับการออกกำลังกาย');
+                  }
                 },
                 child: Text('ยืนยัน', style: TextStyles.Tlogin),
               ),

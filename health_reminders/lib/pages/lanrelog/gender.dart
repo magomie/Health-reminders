@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/pages/lanrelog/home.dart';
 import 'package:health_reminders/pages/lanrelog/information.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
@@ -8,6 +9,11 @@ import 'package:health_reminders/styles/text.dart';
 import 'package:page_transition/page_transition.dart';
 
 class genderPage extends StatelessWidget {
+  final String userId;
+  final String email;
+  final String password;
+  genderPage(
+      {required this.userId, required this.email, required this.password});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,11 +24,9 @@ class genderPage extends StatelessWidget {
         },
         title: '',
         onActionButtonPressed: () {
-          Navigator.push(
-            context,
-            PageTransition(
-                child: homePage(), type: PageTransitionType.rightToLeft),
-          );
+          //skip
+          UserOperator.addInfo(
+              context, email, password, userId, '', '', 0, 0.0, 0.0, 0);
         },
         textAction: 'ข้าม',
       ),
@@ -56,11 +60,16 @@ class genderPage extends StatelessWidget {
                         style: buttonwomen,
                         onPressed: () {
                           // Handle the first button press
-                          print('Button 1 Pressed');
+                          print('Button หญิง Pressed');
                           Navigator.push(
                             context,
                             PageTransition(
-                                child: informationPage(),
+                                child: informationPage(
+                                  userId: userId,
+                                  gender: 'F',
+                                  email: email,
+                                  password: password,
+                                ),
                                 type: PageTransitionType.rightToLeft),
                           );
                         },
@@ -90,11 +99,16 @@ class genderPage extends StatelessWidget {
                       style: buttonman,
                       onPressed: () {
                         // Handle the second button press
-                        print('Button 2 Pressed');
+                        print('Button ชายแทร่ Pressed');
                         Navigator.push(
                           context,
                           PageTransition(
-                              child: informationPage(),
+                              child: informationPage(
+                                userId: userId,
+                                gender: 'M',
+                                email: email,
+                                password: password,
+                              ),
                               type: PageTransitionType.rightToLeft),
                         );
                       },

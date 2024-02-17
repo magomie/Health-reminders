@@ -40,10 +40,14 @@ dependencies:
   animated_toggle_switch: ^0.8.0
   toggle_switch: ^2.1.0
   page_transition: ^2.1.0
-  http: ^0.13.5
   firebase_core: ^2.16.0
   cloud_firestore: ^4.4.5
   firebase_auth: ^4.3.0
+
+  #image
+  image_picker: ^0.8.4+2
+  cached_network_image: ^3.2.0
+
 
 dev_dependencies:
   flutter_test:

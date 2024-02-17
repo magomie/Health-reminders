@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/lanrelog/gender.dart';
+import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/pages/lanrelog/login.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
@@ -13,15 +13,15 @@ class signUpScreen extends StatefulWidget {
 }
 
 class _signUpScreenState extends State<signUpScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmController =
+      TextEditingController();
+
+  bool obscureText = true;
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController passwordConfirmController =
-        TextEditingController();
-
-    bool obscureText = true;
-
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
@@ -90,6 +90,7 @@ class _signUpScreenState extends State<signUpScreen> {
                           horizontal: 30.0, vertical: 12.0),
                       child: TextField(
                         controller: passwordController,
+                        obscureText: obscureText,
                         decoration: InputDecoration(
                           labelText: 'Password',
                           labelStyle: TextStyle(
@@ -137,6 +138,7 @@ class _signUpScreenState extends State<signUpScreen> {
                           horizontal: 30.0, vertical: 12.0),
                       child: TextField(
                         controller: passwordConfirmController,
+                        obscureText: obscureText,
                         decoration: InputDecoration(
                           labelText: 'confirm password',
                           labelStyle: TextStyle(
@@ -185,13 +187,12 @@ class _signUpScreenState extends State<signUpScreen> {
                   style: buttonlgin,
                   onPressed: () {
                     // Handle the first button press
-                    print('Button 1 Pressed');
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                          child: genderPage(),
-                          type: PageTransitionType.rightToLeft),
-                    );
+                    print('Button SignUp Pressed');
+                    UserOperator.newSignUp(
+                        context,
+                        emailController.text,
+                        passwordController.text,
+                        passwordConfirmController.text);
                   },
                   child: Text('สมัคร', style: TextStyles.Tlogin),
                 ),

@@ -1,64 +1,18 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/plugin.dart';
+import 'package:health_reminders/pages/lanrelog/gender.dart';
 import 'package:http/http.dart' as http;
 import 'package:page_transition/page_transition.dart';
 
 import '../pages/lanrelog/home.dart';
 
 class APIEndpoint {
-  /*static Future<bool> login(
-      BuildContext context, String email, String password) async {
-    var url = 'https://n30apiapp.000webhostapp.com/PJ_data/login.php';
-    try {
-      var response = await http.post(
-        Uri.parse(url),
-        body: {
-          'email': email,
-          'password': password,
-        },
-      );
-
-      if (response.statusCode == 200) {
-        var data = json.decode(response.body);
-        print(data['message']);
-
-        // ตรวจสอบว่าการเข้าสู่ระบบสำเร็จหรือไม่
-        if (data['message'] == 'Login successful') {
-          // สามารถเข้าสู่ระบบได้
-          SessionManagerPlugin.isLoggedIn = true;
-          Navigator.pushReplacement(
-            context,
-            PageTransition(
-              type: PageTransitionType.rightToLeft,
-              child: homePage(),
-            ),
-          );
-          return true;
-        } else {
-          // ไม่สามารถเข้าสู่ระบบได้
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Incorrect email or password'),
-              duration: Duration(seconds: 3),
-            ),
-          );
-          return false;
-        }
-      } else {
-        print('Request failed with status: ${response.statusCode}');
-        return false;
-      }
-    } catch (e) {
-      print('Error: $e');
-      return false;
-    }
-  }*/
-
   static Future<bool> signIn(
       BuildContext context, String email, String password) async {
     try {
@@ -72,7 +26,9 @@ class APIEndpoint {
         context,
         PageTransition(
           type: PageTransitionType.rightToLeft,
-          child: homePage(),
+          child: homePage(
+            userId: userCredential.user!.uid,
+          ),
         ),
       );
 
@@ -84,27 +40,52 @@ class APIEndpoint {
     }
   }
 
-  static Future<bool> signUp(
+  static Future<User?> signUp(
       BuildContext context, String email, String password) async {
     try {
       final FirebaseAuth _auth = FirebaseAuth.instance;
-      final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
 
-      Navigator.pushReplacement(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: homePage(),
-        ),
-      );
-
-      return true;
+      return userCredential.user;
     } on Exception catch (e) {
       // TODO
       print("signUp Err : $e");
+      return null;
+    }
+  }
+
+  static Future<bool> addInfo(
+      String userId,
+      String email,
+      String password,
+      String name,
+      String gender,
+      int age,
+      double weight,
+      double high,
+      int Exe_B) async {
+    try {
+      final FirebaseAuth _auth = FirebaseAuth.instance;
+
+      await FirebaseFirestore.instance.collection('user').doc(userId).set({
+        'username': name,
+        'email': email,
+        'password': password,
+      });
+      await FirebaseFirestore.instance.collection('info').doc(userId).set({
+        'userId': userId,
+        'gender': gender,
+        'age': age,
+        'weight': weight,
+        'high': high,
+        'Exe_B': Exe_B
+      });
+
+      return true;
+    } on Exception catch (e) {
+      print("err : $e");
       return false;
     }
   }

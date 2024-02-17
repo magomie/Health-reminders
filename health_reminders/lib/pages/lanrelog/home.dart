@@ -15,7 +15,8 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
 class homePage extends StatefulWidget {
-  const homePage({Key? key}) : super(key: key);
+  final String userId;
+  const homePage({required this.userId});
 
   @override
   _homePageState createState() => _homePageState();
