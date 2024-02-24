@@ -138,7 +138,7 @@ class _loginPageState extends State<loginPage> {
                               obscureText
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              color: obscureText ? Colors.grey : Colors.blue,
+                              color: obscureText ? Colors.grey : yellow,
                             ),
                           ),
                         ),

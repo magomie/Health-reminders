@@ -3,7 +3,8 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
 class profilePage extends StatelessWidget {
-  const profilePage({Key? key}) : super(key: key);
+  final String userId;
+  const profilePage({required this.userId});
 
   @override
   Widget build(BuildContext context) {
@@ -272,7 +273,6 @@ class profilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    
                     SizedBox(
                       width: 53,
                     ),
@@ -324,7 +324,6 @@ class profilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    
                     SizedBox(
                       width: 62,
                     ),
@@ -362,9 +361,7 @@ class profilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: 72
-                    ),
+                    SizedBox(width: 72),
                     Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -376,7 +373,6 @@ class profilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    
                     SizedBox(
                       width: 43,
                     ),
@@ -396,8 +392,6 @@ class profilePage extends StatelessWidget {
               ),
             ],
           ),
-          
-          
         ],
       ),
     );

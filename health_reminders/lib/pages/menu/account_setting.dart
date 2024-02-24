@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
 class account_settingPage extends StatefulWidget {
@@ -11,45 +12,44 @@ class account_settingPage extends StatefulWidget {
 class _account_settingPageState extends State<account_settingPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Container(
-      
-      child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          
-          AppBar(
-            automaticallyImplyLeading:
-                false, // This property is redundant and not needed here
-            centerTitle: true,
-            title: Text(
-              'ข้อมูลบัญชี',
-              style: TextStyle(
-                color: Colors
-                    .brown, // Assuming 'brown' is a defined color variable
-                fontFamily: 'Garuda',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Text(
-                  'ชื่อ',
-                  style: TextStyles.common,
+    return Scaffold(
+      body: Container(
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: white,
+              centerTitle: true,
+              title: Text(
+                'ข้อมูลบัญชี',
+                style: TextStyle(
+                  color: Colors
+                      .brown, // Assuming 'brown' is a defined color variable
+                  fontFamily: 'Garuda',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-
-        ],
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 25),
+                  child: Text(
+                    'ชื่อ',
+                    style: TextStyles.common,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+          ],
+        ),
       ),
-    ),);
+    );
   }
 }

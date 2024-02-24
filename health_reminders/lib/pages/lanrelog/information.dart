@@ -317,17 +317,12 @@ class _informationPageState extends State<informationPage> {
                 onPressed: () {
                   // Handle the button press to save data
                   if (activityLevel != null) {
-                    // Save or process data accordingly
-                    print('ชื่อ: ${nameController.text}');
-                    print('อายุ: ${ageController.text}');
-                    print('น้ำหนัก: ${weightController.text}');
-                    print('ส่วนสูง: ${heightController.text}');
-                    print('ระดับการออกกำลังกาย: $activityLevel');
                     UserOperator.addInfo(
                         context,
+                        userId,
                         email,
                         password,
-                        userId,
+                        _file,
                         nameController.text.trim(),
                         gender,
                         int.parse(ageController.text.trim()),
