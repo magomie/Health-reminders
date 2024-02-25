@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/notification/notidoctor2.dart';
+import 'package:health_reminders/pages/notification/addNotiDoctorScreen.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class notidoctorPage extends StatelessWidget {
+class showNotiDoctorScreen extends StatefulWidget {
+  @override
+  State<showNotiDoctorScreen> createState() => _showNotiDoctorScreenState();
+}
+
+class _showNotiDoctorScreenState extends State<showNotiDoctorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +43,7 @@ class notidoctorPage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => notidoctor2Page()),
+                MaterialPageRoute(builder: (context) => addNotiDoctorScreen()),
               );
             },
           ),

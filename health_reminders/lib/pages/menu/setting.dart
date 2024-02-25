@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/pages/menu/account_setting.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
@@ -14,8 +15,9 @@ class settingPage extends StatelessWidget {
         //crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           AppBar(
-            automaticallyImplyLeading:
-                false, // This property is redundant and not needed here
+            automaticallyImplyLeading: false,
+            backgroundColor: white,
+            elevation: 0.0,
             centerTitle: true,
             title: Text(
               'การตั้งค่า',
@@ -350,7 +352,7 @@ class settingPage extends StatelessWidget {
           ElevatedButton(
             style: buttonlgin,
             onPressed: () {
-              // Handle the first button press
+              UserOperator.logOut(context);
               print('ออกจากระบบ');
             },
             child: Text('ออกจากระบบ', style: TextStyles.Tlogin),

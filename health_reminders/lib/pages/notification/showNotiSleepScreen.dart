@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/notification/notiexercire2.dart';
-
+import 'package:health_reminders/pages/notification/addNotiSleepScreen.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class notiexcerisePage extends StatelessWidget {
+class showNotiSleepScreen extends StatefulWidget {
+  @override
+  State<showNotiSleepScreen> createState() => _showNotiSleepScreenState();
+}
+
+class _showNotiSleepScreenState extends State<showNotiSleepScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +20,7 @@ class notiexcerisePage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'เวลาออกกำลังกาย',
+          'เวลานอน',
           style: TextStyle(
             color: Colors.brown, // Assuming 'brown' is a defined color variable
             fontFamily: 'Garuda',
@@ -39,7 +43,7 @@ class notiexcerisePage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => notiexercise2Page()),
+                MaterialPageRoute(builder: (context) => addNotiSleepScreen()),
               );
             },
           ),

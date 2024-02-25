@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/exercise/run.dart';
-import 'package:health_reminders/pages/notification/notidrug.dart';
+import 'package:health_reminders/pages/notification/showNotiDrugScreen.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-import '../notification/notidoctor2.dart';
-import '../notification/notisleep.dart';
+import '../notification/addNotiDoctorScreen.dart';
+import '../notification/showNotiSleepScreen.dart';
 
 class exercisePage extends StatelessWidget {
   @override
@@ -78,13 +78,13 @@ class exercisePage extends StatelessWidget {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              // Handle the first button press
+                              /* // Handle the first button press
                               print('go to drug notification');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => notidrugPage()),
-                              );
+                              );*/
                             },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -124,7 +124,8 @@ class exercisePage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => notidoctor2Page()),
+                                    builder: (context) =>
+                                        addNotiDoctorScreen()),
                               );
                             },
                             child: Row(
@@ -160,12 +161,12 @@ class exercisePage extends StatelessWidget {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              print('go to sleepy notification');
+                              /*print('go to sleepy notification');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => notisleepPage()),
-                              );
+                              );*/
                             },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,

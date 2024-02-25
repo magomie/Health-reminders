@@ -33,6 +33,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: CustomAppBar(
           onBackButtonPressed: () {
             Navigator.pop(context);
@@ -76,6 +77,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
   Widget _buildBMIContent() {
     // Customize the BMI content here
     return Container(
+      color: white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -228,7 +230,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                height: 120,
+                height: 140,
                 width: 330,
                 decoration: BoxDecoration(
                   //border: Border.all(color: brown, width: 1.0),
@@ -282,6 +284,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
   Widget _buildBMRContent() {
     // Customize the BMR content here
     return Container(
+      color: white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -598,7 +601,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                height: 200,
+                height: 250,
                 width: 330,
                 decoration: BoxDecoration(
                   //border: Border.all(color: brown, width: 1.0),
@@ -611,46 +614,48 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 child: Padding(
-                    padding: const EdgeInsets.only(left: 11, top: 5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'สูตรคำนวณ',
-                          style: TextStyles.Tlogin,
-                        ),
-                        
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text('ผู้ชาย', style: TextStyles.common3),
-                        ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text('66 + (13.7 x น้ำหนักตัว กก.) + (5 x ส่วนสูง ซม.) - (6.8 x อายุ) ',
-                              style: TextStyles.common2),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text('ผู้หญิง', style: TextStyles.common3),
-                        ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text('665 + (9.6 x น้ำหนักตัว กก.) + (1.8 x ส่วนสูง ซม.) - (4.7 x อายุ)',
-                              style: TextStyles.common2),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                         Align(
-                          alignment: Alignment.center,
-                          child: Text('BMR x ระดับการออกกำลังกาย',
-                              style: TextStyles.common2),
-                        ),
-                      ],
-                    )),
+                  padding: const EdgeInsets.only(left: 11, top: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'สูตรคำนวณ',
+                        style: TextStyles.Tlogin,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text('ผู้ชาย', style: TextStyles.common3),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                            '66 + (13.7 x น้ำหนักตัว กก.) + (5 x ส่วนสูง ซม.) - (6.8 x อายุ) ',
+                            style: TextStyles.common2),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text('ผู้หญิง', style: TextStyles.common3),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                            '665 + (9.6 x น้ำหนักตัว กก.) + (1.8 x ส่วนสูง ซม.) - (4.7 x อายุ)',
+                            style: TextStyles.common2),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text('BMR x ระดับการออกกำลังกาย',
+                            style: TextStyles.common2),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),

@@ -26,7 +26,7 @@ class genderPage extends StatelessWidget {
         onActionButtonPressed: () {
           //skip
           UserOperator.addInfo(
-              context, email, password, userId, '', '', 0, 0.0, 0.0, 0);
+              context, userId, email, password, null, '', '', 0, 0.0, 0.0, 0);
         },
         textAction: 'ข้าม',
       ),

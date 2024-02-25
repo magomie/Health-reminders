@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/notification/notidoctor2.dart';
-import 'package:health_reminders/pages/notification/notidrug.dart';
-import 'package:health_reminders/pages/notification/notiexercise.dart';
-import 'package:health_reminders/pages/notification/notisleep.dart';
+import 'package:health_reminders/pages/notification/addNotiDoctorScreen.dart';
+import 'package:health_reminders/pages/notification/showNotiDoctorScreen.dart';
+import 'package:health_reminders/pages/notification/showNotiDrugScreen.dart';
+import 'package:health_reminders/pages/notification/showNotiExerciseScreen.dart';
+import 'package:health_reminders/pages/notification/showNotiSleepScreen.dart';
+import 'package:health_reminders/styles/CustomAppBar.dart';
 
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class NotificationPage extends StatelessWidget {
+class notificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'การแจ้งเตือน',
-          style: TextStyle(
-            color: Colors.brown, // Assuming 'brown' is a defined color variable
-            fontFamily: 'Garuda',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(
+          onBackButtonPressed: () {
+            Navigator.pop(context);
+          },
+          title: "การแจ้งเตือน"),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
@@ -50,7 +43,8 @@ class NotificationPage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => notiexcerisePage()),
+                                    builder: (context) =>
+                                        showNotiExerciseScreen()),
                               );
                             },
                             child: Row(
@@ -91,7 +85,7 @@ class NotificationPage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => notidrugPage()),
+                                    builder: (context) => showNotiDrugScreen()),
                               );
                             },
                             child: Row(
@@ -132,7 +126,8 @@ class NotificationPage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => notidoctor2Page()),
+                                    builder: (context) =>
+                                        showNotiDoctorScreen()),
                               );
                             },
                             child: Row(
@@ -172,7 +167,8 @@ class NotificationPage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => notisleepPage()),
+                                    builder: (context) =>
+                                        showNotiSleepScreen()),
                               );
                             },
                             child: Row(

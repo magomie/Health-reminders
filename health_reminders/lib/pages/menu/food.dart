@@ -44,76 +44,69 @@ class foodPage extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(
-        child: Expanded(
-            child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.all(5.0),
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: noti,
-                            //blurRadius: 5.0,
-                          ),
-                        ]),
-                    child: Row(children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: Image.asset(
-                          'asset/image/mumu.jpg',
-                          width: 110,
-                          height: 110,
+      body: Container(
+        child: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return Container(
+              margin: const EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: noti,
+                    //blurRadius: 5.0,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Image.asset(
+                      'asset/image/mumu.jpg',
+                      width: 110,
+                      height: 110,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 0.0, bottom: 0.0, left: 15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('ข้าวหมูกรอบ', style: TextStyles.Tlogin),
+                        Text('แคลอรี่ : 490 แคล', style: TextStyles.common),
+                        Text('น้ำตาล : 20.4 กรัม', style: TextStyles.common),
+                        Text('โซเดียม : 20.0 กรัม', style: TextStyles.common),
+                        Text('ไขมัน : 21.8 กรัม', style: TextStyles.common),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 50.0),
+                  Column(
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.add_circle_outline,
+                          color: brown,
                         ),
+                        onPressed: () {
+                          /*Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => notidrug2Page()),
+                    );*/
+                        },
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 0.0, bottom: 0.0, left: 15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('ข้าวหมูกรอบ', style: TextStyles.Tlogin),
-                            Text('แคลอรี่ : 490 แคล', style: TextStyles.common),
-                            Text('น้ำตาล : 20.4 กรัม',
-                                style: TextStyles.common),
-                            Text('โซเดียม : 20.0 กรัม',
-                                style: TextStyles.common),
-                            Text('ไขมัน : 21.8 กรัม', style: TextStyles.common),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 50.0,
-                      ),
-                      Row(
-                        children: [
-                          Column(
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.add_circle_outline,
-                                  color: brown,
-                                ),
-                                onPressed: () {
-                                  /*Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(builder: (context) => notidrug2Page()),
-                                                    );*/
-                                },
-                              ),
-                              SizedBox(
-                                height: 80.0,
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    ]),
-                  );
-                })),
+                      SizedBox(height: 80.0),
+                    ],
+                  )
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

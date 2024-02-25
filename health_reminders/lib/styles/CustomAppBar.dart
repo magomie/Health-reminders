@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/styles/color.dart';
 import 'package:page_transition/page_transition.dart';
 
 class CustomAppBarIconActions extends StatelessWidget
@@ -111,7 +112,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: white,
       elevation: 0,
       centerTitle: true,
       title: Text(

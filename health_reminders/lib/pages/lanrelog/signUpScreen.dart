@@ -18,7 +18,8 @@ class _signUpScreenState extends State<signUpScreen> {
   final TextEditingController passwordConfirmController =
       TextEditingController();
 
-  bool obscureText = true;
+  bool obscureTextpass = true;
+  bool obscureTextpasscon = true;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,7 @@ class _signUpScreenState extends State<signUpScreen> {
                           horizontal: 30.0, vertical: 12.0),
                       child: TextField(
                         controller: passwordController,
-                        obscureText: obscureText,
+                        obscureText: obscureTextpass,
                         decoration: InputDecoration(
                           labelText: 'Password',
                           labelStyle: TextStyle(
@@ -115,14 +116,14 @@ class _signUpScreenState extends State<signUpScreen> {
                             onPressed: () {
                               setState(() {
                                 // สลับค่าให้กับ obscureText เมื่อปุ่มถูกกด
-                                obscureText = !obscureText;
+                                obscureTextpass = !obscureTextpass;
                               });
                             },
                             icon: Icon(
-                              obscureText
+                              obscureTextpass
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              color: obscureText ? Colors.grey : Colors.blue,
+                              color: obscureTextpass ? Colors.grey : yellow,
                             ),
                           ),
                         ),
@@ -138,7 +139,7 @@ class _signUpScreenState extends State<signUpScreen> {
                           horizontal: 30.0, vertical: 12.0),
                       child: TextField(
                         controller: passwordConfirmController,
-                        obscureText: obscureText,
+                        obscureText: obscureTextpasscon,
                         decoration: InputDecoration(
                           labelText: 'confirm password',
                           labelStyle: TextStyle(
@@ -163,14 +164,14 @@ class _signUpScreenState extends State<signUpScreen> {
                             onPressed: () {
                               setState(() {
                                 // สลับค่าให้กับ obscureText เมื่อปุ่มถูกกด
-                                obscureText = !obscureText;
+                                obscureTextpasscon = !obscureTextpasscon;
                               });
                             },
                             icon: Icon(
-                              obscureText
+                              obscureTextpasscon
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              color: obscureText ? Colors.grey : Colors.blue,
+                              color: obscureTextpasscon ? Colors.grey : yellow,
                             ),
                           ),
                         ),
