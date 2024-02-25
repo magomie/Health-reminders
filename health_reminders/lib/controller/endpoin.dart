@@ -169,6 +169,22 @@ class APIEndpoint {
     }
   }
 
+  static Future<bool> addNoti(NotiModel noti, String userId) async {
+    try {
+      final CollectionReference notiCollection = FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection('noti');
+
+      await notiCollection.add(noti.toMap());
+
+      return true;
+    } catch (e) {
+      print("Error: $e");
+      return false;
+    }
+  }
+
   static Future<Stream<DocumentSnapshot<Map<String, dynamic>>>> getUserData(
       String userId) async {
     return await FirebaseFirestore.instance

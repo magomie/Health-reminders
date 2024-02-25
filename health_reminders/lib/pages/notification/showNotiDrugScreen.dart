@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/notification/notidrug2.dart';
+import 'package:health_reminders/pages/notification/addNotiDrugScreen.dart';
 
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class notidrugPage extends StatelessWidget {
+class showNotiDrugScreen extends StatefulWidget {
+  @override
+  State<showNotiDrugScreen> createState() => _showNotiDrugScreenState();
+}
+
+class _showNotiDrugScreenState extends State<showNotiDrugScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +20,12 @@ class notidrugPage extends StatelessWidget {
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: brown),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           'เวลารับประทานยา',
           style: TextStyle(
@@ -31,10 +42,10 @@ class notidrugPage extends StatelessWidget {
               color: brown,
             ),
             onPressed: () {
-              Navigator.push(
+              /*Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => notidrug2Page()),
-              );
+              );*/
             },
           ),
         ],

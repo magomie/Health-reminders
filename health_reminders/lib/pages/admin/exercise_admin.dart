@@ -5,9 +5,9 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
 import '../exercise/run.dart';
-import '../notification/notidoctor2.dart';
-import '../notification/notidrug.dart';
-import '../notification/notisleep.dart';
+import '../notification/addNotiDoctorScreen.dart';
+import '../notification/showNotiDrugScreen.dart';
+import '../notification/showNotiSleepScreen.dart';
 
 class exercise_adminPage extends StatelessWidget {
   @override
@@ -78,13 +78,13 @@ class exercise_adminPage extends StatelessWidget {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              // Handle the first button press
+                              /*// Handle the first button press
                               print('go to drug notification');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => notidrugPage()),
-                              );
+                              );*/
                             },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -124,7 +124,8 @@ class exercise_adminPage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => notidoctor2Page()),
+                                    builder: (context) =>
+                                        addNotiDoctorScreen()),
                               );
                             },
                             child: Row(
@@ -160,12 +161,12 @@ class exercise_adminPage extends StatelessWidget {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              print('go to sleepy notification');
+                              /*print('go to sleepy notification');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => notisleepPage()),
-                              );
+                              );*/
                             },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
