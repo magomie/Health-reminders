@@ -230,7 +230,28 @@ class homeProfileWidget extends StatelessWidget {
                       //border: Border.all(color: brown, width: 1.0),
                       boxShadow: [
                         BoxShadow(
-                          color: gg,
+                          color: calBMI(healthDataSet['weight'],
+                                          healthDataSet['height']) <
+                                      18.50 ||
+                                  calBMI(healthDataSet['weight'],
+                                          healthDataSet['height']) >=
+                                      30.00
+                              ? Colors.red
+                              : (calBMI(healthDataSet['weight'],
+                                              healthDataSet['height']) >=
+                                          18.50 &&
+                                      calBMI(healthDataSet['weight'],
+                                              healthDataSet['height']) <=
+                                          22.90
+                                  ? gg
+                                  : (calBMI(healthDataSet['weight'],
+                                                  healthDataSet['height']) >=
+                                              23.00 &&
+                                          calBMI(healthDataSet['weight'],
+                                                  healthDataSet['height']) <=
+                                              29.90
+                                      ? yellow
+                                      : yellow)),
                           // blurRadius:5.0,
                         ),
                       ],
@@ -242,8 +263,11 @@ class homeProfileWidget extends StatelessWidget {
                         Text('BMI', style: TextStyles.Thome),
                         Text(
                             '${calBMI(healthDataSet['weight'], healthDataSet['height'])}',
-                            style: TextStyles.Thome1),
-                        Text('ปกติ', style: TextStyles.Thome),
+                            style: TextStyles.Thome),
+                        Text(
+                            getBMIString(calBMI(healthDataSet['weight'],
+                                healthDataSet['height'])),
+                            style: TextStyles.Thome),
                       ],
                     ),
                   ),
@@ -332,8 +356,10 @@ class profileWidget extends StatelessWidget {
               '${healthDataSet != null ? '${healthDataSet['weight']} กิโลกรัม' : 'ไม่มีข้อมูล'}'),
           _buildHealthInfoRow('ส่วนสูง',
               '${healthDataSet != null ? '${healthDataSet['height']} เซนติเมตร' : 'ไม่มีข้อมูล'}'),
-          _buildHealthInfoRow('BMI   ',
-              '${healthDataSet != null ? '${healthDataSet['height']} เซนติเมตร' : 'ไม่มีข้อมูล'}'),
+          _buildHealthInfoRow(
+            'BMI   ',
+            '${calBMI(healthDataSet['weight'], healthDataSet['height']) < 18.50 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   ผอม' : '${calBMI(healthDataSet['weight'], healthDataSet['height']) >= 18.50 && calBMI(healthDataSet['weight'], healthDataSet['height']) <= 22.90 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   ปกติ' : '${calBMI(healthDataSet['weight'], healthDataSet['height']) >= 23.00 && calBMI(healthDataSet['weight'], healthDataSet['height']) <= 24.90 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   ท้วม' : '${calBMI(healthDataSet['weight'], healthDataSet['height']) >= 25.00 && calBMI(healthDataSet['weight'], healthDataSet['height']) <= 29.90 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   อ้วน' : '${calBMI(healthDataSet['weight'], healthDataSet['height']) >= 30.00 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   อ้วนมาก' : 'ไม่มีข้อมูล'}'}'}'}'}',
+          ),
           _buildHealthInfoRow('BMR  ',
               '${healthDataSet != null ? '${healthDataSet['height']} เซนติเมตร' : 'ไม่มีข้อมูล'}'),
         ],
@@ -501,4 +527,8 @@ class DateButtom extends StatelessWidget {
 double calBMI(double w, double h) {
   double bmi = w / ((h / 100) * (h / 100));
   return double.parse(bmi.toStringAsFixed(2));
+}
+
+String getBMIString(double bmi) {
+  return '${bmi < 18.50 ? 'ผอม' : '${bmi >= 18.50 && bmi <= 22.90 ? 'ปกติ' : '${bmi >= 23.00 && bmi <= 24.90 ? 'ท้วม' : '${bmi >= 25.00 && bmi <= 29.90 ? 'อ้วน' : '${bmi >= 30.00 ? 'อ้วนมาก' : 'ไม่มีข้อมูล'}'}'}'}'}';
 }
