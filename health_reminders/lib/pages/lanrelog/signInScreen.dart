@@ -9,12 +9,12 @@ import 'package:page_transition/page_transition.dart';
 
 import '../../controller/operator.dart';
 
-class loginPage extends StatefulWidget {
+class signInScreen extends StatefulWidget {
   @override
-  _loginPageState createState() => _loginPageState();
+  _signInScreenState createState() => _signInScreenState();
 }
 
-class _loginPageState extends State<loginPage> {
+class _signInScreenState extends State<signInScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 

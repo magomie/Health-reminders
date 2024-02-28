@@ -6,14 +6,21 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:intl/intl.dart';
 
-class addNotiExercireScreen extends StatefulWidget {
-  const addNotiExercireScreen({super.key});
+class addNotiScreen extends StatefulWidget {
+  final String userId;
+  final String titleNoti;
+  final String labelNotiText;
+  const addNotiScreen(
+      {super.key,
+      required this.userId,
+      required this.titleNoti,
+      required this.labelNotiText});
 
   @override
-  State<addNotiExercireScreen> createState() => _addNotiExercireScreenState();
+  State<addNotiScreen> createState() => _addNotiScreenState();
 }
 
-class _addNotiExercireScreenState extends State<addNotiExercireScreen> {
+class _addNotiScreenState extends State<addNotiScreen> {
   final TextEditingController exerciseController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
   DateTime? selectedDate;
@@ -73,7 +80,7 @@ class _addNotiExercireScreenState extends State<addNotiExercireScreen> {
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
-        title: "เวลาออกกำลังกาย",
+        title: widget.titleNoti,
         onActionButtonPressed: () {
           print(
               '${exerciseController.text.trim()}\n${noteController.text.trim()}\n$selectedDate\n$selectedTime');
@@ -113,7 +120,7 @@ class _addNotiExercireScreenState extends State<addNotiExercireScreen> {
                       child: TextField(
                         controller: exerciseController,
                         decoration: InputDecoration(
-                          labelText: 'รูปแบบการออกกำลังกาย',
+                          labelText: widget.labelNotiText,
                           labelStyle: TextStyle(
                               color: brown, // สีของ labelText
                               fontSize: 16,

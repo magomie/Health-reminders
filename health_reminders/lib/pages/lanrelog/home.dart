@@ -18,6 +18,7 @@ import 'package:health_reminders/pages/notification/notificationScreen.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:page_transition/page_transition.dart';
 
 class homePage extends StatefulWidget {
   final String userId;
@@ -324,8 +325,12 @@ class HomePageContent extends StatelessWidget {
                               print('Button 3 Pressed');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => notificationScreen()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: notificationScreen(
+                                    userId: userId,
+                                  ),
+                                ),
                               );
                             },
                             child: Column(

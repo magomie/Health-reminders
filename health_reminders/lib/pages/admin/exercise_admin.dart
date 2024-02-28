@@ -5,9 +5,6 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
 import '../exercise/run.dart';
-import '../notification/addNotiDoctorScreen.dart';
-import '../notification/showNotiDrugScreen.dart';
-import '../notification/showNotiSleepScreen.dart';
 
 class exercise_adminPage extends StatelessWidget {
   @override
@@ -118,16 +115,7 @@ class exercise_adminPage extends StatelessWidget {
                         height: 60,
                         child: ElevatedButton(
                             style: buttonnoti,
-                            onPressed: () {
-                              // Handle the first button press
-                              print('go to doctor notification');
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        addNotiDoctorScreen()),
-                              );
-                            },
+                            onPressed: () {},
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [

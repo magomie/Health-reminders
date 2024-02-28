@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/notification/addNotiSleepScreen.dart';
+import 'package:health_reminders/pages/notification/addNotiScreen.dart';
+
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:page_transition/page_transition.dart';
 
-class showNotiSleepScreen extends StatefulWidget {
+class showNotiScreen extends StatefulWidget {
+  final String userId;
+  final String titleNoti;
+  final String labelNotiText;
+  const showNotiScreen(
+      {super.key,
+      required this.userId,
+      required this.titleNoti,
+      required this.labelNotiText});
+
   @override
-  State<showNotiSleepScreen> createState() => _showNotiSleepScreenState();
+  State<showNotiScreen> createState() => _showNotiScreenState();
 }
 
-class _showNotiSleepScreenState extends State<showNotiSleepScreen> {
+class _showNotiScreenState extends State<showNotiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +31,9 @@ class _showNotiSleepScreenState extends State<showNotiSleepScreen> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'เวลานอน',
+          widget.titleNoti,
           style: TextStyle(
-            color: Colors.brown, // Assuming 'brown' is a defined color variable
+            color: brown, // Assuming 'brown' is a defined color variable
             fontFamily: 'Garuda',
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -43,7 +54,14 @@ class _showNotiSleepScreenState extends State<showNotiSleepScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => addNotiSleepScreen()),
+                PageTransition(
+                  type: PageTransitionType.bottomToTop,
+                  child: addNotiScreen(
+                    userId: widget.userId,
+                    titleNoti: widget.titleNoti,
+                    labelNotiText: widget.labelNotiText,
+                  ),
+                ),
               );
             },
           ),

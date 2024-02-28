@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/operator.dart';
-import 'package:health_reminders/pages/lanrelog/login.dart';
+import 'package:health_reminders/pages/lanrelog/signInScreen.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
@@ -221,7 +221,7 @@ class _signUpScreenState extends State<signUpScreen> {
                     Navigator.push(
                       context,
                       PageTransition(
-                          child: loginPage(),
+                          child: signInScreen(),
                           type: PageTransitionType.rightToLeft),
                     );
                   },

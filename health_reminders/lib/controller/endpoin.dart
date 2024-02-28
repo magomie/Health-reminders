@@ -153,7 +153,7 @@ class APIEndpoint {
       // Add user basic info
       await users
           .doc(user.userId)
-          .set({'userId': user.userId, 'username': user.username});
+          .update({'userId': user.userId, 'username': user.username});
 
       // Add user health data
       await users

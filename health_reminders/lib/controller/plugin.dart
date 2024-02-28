@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -239,7 +240,9 @@ class homeProfileWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('BMI', style: TextStyles.Thome),
-                        Text('22.09', style: TextStyles.Thome1),
+                        Text(
+                            '${calBMI(healthDataSet['weight'], healthDataSet['height'])}',
+                            style: TextStyles.Thome1),
                         Text('ปกติ', style: TextStyles.Thome),
                       ],
                     ),
@@ -426,4 +429,76 @@ class DateButtom extends StatelessWidget {
       ),
     );
   }
+}
+
+/*class NotificationService {
+  final BuildContext context;
+
+  NotificationService(this.context);
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  Future<void> initialize() async {
+    final AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
+            android: initializationSettingsAndroid, iOS: null);
+
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  }
+
+  Future<void> scheduleNotification(DateTime? selectedDate, TimeOfDay? selectedTime) async {
+    if (selectedDate != null && selectedTime != null) {
+      final DateTime scheduledDate = DateTime(
+        selectedDate.year,
+        selectedDate.month,
+        selectedDate.day,
+        selectedTime.hour,
+        selectedTime.minute,
+      );
+
+      final AndroidNotificationDetails androidPlatformChannelSpecifics =
+          AndroidNotificationDetails(
+        'your channel id',
+        'your channel name',
+        'your channel description',
+        importance: Importance.max,
+        priority: Priority.high,
+        playSound: true,
+        enableVibration: true,
+      );
+
+      final NotificationDetails platformChannelSpecifics =
+          NotificationDetails(android: androidPlatformChannelSpecifics);
+
+      await flutterLocalNotificationsPlugin.schedule(
+        0,
+        'Notification Title',
+        'Notification Body',
+        scheduledDate,
+        platformChannelSpecifics,
+        androidAllowWhileIdle: true,
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Scheduled notification at $scheduledDate'),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please select date and time first'),
+        ),
+      );
+    }
+  }
+}*/
+
+double calBMI(double w, double h) {
+  double bmi = w / ((h / 100) * (h / 100));
+  return double.parse(bmi.toStringAsFixed(2));
 }

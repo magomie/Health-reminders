@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/lanrelog/login.dart';
+import 'package:health_reminders/pages/lanrelog/signInScreen.dart';
 import 'package:health_reminders/pages/lanrelog/signUpScreen.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
@@ -42,7 +42,7 @@ class landingPage extends StatelessWidget {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeft,
-                      child: loginPage(),
+                      child: signInScreen(),
                     ),
                   );
                 },

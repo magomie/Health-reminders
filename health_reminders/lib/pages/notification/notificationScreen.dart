@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:health_reminders/pages/notification/addNotiDoctorScreen.dart';
-import 'package:health_reminders/pages/notification/showNotiDoctorScreen.dart';
-import 'package:health_reminders/pages/notification/showNotiDrugScreen.dart';
-import 'package:health_reminders/pages/notification/showNotiExerciseScreen.dart';
-import 'package:health_reminders/pages/notification/showNotiSleepScreen.dart';
+import 'package:health_reminders/pages/notification/showNotiScreen.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:page_transition/page_transition.dart';
 
-class notificationScreen extends StatelessWidget {
+class notificationScreen extends StatefulWidget {
+  final String userId;
+
+  const notificationScreen({super.key, required this.userId});
+
+  @override
+  State<notificationScreen> createState() => _notificationScreenState();
+}
+
+class _notificationScreenState extends State<notificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +44,16 @@ class notificationScreen extends StatelessWidget {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              // Handle the first button press
-                              print('Button 1 Pressed');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        showNotiExerciseScreen()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: showNotiScreen(
+                                    userId: widget.userId,
+                                    titleNoti: 'เวลาออกกำลังกาย',
+                                    labelNotiText: 'รูปแบบการออกกำลังกาย',
+                                  ),
+                                ),
                               );
                             },
                             child: Row(
@@ -80,12 +89,16 @@ class notificationScreen extends StatelessWidget {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              // Handle the first button press
-                              print('go to drug notification');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => showNotiDrugScreen()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: showNotiScreen(
+                                    userId: widget.userId,
+                                    titleNoti: 'เวลารับประทานยา',
+                                    labelNotiText: 'ชื่อยา',
+                                  ),
+                                ),
                               );
                             },
                             child: Row(
@@ -121,13 +134,16 @@ class notificationScreen extends StatelessWidget {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              // Handle the first button press
-                              print('go to doctor notification');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        showNotiDoctorScreen()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: showNotiScreen(
+                                    userId: widget.userId,
+                                    titleNoti: 'เวลานัดพบแพทย์',
+                                    labelNotiText: 'หมายนัด',
+                                  ),
+                                ),
                               );
                             },
                             child: Row(
@@ -163,12 +179,16 @@ class notificationScreen extends StatelessWidget {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              print('go to sleepy notification');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        showNotiSleepScreen()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: showNotiScreen(
+                                    userId: widget.userId,
+                                    titleNoti: 'เวลานอน',
+                                    labelNotiText: 'กรุณากรอกข้อมูล',
+                                  ),
+                                ),
                               );
                             },
                             child: Row(

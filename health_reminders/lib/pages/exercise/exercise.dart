@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/exercise/run.dart';
-import 'package:health_reminders/pages/notification/showNotiDrugScreen.dart';
+
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
-
-import '../notification/addNotiDoctorScreen.dart';
-import '../notification/showNotiSleepScreen.dart';
 
 class exercisePage extends StatelessWidget {
   @override
@@ -118,16 +115,7 @@ class exercisePage extends StatelessWidget {
                         height: 60,
                         child: ElevatedButton(
                             style: buttonnoti,
-                            onPressed: () {
-                              // Handle the first button press
-                              print('go to doctor notification');
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        addNotiDoctorScreen()),
-                              );
-                            },
+                            onPressed: () {},
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
