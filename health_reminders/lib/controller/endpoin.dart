@@ -1,14 +1,19 @@
 import 'dart:async';
 import 'dart:io';
 
+//flutter_lib
+import 'package:flutter/material.dart';
+//firebase_lib
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
-import 'package:health_reminders/model/mode.dart';
+//views
+import 'package:health_reminders/views/Home/home.dart';
+//page_transittion_lib
 import 'package:page_transition/page_transition.dart';
 
-import '../pages/lanrelog/home.dart';
+//import_model
+import 'package:health_reminders/model/mode.dart';
 
 class APIEndpoint {
   static Future<bool> signIn(

@@ -1,16 +1,24 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+//flutter_lib
 import 'package:flutter/material.dart';
+//firebase_lib
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+//endpoin and views
 import 'package:health_reminders/controller/endpoin.dart';
+import 'package:health_reminders/views/Admin/admin_add_food.dart';
+import 'package:health_reminders/views/AppMenu/notification/showNotiScreen.dart';
+import 'package:health_reminders/views/Home/home.dart';
+import 'package:health_reminders/views/Intro/gender_screen.dart';
 import 'package:health_reminders/controller/plugin.dart';
-import 'package:health_reminders/model/mode.dart';
-import 'package:health_reminders/pages/admin/admin_add_food.dart';
-import 'package:health_reminders/pages/lanrelog/gender.dart';
-import 'package:health_reminders/pages/lanrelog/home.dart';
-import 'package:health_reminders/pages/lanrelog/landing.dart';
-import 'package:health_reminders/pages/notification/showNotiScreen.dart';
+import 'package:health_reminders/views/Intro/landing_screen.dart';
+
+//page_transittion_lib
 import 'package:page_transition/page_transition.dart';
+
+//import_model
+import 'package:health_reminders/model/mode.dart';
 
 class UserOperator {
   static Future<bool> login(
@@ -176,7 +184,7 @@ class UserOperator {
         context,
         PageTransition(
           type: PageTransitionType.rightToLeft,
-          child: landingPage(),
+          child: MyLandingScreen(),
         ),
       );
     }

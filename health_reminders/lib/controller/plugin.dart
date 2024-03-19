@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:html' as html;
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,20 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class userPlugin {
-  static void goToPage(BuildContext context, Widget page) {
-    Navigator.push(
-      context,
-      PageTransition(
-        type: PageTransitionType.rightToLeft,
-        child: page,
-      ),
-    );
-  }
-
   static int createUniqueId() {
     int other = 100; // กำหนดค่า other
     int uniqueId = DateTime.now().microsecond.remainder(other);
