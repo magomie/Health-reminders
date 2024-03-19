@@ -1,19 +1,11 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
 
-import 'package:async/async.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/model/mode.dart';
-import 'package:health_reminders/pages/lanrelog/gender.dart';
-import 'package:health_reminders/pages/lanrelog/landing.dart';
-import 'package:http/http.dart' as http;
 import 'package:page_transition/page_transition.dart';
 
 import '../pages/lanrelog/home.dart';
@@ -78,24 +70,6 @@ class APIEndpoint {
       print("signUp Err : $e");
       return null;
     }
-  }
-
-  static Future<String> generateUserId() async {
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('users').get();
-
-    List<String> existingUserIds =
-        querySnapshot.docs.map((doc) => doc.id).toList();
-
-    int userIdNumber = 1;
-    String newUserId;
-    do {
-      newUserId = 'user_id_$userIdNumber';
-      userIdNumber++;
-    } while (existingUserIds
-        .contains(newUserId)); // ตรวจสอบว่า user_id ใหม่ซ้ำกับที่มีอยู่หรือไม่
-
-    return newUserId;
   }
 
   static Future<String> uploadImageToFirebase(File? imageFile) async {
@@ -169,14 +143,31 @@ class APIEndpoint {
     }
   }
 
-  static Future<bool> addNoti(NotiModel noti, String userId) async {
+  static Future<bool> addNoti(String userId, NotiModel noti) async {
     try {
-      final CollectionReference notiCollection = FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId)
-          .collection('noti');
+      final CollectionReference users =
+          FirebaseFirestore.instance.collection('users');
 
-      await notiCollection.add(noti.toMap());
+      // Add user health data
+      await users
+          .doc(userId)
+          .collection('Notification')
+          .doc(noti.notiId)
+          .set(noti.toMap());
+
+      return true;
+    } catch (e) {
+      print("Error: $e");
+      return false;
+    }
+  }
+
+  static Future<bool> addFood(foodDataModel foodData) async {
+    try {
+      final CollectionReference users =
+          FirebaseFirestore.instance.collection('Food');
+
+      await users.add(foodData.toMap());
 
       return true;
     } catch (e) {

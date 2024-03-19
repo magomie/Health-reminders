@@ -13,11 +13,20 @@ class adminPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(
-          onBackButtonPressed: () {
-            Navigator.pop(context);
-          },
-          title: "ADMIN"),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "ADMIN",
+          style: TextStyle(
+            color: Colors.brown, // Assuming 'brown' is a defined color variable
+            fontFamily: 'Garuda',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(

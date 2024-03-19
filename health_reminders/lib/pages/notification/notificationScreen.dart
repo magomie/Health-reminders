@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/pages/notification/showNotiScreen.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 
@@ -17,6 +18,10 @@ class notificationScreen extends StatefulWidget {
 }
 
 class _notificationScreenState extends State<notificationScreen> {
+  void initState() {
+    NotificationProvider.checkReminders((widget.userId));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
@@ -24,22 +25,10 @@ class informationPage extends StatefulWidget {
       required this.password});
 
   @override
-  _informationPageState createState() => _informationPageState(
-      userId: userId, gender: gender, email: email, password: password);
+  _informationPageState createState() => _informationPageState();
 }
 
 class _informationPageState extends State<informationPage> {
-  final String userId;
-  final String gender;
-  final String email;
-  final String password;
-
-  _informationPageState(
-      {required this.userId,
-      required this.gender,
-      required this.email,
-      required this.password});
-
   final ImagePicker _picker = ImagePicker();
   File? _file;
   int? activityLevel;
@@ -57,9 +46,9 @@ class _informationPageState extends State<informationPage> {
   final TextEditingController weightController = TextEditingController();
   final TextEditingController heightController = TextEditingController();
 
-  Future<void> pickImage() async {
+  FutureOr<void> pickImage() async {
     final PickedFile? pickedFile =
-        await _picker.getImage(source: ImageSource.gallery);
+        (await _picker.pickImage(source: ImageSource.gallery)) as PickedFile?;
     if (pickedFile != null) {
       setState(() {
         _file = File(pickedFile.path);
@@ -319,12 +308,12 @@ class _informationPageState extends State<informationPage> {
                   if (activityLevel != null) {
                     UserOperator.addInfo(
                         context,
-                        userId,
-                        email,
-                        password,
+                        widget.userId,
+                        widget.email,
+                        widget.password,
                         _file,
                         nameController.text.trim(),
-                        gender,
+                        widget.gender,
                         int.parse(ageController.text.trim()),
                         double.parse(weightController.text.trim()),
                         double.parse(heightController.text.trim()),

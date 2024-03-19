@@ -1,4 +1,9 @@
+import 'dart:async';
+
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
@@ -21,15 +26,19 @@ class addNotiScreen extends StatefulWidget {
 }
 
 class _addNotiScreenState extends State<addNotiScreen> {
-  final TextEditingController exerciseController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
 
+  void initState() {
+    NotificationProvider.checkReminders((widget.userId));
+  }
+
   @override
   Widget build(BuildContext context) {
     //เลือกวัน
-    Future<void> _selectedDate(BuildContext context) async {
+    FutureOr<void> _selectedDate(BuildContext context) async {
       DateTime? pickDate = await showDatePicker(
         context: context,
         initialDate: selectedDate ?? DateTime.now(),
@@ -46,7 +55,7 @@ class _addNotiScreenState extends State<addNotiScreen> {
       }
     }
 
-    Future<void> _selectedTime(BuildContext context) async {
+    FutureOr<void> _selectedTime(BuildContext context) async {
       TimeOfDay? pickTime = await showTimePicker(
         context: context,
         initialTime: selectedTime ?? TimeOfDay.now(),
@@ -83,9 +92,18 @@ class _addNotiScreenState extends State<addNotiScreen> {
         title: widget.titleNoti,
         onActionButtonPressed: () {
           print(
-              '${exerciseController.text.trim()}\n${noteController.text.trim()}\n$selectedDate\n$selectedTime');
+              '${titleController.text.trim()}\n${noteController.text.trim()}\n$selectedDate\n$selectedTime');
+          UserOperator.addNoti(
+              context,
+              widget.userId,
+              widget.labelNotiText,
+              widget.titleNoti,
+              titleController.text.trim(),
+              noteController.text,
+              selectedDate!,
+              selectedTime!);
         },
-        textAction: 'เพิ่ม',
+        textAction: 'บันทึก',
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -118,7 +136,7 @@ class _addNotiScreenState extends State<addNotiScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 12.0),
                       child: TextField(
-                        controller: exerciseController,
+                        controller: titleController,
                         decoration: InputDecoration(
                           labelText: widget.labelNotiText,
                           labelStyle: TextStyle(

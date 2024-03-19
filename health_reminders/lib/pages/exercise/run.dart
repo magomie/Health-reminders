@@ -42,7 +42,7 @@ class _informationPageState extends State<runPage> {
                       child: Container(
                         width: double
                             .infinity, // ตั้งค่าเป็น double.infinity เพื่อให้ช่องว่างทั้งหมดเท่ากัน
-                        height: 170.0,
+                        height: 200.0,
                         child: ElevatedButton(
                           style: buttonmanu,
                           onPressed: () {
@@ -75,7 +75,7 @@ class _informationPageState extends State<runPage> {
                     Expanded(
                       child: Container(
                         width: double.infinity,
-                        height: 170.0,
+                        height: 200.0,
                         child: ElevatedButton(
                           style: buttonmanu,
                           onPressed: () {
@@ -119,7 +119,7 @@ class _informationPageState extends State<runPage> {
                       child: Container(
                         width: double
                             .infinity, // ตั้งค่าเป็น double.infinity เพื่อให้ช่องว่างทั้งหมดเท่ากัน
-                        height: 170.0,
+                        height: 200.0,
                         child: ElevatedButton(
                           style: buttonmanu,
                           onPressed: () {
@@ -153,7 +153,7 @@ class _informationPageState extends State<runPage> {
                     Expanded(
                       child: Container(
                         width: double.infinity,
-                        height: 170.0,
+                        height: 200.0,
                         child: ElevatedButton(
                           style: buttonmanu,
                           onPressed: () {

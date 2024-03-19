@@ -7,6 +7,10 @@ class profilePage extends StatelessWidget {
   final String userId;
   const profilePage({required this.userId});
 
+  /*void initState() {
+    NotificationProvider.checkReminders((widget.userId));
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Container(

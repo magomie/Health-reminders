@@ -6,6 +6,10 @@ import 'package:health_reminders/styles/text.dart';
 import 'package:intl/intl.dart';
 
 class calcaloriePage extends StatelessWidget {
+  /*void initState() {
+    NotificationProvider.checkReminders((widget.userId));
+  }*/
+
   @override
   Widget build(BuildContext context) {
     double boxSizeWidth = 345;
@@ -283,9 +287,7 @@ class calcaloriePage extends StatelessWidget {
                           ],
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                        child: 
-                       
-                        Text(
+                        child: Text(
                           'ไม่มีรายการอาหาร',
                           style: TextStyles.Tlogin,
                           textAlign: TextAlign.center,
@@ -293,8 +295,6 @@ class calcaloriePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                   
-
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -312,7 +312,6 @@ class calcaloriePage extends StatelessWidget {
                                                     );*/
                         },
                       ),
-                     
                     ],
                   ),
                 ],

@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'dart:math';
+
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,22 +23,20 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class homePage extends StatefulWidget {
   final String userId;
   const homePage({required this.userId});
 
   @override
-  _homePageState createState() => _homePageState(userId: userId);
+  _homePageState createState() => _homePageState();
 }
 
 class _homePageState extends State<homePage> {
   int _selectedIndex = 0;
-  final String userId;
-
-  _homePageState({required this.userId});
-
   late List<Widget> _pages;
+  late NotificationProvider notificationProvider;
 
   @override
   void initState() {
@@ -46,6 +48,7 @@ class _homePageState extends State<homePage> {
       profilePage(userId: widget.userId),
       settingPage(),
     ];
+    NotificationProvider.checkReminders((widget.userId));
   }
 
   void _onItemTapped(int index) {
@@ -56,6 +59,7 @@ class _homePageState extends State<homePage> {
 
   @override
   Widget build(BuildContext context) {
+    final notificationProvider = Provider.of<NotificationProvider>(context);
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
@@ -241,7 +245,9 @@ class HomePageContent extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => waterPage()),
+                                    builder: (context) => waterPage(
+                                          userId: userId,
+                                        )),
                               );
                             },
                             child: Column(

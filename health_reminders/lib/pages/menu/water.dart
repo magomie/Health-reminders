@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/operator.dart';
+import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/styles/CustomAppBar.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
@@ -6,6 +8,13 @@ import 'package:health_reminders/styles/text.dart';
 import 'package:intl/intl.dart';
 
 class waterPage extends StatelessWidget {
+  final String userId;
+  waterPage({required this.userId});
+
+  void initState() {
+    NotificationProvider.checkReminders((userId));
+  }
+
   @override
   Widget build(BuildContext context) {
     double boxSizeWidth = 345;
@@ -17,11 +26,11 @@ class waterPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(onBackButtonPressed: () {Navigator.pop(context);}, 
-      title: "การดื่มน้ำ"
-        ),
-        
-        
+      appBar: CustomAppBar(
+          onBackButtonPressed: () {
+            Navigator.pop(context);
+          },
+          title: "การดื่มน้ำ"),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
@@ -47,6 +56,14 @@ class waterPage extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  showDataHealthPlugin(
+                    docId: userId,
+                    otherClass: (context, healthData) =>
+                        wathercalWidget(healthDataSet: healthData),
                   ),
                   SizedBox(
                     height: 10,
@@ -77,7 +94,7 @@ class waterPage extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text('ปริมาณน้ำที่ได้รับ',
+                                  Text('ปริมาณน้ำที่ได้รับวันนี้',
                                       style: TextStyles.common),
                                 ],
                               ),
@@ -97,72 +114,6 @@ class waterPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text('มิลลิลิตร', style: TextStyles.common),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        height: 70,
-                        width: boxSizeWidth,
-
-                        decoration: BoxDecoration(
-                          border: Border.all(color: brown, width: 1.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: noti,
-                              //blurRadius: 5.0,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        //height: 60,
-
-                        child: Row(
-                          //crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(width: 5),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text('ปริมาณน้ำที่ควรได้รับต่อวัน',
-                                      style: TextStyles.common),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '0',
-                                    style: TextStyles
-                                        .common2, // You can customize the style
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'มิลลิลิตร',
-                                    style: TextStyles
-                                        .common, // You can customize the style
-                                    textAlign: TextAlign.end,
-                                  ),
                                 ],
                               ),
                             ),

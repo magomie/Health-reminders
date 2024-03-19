@@ -5,6 +5,10 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
 class foodPage extends StatelessWidget {
+  /*void initState() {
+    NotificationProvider.checkReminders((widget.userId));
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -30,6 +30,10 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
   final TextEditingController ageController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
 
+  /*void initState() {
+    NotificationProvider.checkReminders((widget.userId));
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

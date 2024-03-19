@@ -1,3 +1,5 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:health_reminders/pages/lanrelog/signInScreen.dart';
 import 'package:health_reminders/pages/lanrelog/signUpScreen.dart';
@@ -6,7 +8,12 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:page_transition/page_transition.dart';
 
-class landingPage extends StatelessWidget {
+class landingPage extends StatefulWidget {
+  @override
+  State<landingPage> createState() => _landingPageState();
+}
+
+class _landingPageState extends State<landingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

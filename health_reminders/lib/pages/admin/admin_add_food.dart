@@ -1,9 +1,32 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:image_picker/image_picker.dart';
 
-class admin_add_foodPage extends StatelessWidget {
+class admin_add_foodPage extends StatefulWidget {
+  @override
+  State<admin_add_foodPage> createState() => _admin_add_foodPageState();
+}
+
+class _admin_add_foodPageState extends State<admin_add_foodPage> {
+  final ImagePicker _picker = ImagePicker();
+
+  File? _file;
+
+  FutureOr<void> pickImage() async {
+    final PickedFile? pickedFile =
+        (await _picker.pickImage(source: ImageSource.gallery)) as PickedFile?;
+    if (pickedFile != null) {
+      setState(() {
+        _file = File(pickedFile.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
@@ -19,6 +42,7 @@ class admin_add_foodPage extends StatelessWidget {
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: Text(
           'เพิ่มเมนูอาหาร',
           style: TextStyle(
@@ -41,6 +65,36 @@ class admin_add_foodPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Stack(
+                      children: [
+                        GestureDetector(
+                          onTap: pickImage,
+                          child: Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.rectangle, color: aa),
+                            child: _file != null
+                                ? ClipOval(
+                                    child: Image.file(
+                                      _file!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : Icon(
+                                    Icons.photo_outlined,
+                                    size: 60,
+                                    color: brown,
+                                  ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                /*Column(
                   //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
@@ -69,7 +123,7 @@ class admin_add_foodPage extends StatelessWidget {
                           )),
                     ),
                   ],
-                ),
+                ),*/
                 SizedBox(
                   height: 10,
                 ),

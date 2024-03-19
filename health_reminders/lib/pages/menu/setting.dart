@@ -8,6 +8,10 @@ import 'package:health_reminders/styles/text.dart';
 class settingPage extends StatelessWidget {
   const settingPage({Key? key}) : super(key: key);
 
+  /*void initState() {
+    NotificationProvider.checkReminders((userId));
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,7 +65,7 @@ class settingPage extends StatelessWidget {
                               BorderRadius.circular(10.0), // ให้มีมุมโค้ง
                         ),
                         //elevation: 5, // เพิ่มเงา
-                        primary: Colors.white, // สีพื้นหลังของปุ่ม
+                        foregroundColor: Colors.white, // สีพื้นหลังของปุ่ม
                       ),
                       onPressed: () {
                         // Handle the first button press
@@ -112,7 +116,7 @@ class settingPage extends StatelessWidget {
                               BorderRadius.circular(10.0), // ให้มีมุมโค้ง
                         ),
                         //elevation: 5, // เพิ่มเงา
-                        primary: Colors.white, // สีพื้นหลังของปุ่ม
+                        foregroundColor: Colors.white, // สีพื้นหลังของปุ่ม
                       ),
                       onPressed: () {
                         // Handle the first button press
@@ -176,7 +180,7 @@ class settingPage extends StatelessWidget {
                               BorderRadius.circular(10.0), // ให้มีมุมโค้ง
                         ),
                         //elevation: 5, // เพิ่มเงา
-                        primary: Colors.white, // สีพื้นหลังของปุ่ม
+                        foregroundColor: Colors.white, // สีพื้นหลังของปุ่ม
                       ),
                       onPressed: () {
                         // Handle the first button press
@@ -214,7 +218,7 @@ class settingPage extends StatelessWidget {
                               BorderRadius.circular(10.0), // ให้มีมุมโค้ง
                         ),
                         //elevation: 5, // เพิ่มเงา
-                        primary: Colors.white, // สีพื้นหลังของปุ่ม
+                        foregroundColor: Colors.white, // สีพื้นหลังของปุ่ม
                       ),
                       onPressed: () {
                         // Handle the first button press
@@ -270,7 +274,7 @@ class settingPage extends StatelessWidget {
                               BorderRadius.circular(10.0), // ให้มีมุมโค้ง
                         ),
                         //elevation: 5, // เพิ่มเงา
-                        primary: Colors.white, // สีพื้นหลังของปุ่ม
+                        foregroundColor: Colors.white, // สีพื้นหลังของปุ่ม
                       ),
                       onPressed: () {
                         // Handle the first button press
@@ -316,7 +320,7 @@ class settingPage extends StatelessWidget {
                               BorderRadius.circular(10.0), // ให้มีมุมโค้ง
                         ),
                         //elevation: 5, // เพิ่มเงา
-                        primary: Colors.white, // สีพื้นหลังของปุ่ม
+                        foregroundColor: Colors.white, // สีพื้นหลังของปุ่ม
                       ),
                       onPressed: () {
                         // Handle the first button press

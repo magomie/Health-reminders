@@ -1,14 +1,15 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/endpoin.dart';
+import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/model/mode.dart';
+import 'package:health_reminders/pages/admin/admin_add_food.dart';
 import 'package:health_reminders/pages/lanrelog/gender.dart';
 import 'package:health_reminders/pages/lanrelog/home.dart';
 import 'package:health_reminders/pages/lanrelog/landing.dart';
+import 'package:health_reminders/pages/notification/showNotiScreen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class UserOperator {
@@ -22,7 +23,7 @@ class UserOperator {
       String password, String passwordConf) async {
     try {
       if (password == passwordConf) {
-        String userid = await APIEndpoint.generateUserId();
+        String userid = await userPlugin.generateId('users', 'user');
         if (userid != null) {
           bool? addSuccess = await APIEndpoint.addUser(userid, email, password);
           if (addSuccess != false) {
@@ -46,6 +47,40 @@ class UserOperator {
       } else {}
     } on Exception catch (e) {
       print("err : $e");
+    }
+  }
+
+  static Future<void> addFood(
+    BuildContext context,
+    File? image_File,
+    String name_food,
+    double calorie,
+    double fat,
+    double suger,
+    double sudium,
+  ) async {
+    String foodid = await userPlugin.generateId('foods', 'food');
+    String image = await APIEndpoint.uploadImageToFirebase(image_File);
+
+    foodDataModel foodData = foodDataModel(
+        foodId: foodid,
+        image_flie: image,
+        name_food: name_food,
+        calorie: calorie,
+        fat: fat,
+        suger: suger,
+        sudium: sudium);
+
+    final success = await APIEndpoint.addFood(foodData);
+
+    if (success) {
+      Navigator.pushReplacement(
+        context,
+        PageTransition(
+          type: PageTransitionType.leftToRight,
+          child: admin_add_foodPage(),
+        ),
+      );
     }
   }
 
@@ -91,6 +126,42 @@ class UserOperator {
           type: PageTransitionType.rightToLeft,
           child: homePage(
             userId: userId,
+          ),
+        ),
+      );
+    }
+  }
+
+  static Future<void> addNoti(
+    BuildContext context,
+    String userId,
+    String labelNotiText,
+    String titleNoti,
+    String title,
+    String note,
+    DateTime selectedDate,
+    TimeOfDay selectedTime,
+  ) async {
+    String id = await userPlugin.generateNotiId(userId);
+    NotiModel notiModel = NotiModel(
+        notiId: id,
+        title: title,
+        note: note,
+        selectedDate: selectedDate,
+        selectedTime: selectedTime,
+        notiStatus: 'active');
+
+    final success = await APIEndpoint.addNoti(userId, notiModel);
+
+    if (success) {
+      Navigator.pop(
+        context,
+        PageTransition(
+          type: PageTransitionType.leftToRight,
+          child: showNotiScreen(
+            userId: userId,
+            labelNotiText: labelNotiText,
+            titleNoti: titleNoti,
           ),
         ),
       );

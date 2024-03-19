@@ -10,6 +10,10 @@ class account_settingPage extends StatefulWidget {
 }
 
 class _account_settingPageState extends State<account_settingPage> {
+  /*void initState() {
+    NotificationProvider.checkReminders((widget.userId));
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

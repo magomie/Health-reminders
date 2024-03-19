@@ -6,7 +6,12 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class exercisePage extends StatelessWidget {
+class exercisePage extends StatefulWidget {
+  @override
+  State<exercisePage> createState() => _exercisePageState();
+}
+
+class _exercisePageState extends State<exercisePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

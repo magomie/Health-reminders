@@ -59,8 +59,6 @@ class genderPage extends StatelessWidget {
                     child: ElevatedButton(
                         style: buttonwomen,
                         onPressed: () {
-                          // Handle the first button press
-                          print('Button หญิง Pressed');
                           Navigator.push(
                             context,
                             PageTransition(
@@ -98,8 +96,6 @@ class genderPage extends StatelessWidget {
                     child: ElevatedButton(
                       style: buttonman,
                       onPressed: () {
-                        // Handle the second button press
-                        print('Button ชายแทร่ Pressed');
                         Navigator.push(
                           context,
                           PageTransition(
