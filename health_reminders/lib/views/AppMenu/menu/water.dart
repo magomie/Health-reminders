@@ -11,10 +11,6 @@ class waterPage extends StatelessWidget {
   final String userId;
   waterPage({required this.userId});
 
-  void initState() {
-    NotificationProvider.checkReminders((userId));
-  }
-
   @override
   Widget build(BuildContext context) {
     double boxSizeWidth = 345;

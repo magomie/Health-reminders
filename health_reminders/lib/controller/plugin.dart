@@ -1,9 +1,15 @@
 import 'dart:async';
+import 'dart:math';
 import 'dart:ui';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:awesome_notifications/awesome_notifications_empty.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:health_reminders/controller/endpoin.dart';
+import 'package:health_reminders/controller/operator.dart';
+import 'package:health_reminders/model/mode.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -52,105 +58,6 @@ class userPlugin {
         .contains(newUserId)); // ตรวจสอบว่า user_id ใหม่ซ้ำกับที่มีอยู่หรือไม่
 
     return newUserId;
-  }
-}
-
-class NotificationProvider extends ChangeNotifier {
-  NotificationProvider(String userId) {
-    // Start periodic check for reminders
-    _startPeriodicCheck(userId);
-  }
-
-  void _startPeriodicCheck(String userId) {
-    // Set the duration for periodic check (e.g., every 1 hour)
-    const Duration checkInterval = Duration(microseconds: 1);
-
-    // Start periodic timer
-    Timer.periodic(checkInterval, (timer) {
-      // Perform reminders check
-      checkReminders(userId); // Replace userId with actual user ID
-    });
-  }
-
-  static Future<void> checkReminders(String userId) async {
-    final CollectionReference users =
-        FirebaseFirestore.instance.collection('users');
-
-    QuerySnapshot querySnapshot =
-        await users.doc(userId).collection('Notification').get();
-
-    for (DocumentSnapshot notiDoc in querySnapshot.docs) {
-      DateTime notiDate = notiDoc['selectDate'].toDate();
-      TimeOfDay notiTime =
-          TimeOfDay.fromDateTime(notiDoc['selectTime'].toDate());
-
-      DateTime notiDateTime = DateTime(notiDate.year, notiDate.month,
-          notiDate.day, notiTime.hour, notiTime.minute);
-
-      if (notiDateTime.isAfter(DateTime.now())) {
-        await _scheduleNotification(
-            notiDateTime, notiDoc['title'], notiDoc['note']);
-      } else {
-        await _sendLocalNotification(notiDoc['title'], notiDoc['note']);
-      }
-    }
-  }
-
-  static Future<void> _scheduleNotification(
-      DateTime dateTimeSchedule, String title, String note) async {
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
-
-    const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-    final InitializationSettings initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
-    var androidPlatformChannelSpecifics =
-        AndroidNotificationDetails('your channel id', 'your channel name');
-    /*var iOSPlatformChannelSpecifics = IOSNotificationDetails(); // iOS specific notification settings*/
-    var platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics);
-
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      // Use zonedSchedule instead of schedule
-      0,
-      title,
-      note,
-      tz.TZDateTime.from(dateTimeSchedule,
-          tz.local), // Convert DateTime to timezone-aware DateTime
-      platformChannelSpecifics,
-      androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-    );
-  }
-
-  static Future<void> _sendLocalNotification(String title, String note) async {
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
-
-    const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-    final InitializationSettings initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'your channel id',
-      'your channel name',
-    );
-    var platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics);
-
-    await flutterLocalNotificationsPlugin.show(
-      0,
-      title,
-      note,
-      platformChannelSpecifics,
-      payload: 'item x',
-    );
   }
 }
 
@@ -823,4 +730,129 @@ double calWater(double w) {
   print(w);
   double water = (w / 2) * (2.2) * (30);
   return double.parse(water.toStringAsFixed(2));
+}
+
+class NotificationServices {
+  static Future<void> InitializaNotification() async {
+    await AwesomeNotifications().initialize(
+      null,
+      [
+        NotificationChannel(
+            channelKey: 'ex',
+            channelName: 'ex',
+            channelDescription: 'เวลาออกกำลังกาย',
+            defaultColor: yellow,
+            locked: true,
+            enableLights: true,
+            playSound: true),
+      ],
+    );
+  }
+
+  static Future<void> scheduleNotification(
+      {required NotiModel noti, required String userId}) async {
+    Random rd = Random();
+    final int max = 1000000;
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: rd.nextInt(max) + 1,
+        channelKey: 'ex',
+        title: noti.title,
+        body: noti.note,
+        category: NotificationCategory.Alarm,
+        notificationLayout: NotificationLayout.BigText,
+        locked: true,
+        autoDismissible: false,
+        fullScreenIntent: true,
+        backgroundColor: yellow,
+      ),
+      schedule: NotificationCalendar(
+        minute: noti.selectedTime.minute,
+        hour: noti.selectedTime.hour,
+        day: noti.selectedDate.day,
+        month: noti.selectedDate.month,
+        year: noti.selectedDate.year,
+        preciseAlarm: true,
+        allowWhileIdle: true,
+        timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier(),
+      ),
+      actionButtons: [
+        NotificationActionButton(
+          key: 'close',
+          label: 'ปิดการแจ้งเตือน',
+          autoDismissible: true,
+        )
+      ],
+    );
+
+    await APIEndpoint.updateNotificationStatus(
+        userId, noti.notiId, 'scheduled');
+  }
+}
+
+class BuildNotificationListView extends StatelessWidget {
+  final String userId;
+  final String label;
+
+  BuildNotificationListView({required this.userId, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection('Notification')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('เกิดข้อผิดพลาด: ${snapshot.error}');
+        }
+
+        if (!snapshot.hasData || snapshot.data == null) {
+          return Text('ไม่พบข้อมูล');
+        }
+
+        var notifications = snapshot.data!.docs;
+
+        return Container(
+          height: MediaQuery.of(context).size.height,
+          child: ListView.builder(
+            itemCount: notifications.length,
+            itemBuilder: (context, index) {
+              var notification =
+                  notifications[index].data() as Map<String, dynamic>;
+              if (notification != null &&
+                  notification['notiStatus'] == 'active' &&
+                  notification['notiStatusLabel'] == label) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 100,
+                    decoration: BoxDecoration(
+                      border:
+                          Border.all(color: Colors.grey), // เพิ่มเส้นขอบสีเทา
+                      borderRadius:
+                          BorderRadius.circular(10), // เพิ่มขอบเส้นมนเส้นกลม
+                    ),
+                    child: ListTile(
+                      title: Text(notification['title'] ?? ''),
+                      subtitle: Text(notification['note'] ?? ''),
+                      onTap: () {
+                        // ใส่โค้ดที่ต้องการเมื่อคลิกที่รายการการแจ้งเตือน
+                      },
+                    ),
+                  ),
+                );
+              } else {
+                return Container(); // ถ้าสถานะไม่ใช่ active ให้ไม่แสดงรายการ
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
 }

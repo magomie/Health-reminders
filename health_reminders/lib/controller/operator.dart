@@ -151,13 +151,15 @@ class UserOperator {
     TimeOfDay selectedTime,
   ) async {
     String id = await userPlugin.generateNotiId(userId);
+
     NotiModel notiModel = NotiModel(
         notiId: id,
         title: title,
         note: note,
         selectedDate: selectedDate,
         selectedTime: selectedTime,
-        notiStatus: 'active');
+        notiStatus: 'active',
+        notiStatusLabel: titleNoti);
 
     final success = await APIEndpoint.addNoti(userId, notiModel);
 
@@ -193,6 +195,10 @@ class UserOperator {
   static Future<Future<Stream<DocumentSnapshot<Map<String, dynamic>>>>>
       getUserData(String userId) async {
     return APIEndpoint.getUserData(userId);
+  }
+
+  static Stream<DocumentSnapshot<Map<String, dynamic>>> getNoti(String userId) {
+    return APIEndpoint.getNoti(userId);
   }
 
   static Future<Future<Stream<DocumentSnapshot<Map<String, dynamic>>>>>

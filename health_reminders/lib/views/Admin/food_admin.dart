@@ -17,12 +17,10 @@ class food_adminPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
-        automaticallyImplyLeading: false,
         title: Text(
           'อาหาร',
           style: TextStyle(

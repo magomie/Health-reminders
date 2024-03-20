@@ -14,11 +14,12 @@ class addNotiScreen extends StatefulWidget {
   final String userId;
   final String titleNoti;
   final String labelNotiText;
-  const addNotiScreen(
-      {super.key,
-      required this.userId,
-      required this.titleNoti,
-      required this.labelNotiText});
+  const addNotiScreen({
+    super.key,
+    required this.userId,
+    required this.titleNoti,
+    required this.labelNotiText,
+  });
 
   @override
   State<addNotiScreen> createState() => _addNotiScreenState();
@@ -29,10 +30,6 @@ class _addNotiScreenState extends State<addNotiScreen> {
   final TextEditingController noteController = TextEditingController();
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
-
-  void initState() {
-    NotificationProvider.checkReminders((widget.userId));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,14 +90,15 @@ class _addNotiScreenState extends State<addNotiScreen> {
           print(
               '${titleController.text.trim()}\n${noteController.text.trim()}\n$selectedDate\n$selectedTime');
           UserOperator.addNoti(
-              context,
-              widget.userId,
-              widget.labelNotiText,
-              widget.titleNoti,
-              titleController.text.trim(),
-              noteController.text,
-              selectedDate!,
-              selectedTime!);
+            context,
+            widget.userId,
+            widget.labelNotiText,
+            widget.titleNoti,
+            titleController.text.trim(),
+            noteController.text,
+            selectedDate!,
+            selectedTime!,
+          );
         },
         textAction: 'บันทึก',
       ),

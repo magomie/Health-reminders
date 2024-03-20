@@ -64,6 +64,7 @@ class NotiModel {
   final DateTime selectedDate;
   final TimeOfDay selectedTime;
   final String notiStatus;
+  final String notiStatusLabel;
 
   NotiModel({
     required this.notiId,
@@ -72,6 +73,7 @@ class NotiModel {
     required this.selectedDate,
     required this.selectedTime,
     required this.notiStatus,
+    required this.notiStatusLabel,
   });
 
   Map<String, dynamic> toMap() {
@@ -83,34 +85,8 @@ class NotiModel {
           "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}",
       'selectedTime': "${selectedTime.hour}:${selectedTime.minute}",
       'notiStatus': notiStatus,
+      'notiStatusLabel': notiStatusLabel,
     };
-  }
-
-  factory NotiModel.fromMap(Map<String, dynamic>? map) {
-    if (map == null)
-      return NotiModel(
-          notiId: '',
-          title: '',
-          note: '',
-          selectedDate: DateTime.now(),
-          selectedTime: TimeOfDay(hour: 0, minute: 0),
-          notiStatus: '');
-
-    return NotiModel(
-      notiId: map['notiId'] ?? '',
-      title: map['title'] ?? '',
-      note: map['note'] ?? '',
-      selectedDate: map['selectedDate'] != null
-          ? DateTime.parse(map['selectedDate'])
-          : DateTime.now(),
-      selectedTime: map['selectedTime'] != null
-          ? TimeOfDay(
-              hour: int.parse(map['selectedTime'].toString().split(':')[0]),
-              minute: int.parse(map['selectedTime'].toString().split(':')[1]),
-            )
-          : TimeOfDay(hour: 0, minute: 0),
-      notiStatus: map['Status'] ?? '',
-    );
   }
 }
 

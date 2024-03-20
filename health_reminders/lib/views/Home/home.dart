@@ -27,11 +27,11 @@ class homePage extends StatefulWidget {
 class _homePageState extends State<homePage> {
   int _selectedIndex = 0;
   late List<Widget> _pages;
-  late NotificationProvider notificationProvider;
 
   @override
   void initState() {
     super.initState();
+
     _pages = [
       HomePageContent(
         userId: widget.userId,
@@ -39,7 +39,6 @@ class _homePageState extends State<homePage> {
       profilePage(userId: widget.userId),
       settingPage(),
     ];
-    NotificationProvider.checkReminders((widget.userId));
   }
 
   void _onItemTapped(int index) {

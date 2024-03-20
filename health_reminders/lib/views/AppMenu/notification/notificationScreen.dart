@@ -17,10 +17,6 @@ class notificationScreen extends StatefulWidget {
 }
 
 class _notificationScreenState extends State<notificationScreen> {
-  void initState() {
-    NotificationProvider.checkReminders((widget.userId));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:health_reminders/controller/plugin.dart';
 //views
 import 'package:health_reminders/views/Home/home.dart';
 //page_transittion_lib
@@ -160,6 +161,8 @@ class APIEndpoint {
           .doc(noti.notiId)
           .set(noti.toMap());
 
+      NotificationServices.scheduleNotification(noti: noti, userId: userId);
+
       return true;
     } catch (e) {
       print("Error: $e");
@@ -197,6 +200,27 @@ class APIEndpoint {
         .collection('health_data')
         .doc(userId)
         .snapshots();
+  }
+
+  static Stream<DocumentSnapshot<Map<String, dynamic>>> getNoti(String userId) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('Notification')
+        .doc(userId)
+        .snapshots();
+  }
+
+  static Future<void> updateNotificationStatus(
+      String userId, String notificationId, String status) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('Notification')
+        .doc(notificationId)
+        .update({
+      'notiStatus': status,
+    });
   }
 
   static Future<bool> signOut(BuildContext context) async {
