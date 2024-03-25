@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:health_reminders/views/AppMenu/Addmenucal_Page.dart';
 import 'package:intl/intl.dart';
 
 class calcaloriePage extends StatelessWidget {
@@ -305,10 +306,10 @@ class calcaloriePage extends StatelessWidget {
                           size: 30,
                         ),
                         onPressed: () {
-                          /*Navigator.push(
+                          Navigator.push(
                                                       context,
-                                                      MaterialPageRoute(builder: (context) => notidrug2Page()),
-                                                    );*/
+                                                      MaterialPageRoute(builder: (context) => addmenucalPage()),
+                                                    );
                         },
                       ),
                     ],

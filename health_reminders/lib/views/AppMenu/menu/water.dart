@@ -5,6 +5,7 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
+
 import 'package:intl/intl.dart';
 
 class waterPage extends StatelessWidget {
@@ -18,6 +19,8 @@ class waterPage extends StatelessWidget {
     DateTime currentDate = DateTime.now();
 
     String formatteDate = DateFormat('dd/MM/yyyy').format(currentDate);
+
+    final TextEditingController qtyController = TextEditingController();
 
     return Scaffold(
       backgroundColor: white,
@@ -179,10 +182,61 @@ class waterPage extends StatelessWidget {
                           size: 30,
                         ),
                         onPressed: () {
-                          /*Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(builder: (context) => notidrug2Page()),
-                                                    );*/
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) => Container(
+                                    height: 230,
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          "เพิ่มปริมาณการดื่มน้ำ",
+                                          style: TextStyles.Tlogin,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: TextField(
+                                            controller: qtyController,
+                                            decoration: InputDecoration(
+                                              labelText: 'ปริมาณน้ำดื่ม',
+                                              labelStyle: TextStyle(
+                                                  color:
+                                                      brown, // สีของ labelText
+                                                  fontSize: 16,
+                                                  fontFamily:
+                                                      'Garuda' // ขนาด font ของ labelText
+                                                  ),
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 12.0,
+                                                      horizontal: 15.0),
+                                              border: OutlineInputBorder(),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2.0),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 1.0),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ));
                         },
                       ),
                     ],

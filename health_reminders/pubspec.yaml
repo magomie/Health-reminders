@@ -84,6 +84,13 @@ flutter:
     - asset/image/cardio.png
     - asset/image/aerobic.png
     - asset/image/yoga.png
+    - asset/image/food.png
+    - asset/image/calories.png
+    - asset/image/news.png
+    - asset/image/bmibmr.png
+    - asset/image/water.png
+    - asset/image/reminder.png
+    - asset/image/xcercise.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

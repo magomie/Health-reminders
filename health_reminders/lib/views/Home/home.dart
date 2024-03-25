@@ -189,8 +189,12 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                //Icon(Icons.menu, color: brown,size: 15.0,),
-                                Text('คำนวณแคลอรี่', style: TextStyles.Tlogin),
+                                Image.asset(
+                                  'asset/image/calories.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                ),
+                                Text('คำนวณแคลอรี่', style: TextStyles.common4),
                               ],
                             ),
                           ),
@@ -215,7 +219,12 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('อาหาร', style: TextStyles.Tlogin),
+                                 Image.asset(
+                                  'asset/image/food.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                ),
+                                Text('อาหาร', style: TextStyles.common4),
                               ],
                             ),
                           ),
@@ -242,7 +251,12 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('น้ำ', style: TextStyles.Tlogin),
+                                 Image.asset(
+                                  'asset/image/water.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                ),
+                                Text('น้ำ', style: TextStyles.common4),
                               ],
                             ),
                           ),
@@ -277,7 +291,12 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('ออกกำลังกาย', style: TextStyles.Tlogin),
+                                 Image.asset(
+                                  'asset/image/xcercise.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                ),
+                                Text('ออกกำลังกาย', style: TextStyles.common4),
                               ],
                             ),
                           ),
@@ -302,7 +321,12 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('BMI/BMR', style: TextStyles.Tlogin),
+                                 Image.asset(
+                                  'asset/image/bmibmr.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                ),
+                                Text('BMI/BMR', style: TextStyles.common4),
                               ],
                             ),
                           ),
@@ -331,7 +355,12 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('แจ้งเตือน', style: TextStyles.Tlogin),
+                                 Image.asset(
+                                  'asset/image/reminder.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                ),
+                                Text('แจ้งเตือน', style: TextStyles.common4),
                               ],
                             ),
                           ),
@@ -366,7 +395,12 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('ข่าวสารสุขภาพ', style: TextStyles.Tlogin),
+                                 Image.asset(
+                                  'asset/image/news.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                ),
+                                Text('ข่าวสารสุขภาพ', style: TextStyles.common4),
                               ],
                             ),
                           ),
