@@ -55,8 +55,8 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
               initialLabelIndex: _toggleValue,
               totalSwitches: 2,
               activeBgColors: [
-                [yellow!],
-                [yellow!]
+                [yellow],
+                [yellow]
               ],
               activeFgColor: brown,
               inactiveBgColor: white,

@@ -1,12 +1,7 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:health_reminders/controller/operator.dart';
-import 'package:health_reminders/controller/plugin.dart';
 
-import 'package:health_reminders/styles/button.dart';
+import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/styles/color.dart';
-import 'package:health_reminders/styles/text.dart';
 import 'package:health_reminders/views/AppMenu/notification/addNotiScreen.dart';
 import 'package:page_transition/page_transition.dart';
 

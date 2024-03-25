@@ -1,13 +1,10 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/controller/plugin.dart';
-import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
-import 'package:health_reminders/styles/text.dart';
 import 'package:intl/intl.dart';
 
 class addNotiScreen extends StatefulWidget {
