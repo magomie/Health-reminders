@@ -234,8 +234,22 @@ class waterPage extends StatelessWidget {
                                             ),
                                           ),
                                         ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        ElevatedButton(
+                  style: buttonlgin,
+                  onPressed: () {
+                    // Handle the first button press
+                    print('Button SignUp Pressed');
+                  
+                  },
+                  child: Text('เพิ่ม', style: TextStyles.Tlogin),
+                ),
+
                                       ],
                                     ),
+                                    
                                   ));
                         },
                       ),
