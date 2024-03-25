@@ -3,16 +3,12 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:awesome_notifications/awesome_notifications_empty.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:health_reminders/controller/endpoin.dart';
-import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/model/mode.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:timezone/timezone.dart' as tz;
 
 class userPlugin {
   static int createUniqueId() {
@@ -620,8 +616,15 @@ class profileWidget extends StatelessWidget {
             'BMI   ',
             '${calBMI(healthDataSet['weight'], healthDataSet['height']) < 18.50 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   ผอม' : '${calBMI(healthDataSet['weight'], healthDataSet['height']) >= 18.50 && calBMI(healthDataSet['weight'], healthDataSet['height']) <= 22.90 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   ปกติ' : '${calBMI(healthDataSet['weight'], healthDataSet['height']) >= 23.00 && calBMI(healthDataSet['weight'], healthDataSet['height']) <= 24.90 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   ท้วม' : '${calBMI(healthDataSet['weight'], healthDataSet['height']) >= 25.00 && calBMI(healthDataSet['weight'], healthDataSet['height']) <= 29.90 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   อ้วน' : '${calBMI(healthDataSet['weight'], healthDataSet['height']) >= 30.00 ? '${calBMI(healthDataSet['weight'], healthDataSet['height'])}   อ้วนมาก' : 'ไม่มีข้อมูล'}'}'}'}'}',
           ),
-          _buildHealthInfoRow('BMR  ',
-              '${healthDataSet != null ? '${healthDataSet['height']} เซนติเมตร' : 'ไม่มีข้อมูล'}'),
+          _buildHealthInfoRow(
+              'BMR  ',
+              '${healthDataSet != null ? '${calBMR(
+                  healthDataSet['weight'],
+                  healthDataSet['height'],
+                  healthDataSet['gender'],
+                  healthDataSet['age'],
+                  healthDataSet['exerciseLevel'],
+                )} กิโลแคลอรี่' : 'ไม่มีข้อมูล'}'),
         ],
       ),
     );
@@ -722,6 +725,43 @@ double calBMI(double w, double h) {
   return double.parse(bmi.toStringAsFixed(2));
 }
 
+double calBMR(double w, double h, String gender, int age, int exerciseLevel) {
+  double tempBMR, BMR;
+  if (gender == 'M') {
+    tempBMR = (66 + (13.7 * w) + (5 * h) - (6.8 * age));
+    BMR = bmrExercise(tempBMR, exerciseLevel);
+    return double.parse(BMR.toStringAsFixed(2));
+  } else if (gender == 'F') {
+    tempBMR = (665 + (9.6 * w) + (1.8 * h) - (4.7 * age));
+    BMR = bmrExercise(tempBMR, exerciseLevel);
+    return double.parse(BMR.toStringAsFixed(2));
+  } else {
+    return 0;
+  }
+}
+
+double bmrExercise(double bmr, int exerciseLevel) {
+  double bmrDiv;
+  if (exerciseLevel == 1) {
+    bmrDiv = bmr * 1.2;
+    return double.parse(bmrDiv.toStringAsFixed(2));
+  } else if (exerciseLevel == 2) {
+    bmrDiv = bmr * 1.2;
+    return double.parse(bmrDiv.toStringAsFixed(2));
+  } else if (exerciseLevel == 3) {
+    bmrDiv = bmr * 1.2;
+    return double.parse(bmrDiv.toStringAsFixed(2));
+  } else if (exerciseLevel == 4) {
+    bmrDiv = bmr * 1.2;
+    return double.parse(bmrDiv.toStringAsFixed(2));
+  } else if (exerciseLevel == 5) {
+    bmrDiv = bmr * 1.2;
+    return double.parse(bmrDiv.toStringAsFixed(2));
+  } else {
+    return 0;
+  }
+}
+
 String getBMIString(double bmi) {
   return '${bmi < 18.50 ? 'ผอม' : '${bmi >= 18.50 && bmi <= 22.90 ? 'ปกติ' : '${bmi >= 23.00 && bmi <= 24.90 ? 'ท้วม' : '${bmi >= 25.00 && bmi <= 29.90 ? 'อ้วน' : '${bmi >= 30.00 ? 'อ้วนมาก' : 'ไม่มีข้อมูล'}'}'}'}'}';
 }
@@ -798,6 +838,11 @@ class BuildNotificationListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> _buttonEdit = [
+      'edit',
+      'delete',
+    ];
+
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('users')
@@ -828,21 +873,40 @@ class BuildNotificationListView extends StatelessWidget {
                   notification['notiStatus'] == 'active' &&
                   notification['notiStatusLabel'] == label) {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(
+                    right: 10.0,
+                    left: 10.0,
+                  ),
                   child: Container(
-                    height: 100,
+                    height: 80,
                     decoration: BoxDecoration(
-                      border:
-                          Border.all(color: Colors.grey), // เพิ่มเส้นขอบสีเทา
-                      borderRadius:
-                          BorderRadius.circular(10), // เพิ่มขอบเส้นมนเส้นกลม
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                      ),
                     ),
                     child: ListTile(
                       title: Text(notification['title'] ?? ''),
                       subtitle: Text(notification['note'] ?? ''),
-                      onTap: () {
-                        // ใส่โค้ดที่ต้องการเมื่อคลิกที่รายการการแจ้งเตือน
-                      },
+                      trailing: PopupMenuButton(
+                        itemBuilder: (context) {
+                          return [
+                            PopupMenuItem(
+                              value: 'edit',
+                              child: Text('Edit'),
+                            ),
+                            PopupMenuItem(
+                              value: 'delete',
+                              child: Text('Delete'),
+                            )
+                          ];
+                        },
+                        onSelected: (String value) {
+                          print('You Click on po up menu item');
+                        },
+                      ),
                     ),
                   ),
                 );
