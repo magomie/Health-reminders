@@ -1004,7 +1004,7 @@ class BuildFoodListView extends StatelessWidget {
                     ),
                     child: ListTile(
                       title: Text(foodList['name_food'] ?? ''),
-                      subtitle: Text('แก้ด้วย'),
+                      subtitle: Text('แก้ด้วยนะ'),
                       trailing: IconButton(
                         icon: Icon(
                           Icons.add_circle_outline,
