@@ -56,49 +56,50 @@ class settingPage extends StatelessWidget {
                 child: Container(
                   height: 60,
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 5), // ปรับขนาดของปุ่มตามต้องการ
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(10.0), // ให้มีมุมโค้ง
-                        ),
-                        //elevation: 5, // เพิ่มเงา
-                        foregroundColor: Colors.white, // สีพื้นหลังของปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 5), // ปรับขนาดของปุ่มตามต้องการ
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(10.0), // ให้มีมุมโค้ง
                       ),
-                      onPressed: () {
-                        // Handle the first button press
-                        print('go to drug notification');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => account_settingPage()),
-                        );
-                      },
+                      //elevation: 5, // เพิ่มเงา
+                      foregroundColor: Colors.white, // สีพื้นหลังของปุ่ม
+                    ),
+                    onPressed: () {
+                      // Handle the first button press
+                      print('go to drug notification');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => account_settingPage()),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            width: 15,
-                          ),
                           Text(
                             'ข้อมูลบัญชี',
                             style: TextStyles.common5,
                           ),
-                          SizedBox(
-                            width: 211,
-                          ),
                           Icon(
-                            Icons.arrow_forward,
+                            Icons.arrow_forward_ios,
                             size: 24,
                             color: const Color.fromARGB(255, 182, 182, 182),
                           ),
                         ],
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
+          ),
+          SizedBox(
+            height: 5,
           ),
           Column(
             children: [
@@ -122,25 +123,22 @@ class settingPage extends StatelessWidget {
                         // Handle the first button press
                         print('go to drug notification');
                       },
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text(
-                            'รหัสผ่าน',
-                            style: TextStyles.common5,
-                          ),
-                          SizedBox(
-                            width: 230,
-                          ),
-                          Icon(
-                            Icons.arrow_forward,
-                            size: 24,
-                            color: const Color.fromARGB(255, 182, 182, 182),
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'รหัสผ่าน',
+                              style: TextStyles.common5,
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 24,
+                              color: const Color.fromARGB(255, 182, 182, 182),
+                            ),
+                          ],
+                        ),
                       )),
                 ),
               ),
