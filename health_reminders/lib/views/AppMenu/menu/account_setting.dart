@@ -13,36 +13,57 @@ class account_settingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          AppBar(
-            automaticallyImplyLeading:
-                false, // This property is redundant and not needed here
-            centerTitle: true,
-            backgroundColor: white,
-            elevation: 0.0,
-            title: Text(
-              'โปรไฟล์',
-              style: TextStyle(
-                color: Colors
-                    .brown, // Assuming 'brown' is a defined color variable
-                fontFamily: 'Garuda',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+    return Scaffold(
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            AppBar(
+              automaticallyImplyLeading:
+                  true, // This property is redundant and not needed here
+              centerTitle: true,
+              backgroundColor: white,
+              elevation: 0.0,
+              title: Text(
+                'โปรไฟล์',
+                style: TextStyle(
+                  color: Colors
+                      .brown, // Assuming 'brown' is a defined color variable
+                  fontFamily: 'Garuda',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: brown),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.edit,
+              color: brown,
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          showDataPlugin(
-            docId: userId,
-            otherClass: (context, usersData, healthData) => profileWidget(
-                usersDataSet: usersData, healthDataSet: healthData),
+            onPressed: () {
+              /*Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ),
+              );*/
+            },
           ),
         ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            showDataPlugin(
+              docId: userId,
+              otherClass: (context, usersData, healthData) => profileWidget(
+                  usersDataSet: usersData, healthDataSet: healthData),
+            ),
+          ],
+        ),
       ),
     );
   }
