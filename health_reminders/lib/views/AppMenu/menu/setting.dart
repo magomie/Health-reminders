@@ -6,7 +6,8 @@ import 'package:health_reminders/styles/text.dart';
 import 'package:health_reminders/views/AppMenu/menu/account_setting.dart';
 
 class settingPage extends StatelessWidget {
-  const settingPage({Key? key}) : super(key: key);
+  final String userId;
+  const settingPage({required this.userId});
 
   /*void initState() {
     NotificationProvider.checkReminders((userId));
@@ -73,7 +74,7 @@ class settingPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => account_settingPage()),
+                            builder: (context) => account_settingPage(userId: userId)),
                       );
                     },
                     child: Padding(

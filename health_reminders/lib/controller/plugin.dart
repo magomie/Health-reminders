@@ -956,3 +956,77 @@ class BuildNotificationListView extends StatelessWidget {
     );
   }
 }
+
+class BuildFoodListView extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context) {
+    
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('food')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('เกิดข้อผิดพลาด: ${snapshot.error}');
+        }
+
+        if (!snapshot.hasData || snapshot.data == null) {
+          return Text('ไม่พบข้อมูล');
+        }
+
+        var fooddata = snapshot.data!.docs;
+
+        return Container(
+          height: MediaQuery.of(context).size.height,
+          child: ListView.builder(
+            itemCount: fooddata.length,
+            itemBuilder: (context, index) {
+              var foodList =
+                  fooddata[index].data() as Map<String, dynamic>;
+              if (foodList != null ) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    right: 10.0,
+                    left: 10.0,
+                  ),
+                  child: Container(
+                    height: 80,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                      ),
+                    ),
+                    child: ListTile(
+                      title: Text(foodList['name_food'] ?? ''),
+                      subtitle: Text(''),
+                      trailing: IconButton(
+                        icon: Icon(
+                          Icons.add_circle_outline,
+                          color: brown,
+                        ),
+                        onPressed: () {
+                          /*Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => notidrug2Page()),
+                    );*/
+                        },
+                      ),
+                    ),
+                  ),
+                );
+              } else {
+                return Container(); // ถ้าสถานะไม่ใช่ active ให้ไม่แสดงรายการ
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
+}

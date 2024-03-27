@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class account_settingPage extends StatefulWidget {
-  const account_settingPage({super.key});
+class account_settingPage extends StatelessWidget {
+  final String userId;
+  const account_settingPage({required this.userId});
 
-  @override
-  State<account_settingPage> createState() => _account_settingPageState();
-}
-
-class _account_settingPageState extends State<account_settingPage> {
   /*void initState() {
     NotificationProvider.checkReminders((widget.userId));
   }*/
@@ -19,14 +16,16 @@ class _account_settingPageState extends State<account_settingPage> {
     return Scaffold(
       body: Container(
         child: Column(
-          //crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             AppBar(
-              automaticallyImplyLeading: false,
-              backgroundColor: white,
+              automaticallyImplyLeading:
+                  true, // This property is redundant and not needed here
               centerTitle: true,
+              backgroundColor: white,
+              elevation: 0.0,
               title: Text(
-                'ข้อมูลบัญชี',
+                'โปรไฟล์',
                 style: TextStyle(
                   color: Colors
                       .brown, // Assuming 'brown' is a defined color variable
@@ -34,22 +33,34 @@ class _account_settingPageState extends State<account_settingPage> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
+              ),leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: brown),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.edit,
+              color: brown,
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25),
-                  child: Text(
-                    'ชื่อ',
-                    style: TextStyles.common,
-                  ),
-                ),
-              ),
+            onPressed: () {
+              /*Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ),
+              );*/
+            },
+          ),
+        ],
             ),
             SizedBox(
-              height: 5,
+              height: 10,
+            ),
+            showDataPlugin(
+              docId: userId,
+              otherClass: (context, usersData, healthData) => profileWidget(
+                  usersDataSet: usersData, healthDataSet: healthData),
             ),
           ],
         ),

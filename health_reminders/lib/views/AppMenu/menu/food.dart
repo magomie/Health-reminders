@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/plugin.dart';
 
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -48,7 +49,7 @@ class foodPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
+      body: BuildFoodListView(), /*Container(
         child: ListView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
@@ -111,7 +112,7 @@ class foodPage extends StatelessWidget {
             );
           },
         ),
-      ),
+      ),*/
     );
   }
 }
