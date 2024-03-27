@@ -1,11 +1,41 @@
+import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:image_picker/image_picker.dart';
 
-class admin_add_exercisePage extends StatelessWidget {
+class admin_add_exercisePage extends StatefulWidget {
+   @override
+  State<admin_add_exercisePage> createState() => _admin_add_exercisePageState();
+}
+class _admin_add_exercisePageState extends State<admin_add_exercisePage> {
+  final ImagePicker _picker = ImagePicker();
+
+  File? _file;
+
+  FutureOr<void> pickImage() async {
+    final PickedFile? pickedFile =
+        (await _picker.pickImage(source: ImageSource.gallery)) as PickedFile?;
+    if (pickedFile != null) {
+      setState(() {
+        _file = File(pickedFile.path);
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
+
+    int? activityLevel;
+
+  List<String> listitem = [
+    "การวิ่ง",
+    "คาดิโอ",
+    "โยคะ",
+    "แอโรบิค",
+  ];
+
     final TextEditingController nameController = TextEditingController();
     final TextEditingController informationController = TextEditingController();
     final TextEditingController linkController = TextEditingController();
@@ -40,32 +70,32 @@ class admin_add_exercisePage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Column(
-                  //mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        //border: Border.all(color: brown, width: 1.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: aa,
-                            // blurRadius:5.0,
+                    Stack(
+                      children: [
+                        GestureDetector(
+                          onTap: pickImage,
+                          child: Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.rectangle, color: aa),
+                            child: _file != null
+                                ? ClipOval(
+                                    child: Image.file(
+                                      _file!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : Icon(
+                                    Icons.photo_outlined,
+                                    size: 60,
+                                    color: brown,
+                                  ),
                           ),
-                        ],
-                        borderRadius: BorderRadius.all(Radius.circular(7)),
-                      ),
-                      child: Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 40),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'รูปภาพ',
-                                style: TextStyles.Tlogin,
-                              ),
-                            ],
-                          )),
+                        )
+                      ],
                     ),
                   ],
                 ),
@@ -182,6 +212,66 @@ class admin_add_exercisePage extends StatelessWidget {
                                 ),
                               ),
                             ),
+                             Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30.0, vertical: 12.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 48.0,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 15.0),
+                        child: DropdownButton(
+                          hint: Text(
+                            "หมวดหมู่",
+                            style: TextStyle(
+                              color: brown,
+                              fontSize: 16,
+                              fontFamily: 'Garuda',
+                            ),
+                          ),
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: brown,
+                          ),
+                          iconSize: 30,
+                          style: TextStyle(
+                            color: brown,
+                            fontSize: 16,
+                            fontFamily: 'Garuda',
+                          ),
+                          value: activityLevel != null
+                              ? listitem[activityLevel!]
+                              : null,
+                          onChanged: (newValue) {
+                            setState(() {
+                              activityLevel = listitem.indexOf(newValue!);
+                            });
+                          },
+                          items: listitem.map((item) {
+                            return DropdownMenuItem(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: TextStyle(
+                                  color: brown,
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda',
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                  ),
                             
                                 SizedBox(
                                   height: 10,

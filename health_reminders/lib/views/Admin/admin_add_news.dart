@@ -1,9 +1,30 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:image_picker/image_picker.dart';
 
-class admin_add_newsPage extends StatelessWidget {
+class admin_add_newsPage extends StatefulWidget {
+ @override
+  State<admin_add_newsPage> createState() => _admin_add_newsPageState();
+}
+class _admin_add_newsPageState extends State<admin_add_newsPage> {
+  final ImagePicker _picker = ImagePicker();
+
+  File? _file;
+
+  FutureOr<void> pickImage() async {
+    final PickedFile? pickedFile =
+        (await _picker.pickImage(source: ImageSource.gallery)) as PickedFile?;
+    if (pickedFile != null) {
+      setState(() {
+        _file = File(pickedFile.path);
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
@@ -40,32 +61,32 @@ class admin_add_newsPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Column(
-                  //mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        //border: Border.all(color: brown, width: 1.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: aa,
-                            // blurRadius:5.0,
+                    Stack(
+                      children: [
+                        GestureDetector(
+                          onTap: pickImage,
+                          child: Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.rectangle, color: aa),
+                            child: _file != null
+                                ? ClipOval(
+                                    child: Image.file(
+                                      _file!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : Icon(
+                                    Icons.photo_outlined,
+                                    size: 60,
+                                    color: brown,
+                                  ),
                           ),
-                        ],
-                        borderRadius: BorderRadius.all(Radius.circular(7)),
-                      ),
-                      child: Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 40),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'รูปภาพ',
-                                style: TextStyles.Tlogin,
-                              ),
-                            ],
-                          )),
+                        )
+                      ],
                     ),
                   ],
                 ),
