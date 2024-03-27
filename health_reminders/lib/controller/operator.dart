@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //endpoin and views
 import 'package:health_reminders/controller/endpoin.dart';
 import 'package:health_reminders/views/Admin/admin_add_food.dart';
+import 'package:health_reminders/views/Admin/food_admin.dart';
 import 'package:health_reminders/views/AppMenu/notification/showNotiScreen.dart';
 import 'package:health_reminders/views/Home/home.dart';
 import 'package:health_reminders/views/Intro/gender_screen.dart';
@@ -86,7 +87,7 @@ class UserOperator {
         context,
         PageTransition(
           type: PageTransitionType.leftToRight,
-          child: admin_add_foodPage(),
+          child: food_adminPage(),
         ),
       );
     }

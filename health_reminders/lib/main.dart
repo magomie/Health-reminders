@@ -5,9 +5,6 @@ import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/firebase_options.dart';
 import 'package:health_reminders/views/Intro/landing_screen.dart';
 
-import 'package:timezone/data/latest.dart' as tzdata;
-import 'package:timezone/timezone.dart' as tz;
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -19,9 +16,6 @@ Future<void> main() async {
     }
   });
   await NotificationServices.InitializaNotification();
-
-  tzdata.initializeTimeZones();
-  tz.setLocalLocation(tz.getLocation('Asia/Bangkok'));
 
   runApp(const MyApp());
 }

@@ -173,9 +173,9 @@ class APIEndpoint {
   static Future<bool> addFood(foodDataModel foodData) async {
     try {
       final CollectionReference users =
-          FirebaseFirestore.instance.collection('Food');
+          FirebaseFirestore.instance.collection('food');
 
-      await users.add(foodData.toMap());
+      await users.doc(foodData.foodId).set(foodData.toMap());
 
       return true;
     } catch (e) {
