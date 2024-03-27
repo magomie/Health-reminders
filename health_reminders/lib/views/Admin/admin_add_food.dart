@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
@@ -311,8 +313,19 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                                 ElevatedButton(
                                   style: buttonlgin,
                                   onPressed: () {
-                                    // Handle the first button press
                                     print('Button 1 Pressed');
+
+                                    UserOperator.addFood(
+                                        context,
+                                        _file,
+                                        nameController.text.trim(),
+                                        double.parse(
+                                            callorieController.text.trim()),
+                                        double.parse(fatController.text.trim()),
+                                        double.parse(
+                                            sweetController.text.trim()),
+                                        double.parse(
+                                            sodiumController.text.trim()));
                                   },
                                   child: Text('เพิ่มข้อมูล',
                                       style: TextStyles.Tlogin),

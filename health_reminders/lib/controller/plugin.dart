@@ -785,7 +785,43 @@ class NotificationServices {
             locked: true,
             enableLights: true,
             playSound: true),
+        NotificationChannel(
+            channelKey: 'water_reminder',
+            channelName: 'water_reminder',
+            channelDescription: 'เวลาทานน้ำ',
+            defaultColor: yellow,
+            locked: true,
+            enableLights: true,
+            playSound: true),
       ],
+    );
+
+    scheduleWaterNotifications();
+  }
+
+  static Future<void> scheduleWaterNotifications() async {
+    Random rd = Random();
+    final int max = 1000000;
+
+    Timer? time;
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: rd.nextInt(max) + 1,
+        channelKey: 'water_reminder',
+        title: 'เวลาทานน้ำ',
+        body: 'เวลาทานน้ำแล้ว! โปรดดื่มน้ำให้เพียงพอ',
+        category: NotificationCategory.Message,
+        notificationLayout: NotificationLayout.BigText,
+        locked: true,
+        autoDismissible: false,
+        fullScreenIntent: true,
+        backgroundColor: yellow,
+      ),
+      schedule: NotificationInterval(
+        interval: 2,
+        allowWhileIdle: true,
+        repeats: true,
+      ),
     );
   }
 
