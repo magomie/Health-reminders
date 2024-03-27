@@ -94,7 +94,6 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                     ),
                   ],
                 ),
-
                 SizedBox(
                   height: 10,
                 ),

@@ -43,9 +43,9 @@ class _informationScreenState extends State<informationScreen> {
   final TextEditingController weightController = TextEditingController();
   final TextEditingController heightController = TextEditingController();
 
-  FutureOr<void> pickImage() async {
-    final PickedFile? pickedFile =
-        (await _picker.pickImage(source: ImageSource.gallery)) as PickedFile?;
+  Future<void> pickImage() async {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _file = File(pickedFile.path);
