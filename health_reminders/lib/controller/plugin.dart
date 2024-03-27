@@ -961,11 +961,7 @@ class BuildFoodListView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final List<String> _buttonEdit = [
-      'edit',
-      'delete',
-    ];
-
+    
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('food')

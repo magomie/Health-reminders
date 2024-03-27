@@ -37,7 +37,7 @@ class _homePageState extends State<homePage> {
         userId: widget.userId,
       ),
       profilePage(userId: widget.userId),
-      settingPage(),
+      settingPage(userId:  widget.userId,),
     ];
   }
 
