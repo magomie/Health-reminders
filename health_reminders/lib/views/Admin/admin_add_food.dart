@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/operator.dart';
@@ -95,7 +94,6 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                     ),
                   ],
                 ),
-
                 SizedBox(
                   height: 10,
                 ),

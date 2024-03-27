@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
-import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:health_reminders/views/Admin/admin_add_exercise.dart';
 import 'package:health_reminders/views/AppMenu/exercise/run.dart';
@@ -10,7 +9,7 @@ import 'package:health_reminders/views/AppMenu/exercise/run.dart';
 class exercise_adminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       backgroundColor: white,
       appBar: AppBar(
         backgroundColor: white,
@@ -40,7 +39,8 @@ class exercise_adminPage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => admin_add_exercisePage()),
+                MaterialPageRoute(
+                    builder: (context) => admin_add_exercisePage()),
               );
             },
           ),

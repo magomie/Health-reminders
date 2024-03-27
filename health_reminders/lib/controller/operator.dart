@@ -38,7 +38,7 @@ class UserOperator {
           if (addSuccess != false) {
             bool? success = await APIEndpoint.signUp(context, email, password);
 
-            if (success == true) {
+            if (success == true && addSuccess == true) {
               Navigator.pushReplacement(
                 context,
                 PageTransition(
