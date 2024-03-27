@@ -4,19 +4,48 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:health_reminders/views/Admin/admin_add_exercise.dart';
 import 'package:health_reminders/views/AppMenu/exercise/run.dart';
 
 class exercise_adminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Scaffold(
       backgroundColor: white,
-      resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(
-          onBackButtonPressed: () {
+      appBar: AppBar(
+        backgroundColor: white,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'ออกกำลังกาย',
+          style: TextStyle(
+            color: Colors.brown, // Assuming 'brown' is a defined color variable
+            fontFamily: 'Garuda',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: brown),
+          onPressed: () {
             Navigator.pop(context);
           },
-          title: "ออกกำลังกาย"),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.add_circle_outline,
+              color: brown,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => admin_add_exercisePage()),
+              );
+            },
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
