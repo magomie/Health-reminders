@@ -861,8 +861,23 @@ class NotificationServices {
       ],
     );
 
-    await APIEndpoint.updateNotificationStatus(
-        userId, noti.notiId, 'scheduled');
+    // คำนวณเวลาที่ต้องรอจนกว่าจะถึงเวลาที่ตั้งการแจ้งเตือน
+    DateTime notificationTime = DateTime(
+      noti.selectedDate.year,
+      noti.selectedDate.month,
+      noti.selectedDate.day,
+      noti.selectedTime.hour,
+      noti.selectedTime.minute,
+    );
+
+    // คำนวณเวลาที่เหลือจนกว่าจะถึงเวลาที่ต้องการแจ้งเตือน
+    Duration timeUntilNotification = notificationTime.difference(DateTime.now());
+
+    // รอจนกว่าจะถึงเวลาที่ตั้งการแจ้งเตือน
+    Timer(timeUntilNotification, () async {
+      // เมื่อถึงเวลาที่ตั้งการแจ้งเตือนเอาไว้ จะทำการเรียก API เพื่ออัปเดตสถานะการแจ้งเตือน
+      await APIEndpoint.updateNotificationStatus(userId, noti.notiId, 'scheduled');
+    },);
   }
 }
 
