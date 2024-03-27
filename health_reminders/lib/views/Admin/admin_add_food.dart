@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:js_interop';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/styles/button.dart';
@@ -16,17 +15,15 @@ class admin_add_foodPage extends StatefulWidget {
 }
 
 class _admin_add_foodPageState extends State<admin_add_foodPage> {
-  PlatformFile? _file;
+  final ImagePicker _picker = ImagePicker();
+  File? _file;
 
   Future<void> pickImage() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-    );
-
-    if (result != null && result.files.isNotEmpty) {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
       setState(() {
-        _file = result.files.single;
+        _file = File(pickedFile.path);
       });
     }
   }
@@ -79,13 +76,11 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                             width: 120,
                             height: 120,
                             decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: aa,
-                            ),
+                                shape: BoxShape.rectangle, color: aa),
                             child: _file != null
                                 ? ClipOval(
                                     child: Image.file(
-                                      _file! as File,
+                                      _file!,
                                       fit: BoxFit.cover,
                                     ),
                                   )
@@ -321,7 +316,7 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
 
                                     UserOperator.addFood(
                                         context,
-                                        _file as File?,
+                                        _file,
                                         nameController.text.trim(),
                                         double.parse(
                                             callorieController.text.trim()),

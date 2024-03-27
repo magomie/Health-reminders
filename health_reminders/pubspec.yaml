@@ -74,6 +74,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
+    - asset/food/
     - asset/image/drug.png
     - asset/image/mumu.jpg
     - asset/image/run.jpg
