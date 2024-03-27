@@ -95,36 +95,7 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                     ),
                   ],
                 ),
-                /*Column(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        //border: Border.all(color: brown, width: 1.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: aa,
-                            // blurRadius:5.0,
-                          ),
-                        ],
-                        borderRadius: BorderRadius.all(Radius.circular(7)),
-                      ),
-                      child: Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 40),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'รูปภาพ',
-                                style: TextStyles.Tlogin,
-                              ),
-                            ],
-                          )),
-                    ),
-                  ],
-                ),*/
+
                 SizedBox(
                   height: 10,
                 ),
