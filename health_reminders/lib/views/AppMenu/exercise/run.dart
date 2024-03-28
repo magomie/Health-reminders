@@ -47,11 +47,11 @@ class _informationPageState extends State<runPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 1 Pressed');
-                            Navigator.push(
+                            /*Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => addmenucalPage()),
-                            );
+                            );*/
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -124,11 +124,11 @@ class _informationPageState extends State<runPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button go to exercisepage');
-                            Navigator.push(
+                            /*Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => exercisePage()),
-                            );
+                            );*/
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

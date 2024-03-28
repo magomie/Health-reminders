@@ -7,7 +7,11 @@ import 'package:health_reminders/views/AppMenu/menu/account_setting.dart';
 
 class settingPage extends StatelessWidget {
   final String userId;
-  const settingPage({required this.userId});
+
+
+  const settingPage(
+      {required this.userId
+      });
 
   /*void initState() {
     NotificationProvider.checkReminders((userId));
@@ -74,7 +78,9 @@ class settingPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => account_settingPage(userId: userId)),
+                            builder: (context) => account_settingPage(
+                                userId: userId,
+                                )),
                       );
                     },
                     child: Padding(
@@ -185,22 +191,28 @@ class settingPage extends StatelessWidget {
                         // Handle the first button press
                         print('go to drug notification');
                       },
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text(
-                            'เสียง',
-                            style: TextStyles.common5,
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'เสียง',
+                              style: TextStyles.common5,
+                            ),
+                            Icon(
+                                Icons.arrow_forward_ios,
+                                size: 24,
+                                color: const Color.fromARGB(255, 182, 182, 182),
+                              ),
+                          ],
+                        ),
                       )),
                 ),
               ),
             ],
           ),
+          SizedBox(height: 5,),
           Column(
             children: [
               Padding(
@@ -223,17 +235,22 @@ class settingPage extends StatelessWidget {
                         // Handle the first button press
                         print('go to drug notification');
                       },
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text(
-                            'ข่าวสารของระบบ',
-                            style: TextStyles.common5,
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'ข่าวสารของระบบ',
+                              style: TextStyles.common5,
+                            ),
+                            Icon(
+                                Icons.arrow_forward_ios,
+                                size: 24,
+                                color: const Color.fromARGB(255, 182, 182, 182),
+                              ),
+                          ],
+                        ),
                       )),
                 ),
               ),
@@ -279,30 +296,29 @@ class settingPage extends StatelessWidget {
                         // Handle the first button press
                         print('go to drug notification');
                       },
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text(
-                            'นโยบายความเป็นส่วนตัว',
-                            style: TextStyles.common5,
-                          ),
-                          SizedBox(
-                            width: 105,
-                          ),
-                          Icon(
-                            Icons.arrow_forward,
-                            size: 24,
-                            color: const Color.fromARGB(255, 182, 182, 182),
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'นโยบายความเป็นส่วนตัว',
+                              style: TextStyles.common5,
+                            ),
+                            Icon(
+                                Icons.arrow_forward_ios,
+                                size: 24,
+                                color: const Color.fromARGB(255, 182, 182, 182),
+                              ),
+                          ],
+                        ),
                       )),
                 ),
               ),
             ],
           ),
+
+          SizedBox(height: 5,),
           Column(
             children: [
               Padding(
@@ -325,25 +341,22 @@ class settingPage extends StatelessWidget {
                         // Handle the first button press
                         print('go to drug notification');
                       },
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text(
-                            'ช่วยเหลือ',
-                            style: TextStyles.common5,
-                          ),
-                          SizedBox(
-                            width: 220,
-                          ),
-                          Icon(
-                            Icons.arrow_forward,
-                            size: 24,
-                            color: const Color.fromARGB(255, 182, 182, 182),
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'ช่วยเหลือ',
+                              style: TextStyles.common5,
+                            ),
+                            Icon(
+                                Icons.arrow_forward_ios,
+                                size: 24,
+                                color: const Color.fromARGB(255, 182, 182, 182),
+                              ),
+                          ],
+                        ),
                       )),
                 ),
               ),

@@ -37,7 +37,7 @@ class _homePageState extends State<homePage> {
         userId: widget.userId,
       ),
       profilePage(userId: widget.userId),
-      settingPage(userId:  widget.userId,),
+      settingPage(userId:  widget.userId),
     ];
   }
 
@@ -180,10 +180,12 @@ class HomePageContent extends StatelessWidget {
                             onPressed: () {
                               // Handle the first button press
                               print('Button 1 Pressed');
-                              Navigator.push(
+                             Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => calcaloriePage()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: calcaloriePage(),
+                                ),
                               );
                             },
                             child: Column(
@@ -212,8 +214,10 @@ class HomePageContent extends StatelessWidget {
                               print('go to foodpage');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => foodPage()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: foodPage(),
+                                ),
                               );
                             },
                             child: Column(
@@ -242,10 +246,10 @@ class HomePageContent extends StatelessWidget {
                               print('go to waterpage');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => waterPage(
-                                          userId: userId,
-                                        )),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: waterPage(userId: userId),
+                                ),
                               );
                             },
                             child: Column(
@@ -284,8 +288,10 @@ class HomePageContent extends StatelessWidget {
                               print('Button go to exercisepage');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => exercisePage()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: exercisePage(),
+                                ),
                               );
                             },
                             child: Column(
@@ -314,8 +320,10 @@ class HomePageContent extends StatelessWidget {
                               print('Button 2 Pressed');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => bmi_bmr_page()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: bmi_bmr_page(),
+                                ),
                               );
                             },
                             child: Column(
@@ -388,8 +396,10 @@ class HomePageContent extends StatelessWidget {
                               print('Button go to news page');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => newsPage()),
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: newsPage( ),
+                                ),
                               );
                             },
                             child: Column(

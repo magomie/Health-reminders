@@ -6,6 +6,7 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
 
+
 import 'package:intl/intl.dart';
 
 class waterPage extends StatelessWidget {
@@ -238,18 +239,16 @@ class waterPage extends StatelessWidget {
                                           height: 10,
                                         ),
                                         ElevatedButton(
-                  style: buttonlgin,
-                  onPressed: () {
-                    // Handle the first button press
-                    print('Button SignUp Pressed');
-                  
-                  },
-                  child: Text('เพิ่ม', style: TextStyles.Tlogin),
-                ),
-
+                                          style: buttonlgin,
+                                          onPressed: () {
+                                            // Handle the first button press
+                                            print('Button SignUp Pressed');
+                                          },
+                                          child: Text('เพิ่ม',
+                                              style: TextStyles.Tlogin),
+                                        ),
                                       ],
                                     ),
-                                    
                                   ));
                         },
                       ),
