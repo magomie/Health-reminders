@@ -4,16 +4,16 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/AppMenu/Addmenucal_Page.dart';
+import 'package:health_reminders/views/AppMenu/exercise/DownwardFacingDog.dart';
+import 'package:health_reminders/views/AppMenu/exercise/Jumpingjack.dart';
 import 'package:health_reminders/views/AppMenu/exercise/Threshold.dart';
-import 'package:health_reminders/views/AppMenu/exercise/exercise.dart';
 
-class runPage extends StatefulWidget {
+class yogaPage extends StatefulWidget {
   @override
-  _runPageState createState() => _runPageState();
+  _yogaPageState createState() => _yogaPageState();
 }
 
-class _runPageState extends State<runPage> {
+class _yogaPageState extends State<yogaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,7 @@ class _runPageState extends State<runPage> {
           onBackButtonPressed: () {
             Navigator.pop(context);
           },
-          title: "การวิ่ง"),
+          title: "โยคะ"),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -47,24 +47,24 @@ class _runPageState extends State<runPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 1 Pressed');
-                            /*Navigator.push(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => addmenucalPage()),
-                            );*/
+                                  builder: (context) => DownwardFacingDogPage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset(
-                                'asset/image/run.jpg',
+                               Image.asset(
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Speedwork', style: TextStyles.Tlogin),
+                              Text('Downward Facing Dog', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -79,26 +79,25 @@ class _runPageState extends State<runPage> {
                           style: buttonmanu,
                           onPressed: () {
                             // Handle the first button press
-                            print('Button 2 Pressed');
+                           /* print('Button 2 Pressed');
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => thresholdPage()),
-                            );
+                            );*/
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Threshold Session',
-                                  style: TextStyles.Tlogin),
+                              Text('Warrior Pose', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -134,14 +133,14 @@ class _runPageState extends State<runPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Speed-Stamina Workout',
+                              Text('Tree Pose',
                                   style: TextStyles.Tlogin),
                             ],
                           ),
@@ -163,15 +162,116 @@ class _runPageState extends State<runPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Relaxed Long Run',
-                                  style: TextStyles.Tlogin),
+                              Text('Bridge Pose', style: TextStyles.Tlogin),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 200.0,
+                        child: ElevatedButton(
+                          style: buttonmanu,
+                          onPressed: () {
+                            // Handle the first button press
+                            print('Button 2 Pressed');
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'asset/image/yoga1.jpg',
+                                width: 110,
+                                height: 110,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text('Triangle Pose', style: TextStyles.Tlogin),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10.0),
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 200.0,
+                        child: ElevatedButton(
+                          style: buttonmanu,
+                          onPressed: () {
+                            // Handle the first button press
+                            print('Button 2 Pressed');
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'asset/image/yoga1.jpg',
+                                width: 110,
+                                height: 110,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text('Cobra Pose', style: TextStyles.Tlogin),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 200.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 200.0,
+                        child: ElevatedButton(
+                          style: buttonmanu,
+                          onPressed: () {
+                            // Handle the first button press
+                            print('Button 2 Pressed');
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'asset/image/yoga1.jpg',
+                                width: 110,
+                                height: 110,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text('LChair Pose', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),

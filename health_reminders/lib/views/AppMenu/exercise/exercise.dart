@@ -3,7 +3,10 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:health_reminders/views/AppMenu/exercise/aerobic.dart';
+import 'package:health_reminders/views/AppMenu/exercise/cadio.dart';
 import 'package:health_reminders/views/AppMenu/exercise/run.dart';
+import 'package:health_reminders/views/AppMenu/exercise/yoga.dart';
 
 class exercisePage extends StatefulWidget {
   @override
@@ -79,13 +82,13 @@ class _exercisePageState extends State<exercisePage> {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              /* // Handle the first button press
+                              // Handle the first button press
                               print('go to drug notification');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => notidrugPage()),
-                              );*/
+                                    builder: (context) => cadioPage()),
+                              );
                             },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -119,7 +122,15 @@ class _exercisePageState extends State<exercisePage> {
                         height: 60,
                         child: ElevatedButton(
                             style: buttonnoti,
-                            onPressed: () {},
+                            onPressed: () {
+                              // Handle the first button press
+                              print('go to drug notification');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => yogaPage()),
+                              );
+                            },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -153,12 +164,12 @@ class _exercisePageState extends State<exercisePage> {
                         child: ElevatedButton(
                             style: buttonnoti,
                             onPressed: () {
-                              /*print('go to sleepy notification');
+                              print('go to sleepy notification');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => notisleepPage()),
-                              );*/
+                                    builder: (context) => arobicPage()),
+                              );
                             },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,

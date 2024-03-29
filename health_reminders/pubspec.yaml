@@ -83,8 +83,14 @@ flutter:
     - asset/image/exercise.png
     - asset/image/doctor.png
     - asset/image/cardio.png
+    - asset/image/cardio1.jpg
+    - asset/image/cardio-1.jpg
     - asset/image/aerobic.png
+    - asset/image/aerobics.jpg
+    - asset/image/arobic-1.jpg
     - asset/image/yoga.png
+    - asset/image/yoga1.jpg
+    - asset/image/yoga-1.jpg
     - asset/image/food.png
     - asset/image/calories.png
     - asset/image/news.png

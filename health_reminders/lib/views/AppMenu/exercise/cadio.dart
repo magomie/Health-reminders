@@ -4,16 +4,15 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/AppMenu/Addmenucal_Page.dart';
+import 'package:health_reminders/views/AppMenu/exercise/Jumpingjack.dart';
 import 'package:health_reminders/views/AppMenu/exercise/Threshold.dart';
-import 'package:health_reminders/views/AppMenu/exercise/exercise.dart';
 
-class runPage extends StatefulWidget {
+class cadioPage extends StatefulWidget {
   @override
-  _runPageState createState() => _runPageState();
+  _cadioPageState createState() => _cadioPageState();
 }
 
-class _runPageState extends State<runPage> {
+class _cadioPageState extends State<cadioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +22,7 @@ class _runPageState extends State<runPage> {
           onBackButtonPressed: () {
             Navigator.pop(context);
           },
-          title: "การวิ่ง"),
+          title: "คาร์ดิโอ"),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -47,24 +46,24 @@ class _runPageState extends State<runPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 1 Pressed');
-                            /*Navigator.push(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => addmenucalPage()),
-                            );*/
+                                  builder: (context) => JumpingjackPage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/cardio1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Speedwork', style: TextStyles.Tlogin),
+                              Text('Jumping Jack', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -79,26 +78,25 @@ class _runPageState extends State<runPage> {
                           style: buttonmanu,
                           onPressed: () {
                             // Handle the first button press
-                            print('Button 2 Pressed');
+                           /* print('Button 2 Pressed');
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => thresholdPage()),
-                            );
+                            );*/
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/cardio1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Threshold Session',
-                                  style: TextStyles.Tlogin),
+                              Text('Bicycle Crunch', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -134,14 +132,14 @@ class _runPageState extends State<runPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/cardio1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Speed-Stamina Workout',
+                              Text('Mountain Climber',
                                   style: TextStyles.Tlogin),
                             ],
                           ),
@@ -163,15 +161,79 @@ class _runPageState extends State<runPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/cardio1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Relaxed Long Run',
-                                  style: TextStyles.Tlogin),
+                              Text('Squat Jump', style: TextStyles.Tlogin),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 200.0,
+                        child: ElevatedButton(
+                          style: buttonmanu,
+                          onPressed: () {
+                            // Handle the first button press
+                            print('Button 2 Pressed');
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'asset/image/cardio1.jpg',
+                                width: 110,
+                                height: 110,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text('Lunge Jump', style: TextStyles.Tlogin),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10.0),
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 200.0,
+                        child: ElevatedButton(
+                          style: buttonmanu,
+                          onPressed: () {
+                            // Handle the first button press
+                            print('Button 2 Pressed');
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'asset/image/cardio1.jpg',
+                                width: 110,
+                                height: 110,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text('Push-Up Burpee', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
