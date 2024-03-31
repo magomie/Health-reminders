@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/endpoin.dart';
 import 'package:health_reminders/model/mode.dart';
@@ -31,6 +32,23 @@ class userPlugin {
       IdNumber++;
     } while (existingUserIds
         .contains(newId)); // ตรวจสอบว่า user_id ใหม่ซ้ำกับที่มีอยู่หรือไม่
+
+    return newId;
+  }
+
+  static FutureOr<String> generateFoodId() async {
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('foods').get();
+
+    List<String> existingFoodIds =
+        querySnapshot.docs.map((doc) => doc.id).toList();
+
+    int idNumber = 1;
+    String newId;
+    do {
+      newId = 'food_id_$idNumber';
+      idNumber++;
+    } while (existingFoodIds.contains(newId));
 
     return newId;
   }
@@ -871,13 +889,18 @@ class NotificationServices {
     );
 
     // คำนวณเวลาที่เหลือจนกว่าจะถึงเวลาที่ต้องการแจ้งเตือน
-    Duration timeUntilNotification = notificationTime.difference(DateTime.now());
+    Duration timeUntilNotification =
+        notificationTime.difference(DateTime.now());
 
     // รอจนกว่าจะถึงเวลาที่ตั้งการแจ้งเตือน
-    Timer(timeUntilNotification, () async {
-      // เมื่อถึงเวลาที่ตั้งการแจ้งเตือนเอาไว้ จะทำการเรียก API เพื่ออัปเดตสถานะการแจ้งเตือน
-      await APIEndpoint.updateNotificationStatus(userId, noti.notiId, 'scheduled');
-    },);
+    Timer(
+      timeUntilNotification,
+      () async {
+        // เมื่อถึงเวลาที่ตั้งการแจ้งเตือนเอาไว้ จะทำการเรียก API เพื่ออัปเดตสถานะการแจ้งเตือน
+        await APIEndpoint.updateNotificationStatus(
+            userId, noti.notiId, 'scheduled');
+      },
+    );
   }
 }
 
@@ -973,14 +996,10 @@ class BuildNotificationListView extends StatelessWidget {
 }
 
 class BuildFoodListView extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
-    
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection('food')
-          .snapshots(),
+      stream: FirebaseFirestore.instance.collection('food').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
@@ -999,9 +1018,8 @@ class BuildFoodListView extends StatelessWidget {
           child: ListView.builder(
             itemCount: fooddata.length,
             itemBuilder: (context, index) {
-              var foodList =
-                  fooddata[index].data() as Map<String, dynamic>;
-              if (foodList != null ) {
+              var foodList = fooddata[index].data() as Map<String, dynamic>;
+              if (foodList != null) {
                 return Padding(
                   padding: const EdgeInsets.only(
                     right: 10.0,
@@ -1018,6 +1036,33 @@ class BuildFoodListView extends StatelessWidget {
                       ),
                     ),
                     child: ListTile(
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: FutureBuilder<String>(
+                          future: FirebaseStorage.instance
+                              .ref('images/${foodList['image_file']}')
+                              .getDownloadURL(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<String> snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              if (snapshot.hasData) {
+                                return Image.network(
+                                  snapshot.data!,
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.cover,
+                                );
+                              } else {
+                                return Icon(Icons
+                                    .error); // แสดงไอคอนเมื่อเกิดข้อผิดพลาด
+                              }
+                            } else {
+                              return CircularProgressIndicator(); // แสดง indicator ขณะโหลดรูปภาพ
+                            }
+                          },
+                        ),
+                      ),
                       title: Text(foodList['name_food'] ?? ''),
                       subtitle: Text('แก้ด้วยนะ'),
                       trailing: IconButton(

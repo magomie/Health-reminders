@@ -92,32 +92,32 @@ class NotiModel {
 
 class foodDataModel {
   final String foodId;
-  final String image_flie;
+  final String image_file;
   final String name_food;
   final double calorie;
   final double fat;
   final double suger;
-  final double sudium;
+  final double sodium;
 
   foodDataModel({
     required this.foodId,
-    required this.image_flie,
+    required this.image_file,
     required this.name_food,
     required this.calorie,
     required this.fat,
     required this.suger,
-    required this.sudium,
+    required this.sodium,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'foodId': foodId,
-      'image_flie': image_flie,
+      'image_file': image_file,
       'name_food': name_food,
       'calorie': calorie,
       'fat': fat,
       'suger': suger,
-      'sudium': sudium,
+      'sodium': sodium,
     };
   }
 }

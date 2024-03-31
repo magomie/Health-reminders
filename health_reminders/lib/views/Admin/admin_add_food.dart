@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:html' as html;
 import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/styles/button.dart';
@@ -14,17 +17,25 @@ class admin_add_foodPage extends StatefulWidget {
 }
 
 class _admin_add_foodPageState extends State<admin_add_foodPage> {
-  final ImagePicker _picker = ImagePicker();
-  File? _file;
+  Uint8List? _fileBytes;
+  String? _downloadUrl;
 
-  Future<void> pickImage() async {
-    final XFile? pickedFile =
-        await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _file = File(pickedFile.path);
+  Future<void> _pickImage() async {
+    html.FileUploadInputElement input = html.FileUploadInputElement();
+    input.click();
+
+    input.onChange.listen((event) {
+      final file = input.files!.first;
+      final reader = html.FileReader();
+
+      reader.onLoadEnd.listen((e) async {
+        setState(() {
+          _fileBytes = reader.result as Uint8List?;
+        });
       });
-    }
+
+      reader.readAsArrayBuffer(file);
+    });
   }
 
   @override
@@ -70,23 +81,25 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                     Stack(
                       children: [
                         GestureDetector(
-                          onTap: pickImage,
+                          onTap: _pickImage,
                           child: Container(
                             width: 120,
                             height: 120,
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle, color: aa),
-                            child: _file != null
-                                ? ClipOval(
-                                    child: Image.file(
-                                      _file!,
+                            child: _fileBytes != null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(60),
+                                    child: Image.memory(
+                                      _fileBytes!,
                                       fit: BoxFit.cover,
                                     ),
                                   )
                                 : Icon(
                                     Icons.photo_outlined,
                                     size: 60,
-                                    color: brown,
+                                    color: Colors
+                                        .brown, // แก้ brown เป็นสีที่ต้องการ
                                   ),
                           ),
                         )
@@ -281,19 +294,23 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                                 ElevatedButton(
                                   style: buttonlgin,
                                   onPressed: () {
-                                    print('Button 1 Pressed');
-
                                     UserOperator.addFood(
-                                        context,
-                                        _file,
-                                        nameController.text.trim(),
-                                        double.parse(
-                                            callorieController.text.trim()),
-                                        double.parse(fatController.text.trim()),
-                                        double.parse(
-                                            sweetController.text.trim()),
-                                        double.parse(
-                                            sodiumController.text.trim()));
+                                      context,
+                                      _fileBytes,
+                                      nameController.text.trim(),
+                                      double.parse(
+                                        callorieController.text.trim(),
+                                      ),
+                                      double.parse(
+                                        fatController.text.trim(),
+                                      ),
+                                      double.parse(
+                                        sweetController.text.trim(),
+                                      ),
+                                      double.parse(
+                                        sodiumController.text.trim(),
+                                      ),
+                                    );
                                   },
                                   child: Text('เพิ่มข้อมูล',
                                       style: TextStyles.Tlogin),

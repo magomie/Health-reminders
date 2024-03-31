@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 //flutter_lib
 import 'package:flutter/material.dart';
@@ -61,34 +62,30 @@ class UserOperator {
 
   static Future<void> addFood(
     BuildContext context,
-    File? image_File,
+    Uint8List? imageFile,
     String name_food,
     double calorie,
     double fat,
     double suger,
-    double sudium,
+    double sodium,
   ) async {
-    String foodid = await userPlugin.generateId('foods', 'food');
-    String image = await APIEndpoint.uploadImageToFirebase(image_File);
+    String foodId = await userPlugin.generateFoodId();
+    String imageUrl = await APIEndpoint.uploadImageFood(imageFile!);
 
     foodDataModel foodData = foodDataModel(
-        foodId: foodid,
-        image_flie: image,
+        foodId: foodId,
+        image_file: imageUrl,
         name_food: name_food,
         calorie: calorie,
         fat: fat,
         suger: suger,
-        sudium: sudium);
+        sodium: sodium);
 
-    final success = await APIEndpoint.addFood(foodData);
+    final success = await APIEndpoint.addFoodData(foodData);
 
     if (success) {
-      Navigator.pushReplacement(
+      Navigator.pop(
         context,
-        PageTransition(
-          type: PageTransitionType.leftToRight,
-          child: food_adminPage(),
-        ),
       );
     }
   }

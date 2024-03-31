@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:uuid/uuid.dart';
 
 //flutter_lib
 import 'package:flutter/material.dart';
+import 'package:path/path.dart' as Path;
+import 'package:flutter/foundation.dart' show Uint8List, kIsWeb;
 //firebase_lib
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -106,6 +110,50 @@ class APIEndpoint {
     }
   }
 
+  /*static Future<String> uploadImageFood(File? imageFile) async {
+    if (imageFile == null) {
+      return ''; // หรือสิ่งที่คุณต้องการในกรณีที่ไม่มีภาพ
+    }
+
+    try {
+      // กำหนด path ใน Firebase Storage ที่ต้องการเก็บรูปภาพ
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      Reference firebaseStorageRef =
+          FirebaseStorage.instance.ref().child('food/$fileName');
+
+      // Upload รูปภาพไปยัง Firebase Storage
+      UploadTask uploadTask = firebaseStorageRef.putFile(imageFile!);
+
+      // เมื่อ Upload เสร็จสิ้น
+      TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
+
+      // รับ URL ของรูปภาพที่ Upload เสร็จสิ้น
+      String imageUrl = await taskSnapshot.ref.getDownloadURL();
+      // หรือส่ง URL กลับไปให้ตัวแอปแสดงผล
+      return imageUrl;
+    } catch (e) {
+      print(e);
+      // หรือทำการ handle error ตามต้องการ
+      return 'error';
+    }
+  }*/
+
+  static Future<String> uploadImageFood(Uint8List _fileBytes) async {
+    if (_fileBytes == null) return '';
+
+    try {
+      final fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      final filePath = 'foods/$fileName.png';
+
+      await FirebaseStorage.instance.ref(filePath).putData(_fileBytes);
+
+      return filePath;
+    } catch (error) {
+      print('Error uploading image: $error');
+      return '';
+    }
+  }
+
   static Future<bool> addUser(String uid, String email, String password) async {
     try {
       final CollectionReference users =
@@ -170,13 +218,11 @@ class APIEndpoint {
     }
   }
 
-  static Future<bool> addFood(foodDataModel foodData) async {
+  static Future<bool> addFoodData(foodDataModel foodData) async {
     try {
-      final CollectionReference users =
-          FirebaseFirestore.instance.collection('food');
-
-      await users.doc(foodData.foodId).set(foodData.toMap());
-
+      final CollectionReference foods =
+          FirebaseFirestore.instance.collection('foods');
+      await foods.doc(foodData.foodId).set(foodData.toMap());
       return true;
     } catch (e) {
       print("Error: $e");
