@@ -37,7 +37,7 @@ class _homePageState extends State<homePage> {
         userId: widget.userId,
       ),
       profilePage(userId: widget.userId),
-      settingPage(userId:  widget.userId),
+      settingPage(userId: widget.userId),
     ];
   }
 
@@ -180,11 +180,13 @@ class HomePageContent extends StatelessWidget {
                             onPressed: () {
                               // Handle the first button press
                               print('Button 1 Pressed');
-                             Navigator.push(
+                              Navigator.push(
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: calcaloriePage(),
+                                  child: calcaloriePage(
+                                    userId: userId,
+                                  ),
                                 ),
                               );
                             },
@@ -216,14 +218,16 @@ class HomePageContent extends StatelessWidget {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: foodPage(),
+                                  child: foodPage(
+                                    userId: userId,
+                                  ),
                                 ),
                               );
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                 Image.asset(
+                                Image.asset(
                                   'asset/image/food.png',
                                   width: 50.0,
                                   height: 50.0,
@@ -255,7 +259,7 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                 Image.asset(
+                                Image.asset(
                                   'asset/image/water.png',
                                   width: 50.0,
                                   height: 50.0,
@@ -297,7 +301,7 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                 Image.asset(
+                                Image.asset(
                                   'asset/image/xcercise.png',
                                   width: 50.0,
                                   height: 50.0,
@@ -322,14 +326,16 @@ class HomePageContent extends StatelessWidget {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: bmi_bmr_page(),
+                                  child: bmi_bmr_page(
+                                    userId: userId,
+                                  ),
                                 ),
                               );
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                 Image.asset(
+                                Image.asset(
                                   'asset/image/bmibmr.png',
                                   width: 50.0,
                                   height: 50.0,
@@ -363,7 +369,7 @@ class HomePageContent extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                 Image.asset(
+                                Image.asset(
                                   'asset/image/reminder.png',
                                   width: 50.0,
                                   height: 50.0,
@@ -398,19 +404,22 @@ class HomePageContent extends StatelessWidget {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: newsPage( ),
+                                  child: newsPage(
+                                    userId: userId,
+                                  ),
                                 ),
                               );
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                 Image.asset(
+                                Image.asset(
                                   'asset/image/news.png',
                                   width: 50.0,
                                   height: 50.0,
                                 ),
-                                Text('ข่าวสารสุขภาพ', style: TextStyles.common4),
+                                Text('ข่าวสารสุขภาพ',
+                                    style: TextStyles.common4),
                               ],
                             ),
                           ),

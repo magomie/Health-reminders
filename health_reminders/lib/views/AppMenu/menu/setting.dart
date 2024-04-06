@@ -8,14 +8,7 @@ import 'package:health_reminders/views/AppMenu/menu/account_setting.dart';
 class settingPage extends StatelessWidget {
   final String userId;
 
-
-  const settingPage(
-      {required this.userId
-      });
-
-  /*void initState() {
-    NotificationProvider.checkReminders((userId));
-  }*/
+  const settingPage({required this.userId});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +72,7 @@ class settingPage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => account_settingPage(
-                                userId: userId,
+                                  userId: userId,
                                 )),
                       );
                     },
@@ -201,10 +194,10 @@ class settingPage extends StatelessWidget {
                               style: TextStyles.common5,
                             ),
                             Icon(
-                                Icons.arrow_forward_ios,
-                                size: 24,
-                                color: const Color.fromARGB(255, 182, 182, 182),
-                              ),
+                              Icons.arrow_forward_ios,
+                              size: 24,
+                              color: const Color.fromARGB(255, 182, 182, 182),
+                            ),
                           ],
                         ),
                       )),
@@ -212,7 +205,9 @@ class settingPage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           Column(
             children: [
               Padding(
@@ -245,10 +240,10 @@ class settingPage extends StatelessWidget {
                               style: TextStyles.common5,
                             ),
                             Icon(
-                                Icons.arrow_forward_ios,
-                                size: 24,
-                                color: const Color.fromARGB(255, 182, 182, 182),
-                              ),
+                              Icons.arrow_forward_ios,
+                              size: 24,
+                              color: const Color.fromARGB(255, 182, 182, 182),
+                            ),
                           ],
                         ),
                       )),
@@ -306,10 +301,10 @@ class settingPage extends StatelessWidget {
                               style: TextStyles.common5,
                             ),
                             Icon(
-                                Icons.arrow_forward_ios,
-                                size: 24,
-                                color: const Color.fromARGB(255, 182, 182, 182),
-                              ),
+                              Icons.arrow_forward_ios,
+                              size: 24,
+                              color: const Color.fromARGB(255, 182, 182, 182),
+                            ),
                           ],
                         ),
                       )),
@@ -317,8 +312,9 @@ class settingPage extends StatelessWidget {
               ),
             ],
           ),
-
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           Column(
             children: [
               Padding(
@@ -351,10 +347,10 @@ class settingPage extends StatelessWidget {
                               style: TextStyles.common5,
                             ),
                             Icon(
-                                Icons.arrow_forward_ios,
-                                size: 24,
-                                color: const Color.fromARGB(255, 182, 182, 182),
-                              ),
+                              Icons.arrow_forward_ios,
+                              size: 24,
+                              color: const Color.fromARGB(255, 182, 182, 182),
+                            ),
                           ],
                         ),
                       )),

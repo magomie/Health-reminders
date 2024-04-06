@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/Admin/admin_add_exercise.dart';
+import 'package:health_reminders/Admin/admin_add_exercise.dart';
 import 'package:health_reminders/views/AppMenu/exercise/run.dart';
 
 class exercise_adminPage extends StatelessWidget {

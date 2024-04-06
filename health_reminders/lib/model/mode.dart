@@ -24,6 +24,23 @@ class UserModel {
   }
 }
 
+class waterModel {
+  final String waterId;
+  final double amount;
+
+  waterModel({
+    required this.waterId,
+    required this.amount,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'waterId': waterId,
+      'amount': amount,
+    };
+  }
+}
+
 // HealthData model
 class HealthDataModel {
   final String userId;
@@ -118,6 +135,32 @@ class foodDataModel {
       'fat': fat,
       'suger': suger,
       'sodium': sodium,
+    };
+  }
+}
+
+class NewsDataModel {
+  final String newsId;
+  final String image_file;
+  final String news_name;
+  final String news_link;
+  final String des;
+
+  NewsDataModel({
+    required this.newsId,
+    required this.image_file,
+    required this.news_name,
+    required this.news_link,
+    required this.des,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'newsId': newsId,
+      'image_file': image_file,
+      'news_name': news_name,
+      'news_link': news_link,
+      'des': des,
     };
   }
 }

@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class newsPage extends StatelessWidget {
-  /*void initState() {
-    NotificationProvider.checkReminders((widget.userId));
-  }*/
+class newsPage extends StatefulWidget {
+  final String userId;
 
+  const newsPage({required this.userId});
+
+  @override
+  State<newsPage> createState() => _newsPageState();
+}
+
+class _newsPageState extends State<newsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,72 +24,10 @@ class newsPage extends StatelessWidget {
             Navigator.pop(context);
           },
           title: "ข่าวสารสุขภาพ"),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.all(5.0),
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: noti,
-                            //blurRadius: 5.0,
-                          ),
-                        ]),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
-                          child: Image.asset(
-                            'asset/image/mumu.jpg',
-                            width: 110,
-                            height: 110,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 0.0, bottom: 0.0, left: 15.0, right: 0.0),
-                          child: Container(
-                            width: 210.0,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('โควิดแพร่กระจายตัวอย่างไร',
-                                    style: TextStyles.Tlogin),
-                                Text(
-                                  'ติดโควิดควรทานยาอย่างไรดูแลตัวเองแบบไหน',
-                                  style: TextStyles.common2,
-                                  softWrap: true,
-                                  overflow: TextOverflow.visible,
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text('อ่านเพิ่มเติม'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        /*showNewsPlugin(
-                        otherClass: (context, newsDataSet) =>
-                            newsWidget(newsDataSet: newsDataSet),
-                      ),*/
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
+      body: Center(
+        child: showDataPlugin(
+          docId: widget.userId,
+          otherClass: (context, usersData, healthData) => BuildNewsListView(),
         ),
       ),
     );

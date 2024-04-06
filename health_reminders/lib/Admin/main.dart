@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_reminders/firebase_options.dart';
-import 'package:health_reminders/views/Admin/admin.dart';
+import 'package:health_reminders/Admin/admin.dart';
 
 FutureOr<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/Admin/admin_add_news.dart';
+import 'package:health_reminders/Admin/admin_add_news.dart';
 
 class news_adminPage extends StatelessWidget {
   @override
@@ -87,7 +87,14 @@ class news_adminPage extends StatelessWidget {
                               overflow: TextOverflow.visible,
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          admin_add_newsPage()),
+                                );
+                              },
                               child: Text('อ่านเพิ่มเติม'),
                             ),
                           ],

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/Admin/exercise_admin.dart';
-import 'package:health_reminders/views/Admin/food_admin.dart';
-import 'package:health_reminders/views/Admin/news_admin.dart';
+import 'package:health_reminders/Admin/exercise_admin.dart';
+import 'package:health_reminders/Admin/food_admin.dart';
+import 'package:health_reminders/Admin/news_admin.dart';
 
 class adminPage extends StatelessWidget {
   @override

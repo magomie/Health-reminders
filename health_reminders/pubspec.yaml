@@ -42,6 +42,7 @@ dependencies:
   #ui
   toggle_switch: ^2.1.0
   page_transition: ^2.1.0
+  flutter_slidable: ^3.1.0
 
   #firebase_lib
   firebase_core: ^2.16.0
@@ -59,6 +60,9 @@ dependencies:
 
   #noti_lib
   awesome_notifications: ^0.7.4+1
+
+  #link_open
+  url_launcher: ^6.2.5
 
 dev_dependencies:
   flutter_test:

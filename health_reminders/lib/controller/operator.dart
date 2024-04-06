@@ -2,19 +2,19 @@ import 'dart:io';
 import 'dart:typed_data';
 
 //flutter_lib
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //firebase_lib
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 //endpoin and views
 import 'package:health_reminders/controller/endpoin.dart';
-import 'package:health_reminders/views/Admin/admin_add_food.dart';
-import 'package:health_reminders/views/Admin/food_admin.dart';
 import 'package:health_reminders/views/AppMenu/notification/showNotiScreen.dart';
 import 'package:health_reminders/views/Home/home.dart';
 import 'package:health_reminders/views/Intro/gender_screen.dart';
 import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/views/Intro/landing_screen.dart';
+import 'package:intl/intl.dart';
 
 //page_transittion_lib
 import 'package:page_transition/page_transition.dart';
@@ -34,9 +34,10 @@ class UserOperator {
     try {
       if (password == passwordConf) {
         String userid = await userPlugin.generateId('users', 'user');
-        if (userid != null) {
+        if (userid.isNotEmpty) {
           bool? addSuccess = await APIEndpoint.addUser(userid, email, password);
-          if (addSuccess != false) {
+
+          if (addSuccess == true) {
             bool? success = await APIEndpoint.signUp(context, email, password);
 
             if (success == true && addSuccess == true) {
@@ -54,9 +55,51 @@ class UserOperator {
             }
           }
         }
-      } else {}
-    } on Exception catch (e) {
-      print("err : $e");
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('แจ้งเตือน'),
+              content: Text('รหัสไม่ตรงกัน'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('ตกลง'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        // หาก email ถูกใช้งานไปแล้ว ให้แสดง Dialog แจ้งเตือน
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('แจ้งเตือน'),
+              content: Text('อีเมล์นี้มีการใช้งานไปแล้ว'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('ตกลง'),
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        // จัดการกับข้อผิดพลาดอื่น ๆ ที่อาจเกิดขึ้น
+        print('เกิดข้อผิดพลาด: ${e.message}');
+      }
+    } catch (e) {
+      print('เกิดข้อผิดพลาด: $e');
     }
   }
 
@@ -82,6 +125,98 @@ class UserOperator {
         sodium: sodium);
 
     final success = await APIEndpoint.addFoodData(foodData);
+
+    if (success) {
+      Navigator.pop(
+        context,
+      );
+    }
+  }
+
+  static Future<void> addFoodUser(
+    BuildContext context,
+    String userId,
+    String imageUrl,
+    String name_food,
+    double calorie,
+    double fat,
+    double suger,
+    double sodium,
+  ) async {
+    try {
+      String foodId = await userPlugin.generateUserFoodId(userId);
+
+      foodDataModel foodData = foodDataModel(
+          foodId: foodId,
+          image_file: imageUrl,
+          name_food: name_food,
+          calorie: calorie,
+          fat: fat,
+          suger: suger,
+          sodium: sodium);
+
+      DateTime timestamp = DateTime.now();
+      String dateOnly = DateFormat('yyyy-MM-dd').format(timestamp);
+
+      final success = await APIEndpoint.addUserFood(userId, foodData, dateOnly);
+
+      if (success) {
+        Navigator.pop(
+          context,
+        );
+      }
+    } on Exception catch (e) {
+      // TODO
+      print(e);
+    }
+  }
+
+  static Future<void> addWaterUser(
+    BuildContext context,
+    String userId,
+    double amount,
+  ) async {
+    try {
+      String waterId = await userPlugin.generateUserWaterId(userId);
+
+      waterModel waterData = waterModel(waterId: waterId, amount: amount);
+
+      DateTime timestamp = DateTime.now();
+      String dateOnly = DateFormat('yyyy-MM-dd').format(timestamp);
+
+      final success =
+          await APIEndpoint.addUserWater(userId, waterData, dateOnly);
+
+      if (success) {
+        Navigator.pop(
+          context,
+        );
+      }
+    } on Exception catch (e) {
+      // TODO
+      print(e);
+    }
+  }
+
+  static Future<void> addNews(
+    BuildContext context,
+    Uint8List? imageFile,
+    String news_name,
+    String news_link,
+    String des,
+  ) async {
+    String newsId = await userPlugin.generateNewId();
+    String imageUrl = await APIEndpoint.uploadImageNews(imageFile!);
+
+    NewsDataModel newsData = NewsDataModel(
+      newsId: newsId,
+      image_file: imageUrl,
+      news_name: news_name,
+      news_link: news_link,
+      des: des,
+    );
+
+    final success = await APIEndpoint.addNewsData(newsData);
 
     if (success) {
       Navigator.pop(
@@ -190,17 +325,50 @@ class UserOperator {
     }
   }
 
-  static Future<Future<Stream<DocumentSnapshot<Map<String, dynamic>>>>>
-      getUserData(String userId) async {
-    return APIEndpoint.getUserData(userId);
+  static Future<double> fetchTotalCalorie(String userId) async {
+    return APIEndpoint.fetchTotalCalorieForUserToday(userId);
   }
 
-  static Stream<DocumentSnapshot<Map<String, dynamic>>> getNoti(String userId) {
-    return APIEndpoint.getNoti(userId);
+  static Future<double> fetchTotalSuger(String userId) async {
+    return APIEndpoint.fetchTotalSugerForUserToday(userId);
   }
 
-  static Future<Future<Stream<DocumentSnapshot<Map<String, dynamic>>>>>
-      getHealthData(String userId) async {
-    return APIEndpoint.getHealthData(userId);
+  static Future<double> fetchTotalFat(String userId) async {
+    return APIEndpoint.fetchTotalFatForUserToday(userId);
+  }
+
+  static Future<double> fetchTotalSodium(String userId) async {
+    return APIEndpoint.fetchTotalSodiumForUserToday(userId);
+  }
+
+  static Future<double> fetchTotalWater(String userId) async {
+    return APIEndpoint.fetchTotalWaterForUserToday(userId);
+  }
+
+  static Future<void> updateUserFoodStatus(
+    BuildContext context,
+    String userId,
+    String foodId,
+  ) async {
+    final success = await APIEndpoint.updateUserFoodAndWaterStatus(
+        userId, foodId, 'unpick');
+  }
+
+  static Future<void> updateUserWaterStatus(
+    BuildContext context,
+    String userId,
+    String waterId,
+  ) async {
+    final success = await APIEndpoint.updateUserFoodAndWaterStatus(
+        userId, waterId, 'unpick');
+  }
+
+  static Future<void> updateNotificationStatus(
+    BuildContext context,
+    String userId,
+    String notiId,
+  ) async {
+    final success = await APIEndpoint.updateNotificationStatus(
+        userId, notiId, 'unscheduled');
   }
 }

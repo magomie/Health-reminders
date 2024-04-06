@@ -202,11 +202,31 @@ class _signInScreenState extends State<signInScreen> {
                           );
                         },
                       );
+                    } else if (passwordController.text.length < 6) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('แจ้งเตือน'),
+                            content:
+                                Text('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัว'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('ตกลง'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     } else {
                       // Proceed with login
                       bool success = await UserOperator.login(context,
                           emailController.text, passwordController.text);
                       if (success) {
+                        await NotificationServices.InitializaNotification();
                         // กำหนดค่า isLoggedIn เป็น true เมื่อเข้าสู่ระบบสำเร็จ
                         SessionManagerPlugin.isLoggedIn = true;
                         print('เข้าสู่ระบบ');

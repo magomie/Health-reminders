@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/Admin/admin_add_food.dart';
+import 'package:health_reminders/Admin/admin_add_food.dart';
 
 enum SampleItem {
   edit,

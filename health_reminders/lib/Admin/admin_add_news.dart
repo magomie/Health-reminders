@@ -1,14 +1,68 @@
-import 'package:flutter/material.dart';
-import 'package:health_reminders/styles/color.dart';
+import 'dart:async';
+import 'dart:io';
+import 'dart:html' as html;
+import 'dart:typed_data';
 
-class addmenuPage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/operator.dart';
+import 'package:health_reminders/styles/button.dart';
+import 'package:health_reminders/styles/color.dart';
+import 'package:health_reminders/styles/text.dart';
+import 'package:image_picker/image_picker.dart';
+
+class admin_add_newsPage extends StatefulWidget {
+  @override
+  State<admin_add_newsPage> createState() => _admin_add_newsPageState();
+}
+
+class _admin_add_newsPageState extends State<admin_add_newsPage> {
+  Uint8List? _fileBytes;
+  String? _downloadUrl;
+
+  Future<void> _pickImage() async {
+    html.FileUploadInputElement input = html.FileUploadInputElement();
+    input.click();
+
+    input.onChange.listen((event) {
+      final file = input.files!.first;
+      final reader = html.FileReader();
+
+      reader.onLoadEnd.listen((e) async {
+        setState(() {
+          _fileBytes = reader.result as Uint8List?;
+        });
+      });
+
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
-    final TextEditingController callorieController = TextEditingController();
-    final TextEditingController sodiumController = TextEditingController();
-    final TextEditingController sweetController = TextEditingController();
-    final TextEditingController fatController = TextEditingController();
+    final TextEditingController informationController = TextEditingController();
+    final TextEditingController linkController = TextEditingController();
+
+    Uint8List? _fileBytes;
+    String? _downloadUrl;
+
+    Future<void> _pickImage() async {
+      html.FileUploadInputElement input = html.FileUploadInputElement();
+      input.click();
+
+      input.onChange.listen((event) {
+        final file = input.files!.first;
+        final reader = html.FileReader();
+
+        reader.onLoadEnd.listen((e) async {
+          setState(() {
+            _fileBytes = reader.result as Uint8List?;
+          });
+        });
+
+        reader.readAsArrayBuffer(file);
+      });
+    }
 
     return Scaffold(
       backgroundColor: white,
@@ -18,7 +72,7 @@ class addmenuPage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'เพิ่มเมนูอาหาร',
+          'เพิ่มข่าวสาร',
           style: TextStyle(
             color: Colors.brown, // Assuming 'brown' is a defined color variable
             fontFamily: 'Garuda',
@@ -32,50 +86,40 @@ class addmenuPage extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'เพิ่ม',
-              style: TextStyle(
-                color: Colors
-                    .brown, // Assuming 'brown' is a defined color variable
-                fontFamily: 'Garuda',
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
             child: Column(
               children: <Widget>[
-                SizedBox(
-                  height: 10,
-                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Stack(
                       children: [
-                        CircleAvatar(
-                          radius: 64,
-                          backgroundColor: yellow,
-                        ),
-                        Positioned(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.photo_outlined,
-                              size: 50,
-                            ),
+                        GestureDetector(
+                          onTap: _pickImage,
+                          child: Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.rectangle, color: aa),
+                            child: _fileBytes != null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(60),
+                                    child: Image.memory(
+                                      _fileBytes!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : Icon(
+                                    Icons.photo_outlined,
+                                    size: 60,
+                                    color: Colors
+                                        .brown, // แก้ brown เป็นสีที่ต้องการ
+                                  ),
                           ),
-                          top: 64 - 32,
-                          left: 64 - 32,
-                        ),
+                        )
                       ],
                     ),
                   ],
@@ -94,6 +138,7 @@ class addmenuPage extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'กรุณากรอกข้อมูล',
+                          style: TextStyles.common2,
                           textAlign: TextAlign.end,
                         ),
                       ),
@@ -108,7 +153,7 @@ class addmenuPage extends StatelessWidget {
                       child: TextField(
                         controller: nameController,
                         decoration: InputDecoration(
-                          labelText: 'ชื่ออาหาร',
+                          labelText: 'ชื่อข่าว',
                           labelStyle: TextStyle(
                               color: brown, // สีของ labelText
                               fontSize: 16,
@@ -136,9 +181,9 @@ class addmenuPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 30.0, vertical: 12.0),
                           child: TextField(
-                            controller: callorieController,
+                            controller: informationController,
                             decoration: InputDecoration(
-                              labelText: 'จำนวนแคลอรี่',
+                              labelText: 'คำอธิบาย',
                               labelStyle: TextStyle(
                                   color: brown, // สีของ labelText
                                   fontSize: 16,
@@ -167,9 +212,9 @@ class addmenuPage extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30.0, vertical: 12.0),
                               child: TextField(
-                                controller: sweetController,
+                                controller: linkController,
                                 decoration: InputDecoration(
-                                  labelText: 'ปริมาณน้ำตาล',
+                                  labelText: 'link',
                                   labelStyle: TextStyle(
                                       color: brown, // สีของ labelText
                                       fontSize: 16,
@@ -192,78 +237,23 @@ class addmenuPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30.0, vertical: 12.0),
-                                  child: TextField(
-                                    controller: sodiumController,
-                                    decoration: InputDecoration(
-                                      labelText: 'ปริมาณโซเดียม',
-                                      labelStyle: TextStyle(
-                                          color: brown, // สีของ labelText
-                                          fontSize: 16,
-                                          fontFamily:
-                                              'Garuda' // ขนาด font ของ labelText
-                                          ),
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 12.0, horizontal: 15.0),
-                                      border: OutlineInputBorder(),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.grey, width: 2.0),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.grey, width: 1.0),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 30.0, vertical: 12.0),
-                                      child: TextField(
-                                        controller: fatController,
-                                        decoration: InputDecoration(
-                                          labelText: 'ปริมาณไขมัน',
-                                          labelStyle: TextStyle(
-                                              color: brown, // สีของ labelText
-                                              fontSize: 16,
-                                              fontFamily:
-                                                  'Garuda' // ขนาด font ของ labelText
-                                              ),
-                                          contentPadding: EdgeInsets.symmetric(
-                                              vertical: 12.0, horizontal: 15.0),
-                                          border: OutlineInputBorder(),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.grey, width: 2.0),
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.grey, width: 1.0),
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            SizedBox(
+                              height: 10,
+                            ),
+                            ElevatedButton(
+                              style: buttonlgin,
+                              onPressed: () {
+                                // Handle the first button press
+                                print('Button 1 Pressed');
+                                UserOperator.addNews(
+                                    context,
+                                    _fileBytes,
+                                    nameController.text.trim(),
+                                    linkController.text.trim(),
+                                    informationController.text.trim());
+                              },
+                              child:
+                                  Text('เพิ่มข้อมูล', style: TextStyles.Tlogin),
                             ),
                           ],
                         ),

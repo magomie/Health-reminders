@@ -84,8 +84,6 @@ class _addNotiScreenState extends State<addNotiScreen> {
         },
         title: widget.titleNoti,
         onActionButtonPressed: () {
-          print(
-              '${titleController.text.trim()}\n${noteController.text.trim()}\n$selectedDate\n$selectedTime');
           UserOperator.addNoti(
             context,
             widget.userId,

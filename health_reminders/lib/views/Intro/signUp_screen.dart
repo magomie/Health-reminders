@@ -189,11 +189,53 @@ class _signUpScreenState extends State<signUpScreen> {
                   onPressed: () {
                     // Handle the first button press
                     print('Button SignUp Pressed');
-                    UserOperator.newSignUp(
-                        context,
-                        emailController.text,
-                        passwordController.text,
-                        passwordConfirmController.text);
+                    if (emailController.text.isEmpty ||
+                        passwordController.text.isEmpty ||
+                        passwordConfirmController.text.isEmpty) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('แจ้งเตือน'),
+                            content: Text('กรุณากรอกข้อมูลให้ครบถ้วน'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('ตกลง'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else if (passwordController.text.length < 6 ||
+                        passwordConfirmController.text.length < 6) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('แจ้งเตือน'),
+                            content:
+                                Text('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัว'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('ตกลง'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      UserOperator.newSignUp(
+                          context,
+                          emailController.text,
+                          passwordController.text,
+                          passwordConfirmController.text);
+                    }
                   },
                   child: Text('สมัคร', style: TextStyles.Tlogin),
                 ),

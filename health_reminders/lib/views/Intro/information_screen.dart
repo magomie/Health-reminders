@@ -302,21 +302,42 @@ class _informationScreenState extends State<informationScreen> {
                 style: buttonlgin,
                 onPressed: () {
                   // Handle the button press to save data
-                  if (activityLevel != null) {
+                  if (activityLevel != null &&
+                      nameController.text.trim().isNotEmpty &&
+                      ageController.text.trim().isNotEmpty &&
+                      weightController.text.trim().isNotEmpty &&
+                      heightController.text.trim().isNotEmpty) {
                     UserOperator.addInfo(
-                        context,
-                        widget.userId,
-                        widget.email,
-                        widget.password,
-                        _file,
-                        nameController.text.trim(),
-                        widget.gender,
-                        int.parse(ageController.text.trim()),
-                        double.parse(weightController.text.trim()),
-                        double.parse(heightController.text.trim()),
-                        activityLevel!);
+                      context,
+                      widget.userId,
+                      widget.email,
+                      widget.password,
+                      _file,
+                      nameController.text.trim(),
+                      widget.gender,
+                      int.parse(ageController.text.trim()),
+                      double.parse(weightController.text.trim()),
+                      double.parse(heightController.text.trim()),
+                      activityLevel!,
+                    );
                   } else {
-                    print('โปรดเลือกระดับการออกกำลังกาย');
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('แจ้งเตือน'),
+                          content: Text('กรุณากรอกข้อมูลให้ครบถ้วน'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('ตกลง'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
                 },
                 child: Text('ยืนยัน', style: TextStyles.Tlogin),

@@ -15,8 +15,6 @@ Future<void> main() async {
       AwesomeNotifications().requestPermissionToSendNotifications();
     }
   });
-  await NotificationServices.InitializaNotification();
-
   runApp(const MyApp());
 }
 
