@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:html' as html;
 import 'dart:typed_data';
 
@@ -17,7 +16,6 @@ class admin_add_newsPage extends StatefulWidget {
 
 class _admin_add_newsPageState extends State<admin_add_newsPage> {
   Uint8List? _fileBytes;
-  String? _downloadUrl;
 
   Future<void> _pickImage() async {
     html.FileUploadInputElement input = html.FileUploadInputElement();
@@ -43,27 +41,6 @@ class _admin_add_newsPageState extends State<admin_add_newsPage> {
     final TextEditingController informationController = TextEditingController();
     final TextEditingController linkController = TextEditingController();
 
-    Uint8List? _fileBytes;
-    String? _downloadUrl;
-
-    Future<void> _pickImage() async {
-      html.FileUploadInputElement input = html.FileUploadInputElement();
-      input.click();
-
-      input.onChange.listen((event) {
-        final file = input.files!.first;
-        final reader = html.FileReader();
-
-        reader.onLoadEnd.listen((e) async {
-          setState(() {
-            _fileBytes = reader.result as Uint8List?;
-          });
-        });
-
-        reader.readAsArrayBuffer(file);
-      });
-    }
-
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
@@ -71,10 +48,11 @@ class _admin_add_newsPageState extends State<admin_add_newsPage> {
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: Text(
-          'เพิ่มข่าวสาร',
+          'เพิ่มข่าว',
           style: TextStyle(
-            color: Colors.brown, // Assuming 'brown' is a defined color variable
+            color: brown, // Assuming 'brown' is a defined color variable
             fontFamily: 'Garuda',
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -115,8 +93,7 @@ class _admin_add_newsPageState extends State<admin_add_newsPage> {
                                 : Icon(
                                     Icons.photo_outlined,
                                     size: 60,
-                                    color: Colors
-                                        .brown, // แก้ brown เป็นสีที่ต้องการ
+                                    color: brown, // แก้ brown เป็นสีที่ต้องการ
                                   ),
                           ),
                         )
@@ -175,89 +152,78 @@ class _admin_add_newsPageState extends State<admin_add_newsPage> {
                         ),
                       ),
                     ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30.0, vertical: 12.0),
-                          child: TextField(
-                            controller: informationController,
-                            decoration: InputDecoration(
-                              labelText: 'คำอธิบาย',
-                              labelStyle: TextStyle(
-                                  color: brown, // สีของ labelText
-                                  fontSize: 16,
-                                  fontFamily:
-                                      'Garuda' // ขนาด font ของ labelText
-                                  ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 12.0, horizontal: 15.0),
-                              border: OutlineInputBorder(),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 2.0),
-                                borderRadius: BorderRadius.circular(10.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 12.0),
+                      child: TextField(
+                        controller: informationController,
+                        decoration: InputDecoration(
+                          labelText: 'คำอธิบาย',
+                          labelStyle: TextStyle(
+                              color: brown, // สีของ labelText
+                              fontSize: 16,
+                              fontFamily: 'Garuda' // ขนาด font ของ labelText
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 1.0),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 12.0, horizontal: 15.0),
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2.0),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1.0),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30.0, vertical: 12.0),
-                              child: TextField(
-                                controller: linkController,
-                                decoration: InputDecoration(
-                                  labelText: 'link',
-                                  labelStyle: TextStyle(
-                                      color: brown, // สีของ labelText
-                                      fontSize: 16,
-                                      fontFamily:
-                                          'Garuda' // ขนาด font ของ labelText
-                                      ),
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 12.0, horizontal: 15.0),
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey, width: 2.0),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey, width: 1.0),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 12.0),
+                      child: TextField(
+                        controller: linkController,
+                        decoration: InputDecoration(
+                          labelText: 'link',
+                          labelStyle: TextStyle(
+                              color: brown, // สีของ labelText
+                              fontSize: 16,
+                              fontFamily: 'Garuda' // ขนาด font ของ labelText
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ElevatedButton(
-                              style: buttonlgin,
-                              onPressed: () {
-                                // Handle the first button press
-                                print('Button 1 Pressed');
-                                UserOperator.addNews(
-                                    context,
-                                    _fileBytes,
-                                    nameController.text.trim(),
-                                    linkController.text.trim(),
-                                    informationController.text.trim());
-                              },
-                              child:
-                                  Text('เพิ่มข้อมูล', style: TextStyles.Tlogin),
-                            ),
-                          ],
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 12.0, horizontal: 15.0),
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2.0),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1.0),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                         ),
-                      ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      style: buttonlgin,
+                      onPressed: () {
+                        // Handle the first button press
+                        print('Button 1 Pressed');
+                        UserOperator.addNews(
+                            context,
+                            _fileBytes,
+                            nameController.text.trim(),
+                            linkController.text.trim(),
+                            informationController.text.trim());
+                      },
+                      child: Text('เพิ่มข้อมูล', style: TextStyles.Tlogin),
                     ),
                   ],
                 ),
