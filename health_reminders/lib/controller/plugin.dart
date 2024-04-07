@@ -2202,6 +2202,147 @@ class BuildFoodListView extends StatelessWidget {
   }
 }
 
+class BuildListViewForWeb extends StatelessWidget {
+  final String label;
+
+  const BuildListViewForWeb({super.key, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection(label).snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('เกิดข้อผิดพลาด: ${snapshot.error}');
+        }
+
+        if (!snapshot.hasData || snapshot.data == null) {
+          return Text('ไม่พบข้อมูล');
+        }
+
+        var fooddata = snapshot.data!.docs;
+
+        return Center(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: ListView.builder(
+              itemCount: fooddata.length,
+              itemBuilder: (context, index) {
+                var foodList = fooddata[index].data() as Map<String, dynamic>;
+                if (foodList != null) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      right: 10.0,
+                      left: 10.0,
+                    ),
+                    child: Container(
+                      height: 100,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.grey,
+                            width: 0.5,
+                          ),
+                        ),
+                      ),
+                      child: ListTile(
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: FutureBuilder<String>(
+                            future: FirebaseStorage.instance
+                                .ref('${foodList['image_file']}')
+                                .getDownloadURL(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<String> snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                if (snapshot.hasData) {
+                                  return Image.network(
+                                    snapshot.data!,
+                                    width: 50,
+                                    height: 50,
+                                    fit: BoxFit.cover,
+                                  );
+                                } else {
+                                  return Icon(Icons
+                                      .error); // แสดงไอคอนเมื่อเกิดข้อผิดพลาด
+                                }
+                              } else {
+                                return CircularProgressIndicator(); // แสดง indicator ขณะโหลดรูปภาพ
+                              }
+                            },
+                          ),
+                        ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      foodList['name_food'] ?? 'ไม่มีข้อมูล',
+                                      style: TextStyles.Tlogin,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('แคลอรี่ : ${foodList['calorie']}' ??
+                                      'ไม่มีข้อมูล'),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text('น้ำตาล : ${foodList['suger']}' ??
+                                      'ไม่มีข้อมูล'),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('ไขมัน : ${foodList['fat']}' ??
+                                      'ไม่มีข้อมูล'),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text('โซเดียม : ${foodList['sodium']}' ??
+                                      'ไม่มีข้อมูล'),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        trailing: IconButton(
+                          icon: Icon(
+                            Icons.add_circle_outline,
+                            color: brown,
+                          ),
+                          onPressed: () async {
+                            UserOperator.deleteData(
+                              context,
+                              foodList['foodId'],
+                              label,
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  );
+                } else {
+                  return Container(); // ถ้าสถานะไม่ใช่ active ให้ไม่แสดงรายการ
+                }
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class BuildUserFoodListView extends StatelessWidget {
   final dynamic usersDataSet;
   final dynamic healthDataSet;
@@ -2247,6 +2388,43 @@ class BuildUserFoodListView extends StatelessWidget {
               itemCount: fooddata.length,
               itemBuilder: (context, index) {
                 var foodList = fooddata[index].data() as Map<String, dynamic>;
+
+                Widget leadingWidget;
+
+                if (foodList['image_file'].startsWith('https://')) {
+                  // ถ้าเป็น URL ให้ใช้ URL โดยตรง
+                  leadingWidget = Image.network(
+                    foodList['image_file'],
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  );
+                } else {
+                  // ถ้าไม่ใช่ URL ให้ใช้ Firebase Storage เพื่อดึงรูปภาพ
+                  leadingWidget = FutureBuilder<String>(
+                    future: FirebaseStorage.instance
+                        .ref(foodList['image_file'])
+                        .getDownloadURL(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.hasData) {
+                          return Image.network(
+                            snapshot.data!,
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.cover,
+                          );
+                        } else {
+                          return Icon(
+                              Icons.error); // แสดงไอคอนเมื่อเกิดข้อผิดพลาด
+                        }
+                      } else {
+                        return CircularProgressIndicator(); // แสดง indicator ขณะโหลดรูปภาพ
+                      }
+                    },
+                  );
+                }
                 if (foodList != null) {
                   return Slidable(
                     endActionPane: ActionPane(
@@ -2292,30 +2470,7 @@ class BuildUserFoodListView extends StatelessWidget {
                         child: ListTile(
                           leading: ClipRRect(
                             borderRadius: BorderRadius.circular(10.0),
-                            child: FutureBuilder<String>(
-                              future: FirebaseStorage.instance
-                                  .ref('${foodList['image_file']}')
-                                  .getDownloadURL(),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<String> snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.done) {
-                                  if (snapshot.hasData) {
-                                    return Image.network(
-                                      snapshot.data!,
-                                      width: 50,
-                                      height: 50,
-                                      fit: BoxFit.cover,
-                                    );
-                                  } else {
-                                    return Icon(Icons
-                                        .error); // แสดงไอคอนเมื่อเกิดข้อผิดพลาด
-                                  }
-                                } else {
-                                  return CircularProgressIndicator(); // แสดง indicator ขณะโหลดรูปภาพ
-                                }
-                              },
-                            ),
+                            child: leadingWidget,
                           ),
                           subtitle: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -2527,335 +2682,85 @@ class BuildNewsListView extends StatelessWidget {
 
         return Container(
           height: MediaQuery.of(context).size.height,
-          child: ListView.builder(
+          child: ListView.separated(
+            separatorBuilder: (context, index) =>
+                Divider(color: Colors.grey), // แบ่งแต่ละรายการด้วยเส้นขอบ
             itemCount: newsdata.length,
             itemBuilder: (context, index) {
               var newsList = newsdata[index].data() as Map<String, dynamic>;
-              if (newsList != null) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    right: 10.0,
-                    left: 10.0,
-                  ),
-                  child: Container(
-                    height: 100,
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                    ),
-                    child: ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: FutureBuilder<String>(
-                          future: FirebaseStorage.instance
-                              .ref('${newsList['image_file']}')
-                              .getDownloadURL(),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<String> snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.done) {
-                              if (snapshot.hasData) {
-                                return Image.network(
-                                  snapshot.data!,
-                                  width: 50,
-                                  height: 50,
-                                  fit: BoxFit.cover,
-                                );
-                              } else {
-                                return Icon(Icons
-                                    .error); // แสดงไอคอนเมื่อเกิดข้อผิดพลาด
-                              }
-                            } else {
-                              return CircularProgressIndicator(); // แสดง indicator ขณะโหลดรูปภาพ
-                            }
-                          },
-                        ),
-                      ),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    newsList['news_name'] ?? 'ไม่มีข้อมูล',
-                                    style: TextStyles.Tlogin,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text('${newsList['news_name']}' ??
-                                    'ไม่มีข้อมูล'),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text('${newsList['des']}' ?? 'ไม่มีข้อมูล'),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      trailing: TextButton(
-                        onPressed: () {
-                          _launchURL('${newsList['news_link']}');
-                        },
-                        child: Text('อ่านเพิ่มเติม'),
-                      ),
-                    ),
-                  ),
-                );
-              } else {
-                return Container(); // ถ้าสถานะไม่ใช่ active ให้ไม่แสดงรายการ
-              }
+              return buildNewsListTile(newsList, _launchURL);
             },
           ),
         );
       },
     );
   }
-}
 
-class BuildUserAddFoodListView extends StatelessWidget {
-  final dynamic usersDataSet;
-  final dynamic healthDataSet;
-  final File? file;
-
-  const BuildUserAddFoodListView({
-    required this.usersDataSet,
-    required this.healthDataSet,
-    required this.file,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController callorieController = TextEditingController();
-    final TextEditingController sodiumController = TextEditingController();
-    final TextEditingController sweetController = TextEditingController();
-    final TextEditingController fatController = TextEditingController();
-    double userBMR;
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 12.0),
-          child: TextField(
-            controller: nameController,
-            decoration: InputDecoration(
-              labelText: 'ชื่ออาหาร',
-              labelStyle: TextStyle(
-                  color: brown, // สีของ labelText
-                  fontSize: 16,
-                  fontFamily: 'Garuda' // ขนาด font ของ labelText
-                  ),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
-              border: OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 1.0),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
-          ),
-        ),
-        Column(
+  Widget buildNewsListTile(
+      Map<String, dynamic> newsList, Function(String) launchURL) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Container(
+        height: 100,
+        child: Column(
           children: [
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 12.0),
-                  child: TextField(
-                    controller: callorieController,
-                    decoration: InputDecoration(
-                      labelText: 'จำนวนแคลอรี่',
-                      labelStyle: TextStyle(
-                          color: brown, // สีของ labelText
-                          fontSize: 16,
-                          fontFamily: 'Garuda' // ขนาด font ของ labelText
-                          ),
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 12.0, horizontal: 15.0),
-                      border: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 1.0),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+            Expanded(
+              child: ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: FutureBuilder<String>(
+                    future: FirebaseStorage.instance
+                        .ref('${newsList['image_file']}')
+                        .getDownloadURL(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.hasData) {
+                          return Image.network(
+                            snapshot.data!,
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.cover,
+                          );
+                        } else {
+                          return Icon(Icons.error);
+                        }
+                      } else {
+                        return CircularProgressIndicator();
+                      }
+                    },
                   ),
                 ),
-                Column(
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 12.0),
-                      child: TextField(
-                        controller: sweetController,
-                        decoration: InputDecoration(
-                          labelText: 'ปริมาณน้ำตาล',
-                          labelStyle: TextStyle(
-                              color: brown, // สีของ labelText
-                              fontSize: 16,
-                              fontFamily: 'Garuda' // ขนาด font ของ labelText
-                              ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 15.0),
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      ),
+                    Text(
+                      newsList['news_name'] ?? 'ไม่มีข้อมูล',
+                      style: TextStyles.Tlogin,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30.0, vertical: 12.0),
-                          child: TextField(
-                            controller: sodiumController,
-                            decoration: InputDecoration(
-                              labelText: 'ปริมาณโซเดียม',
-                              labelStyle: TextStyle(
-                                  color: brown, // สีของ labelText
-                                  fontSize: 16,
-                                  fontFamily:
-                                      'Garuda' // ขนาด font ของ labelText
-                                  ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 12.0, horizontal: 15.0),
-                              border: OutlineInputBorder(),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 2.0),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 1.0),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30.0, vertical: 12.0),
-                              child: TextField(
-                                controller: fatController,
-                                decoration: InputDecoration(
-                                  labelText: 'ปริมาณไขมัน',
-                                  labelStyle: TextStyle(
-                                      color: brown, // สีของ labelText
-                                      fontSize: 16,
-                                      fontFamily:
-                                          'Garuda' // ขนาด font ของ labelText
-                                      ),
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 12.0, horizontal: 15.0),
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey, width: 2.0),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey, width: 1.0),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Column(
-                              children: [
-                                ElevatedButton(
-                                  style: buttonlgin,
-                                  onPressed: () async {
-                                    // Handle the button press to save data
-                                    userBMR = calBMR(
-                                      healthDataSet['weight'],
-                                      healthDataSet['height'],
-                                      healthDataSet['gender'],
-                                      healthDataSet['age'],
-                                      healthDataSet['exerciseLevel'],
-                                    );
-
-                                    UserOperator.addFoodUser(
-                                      context,
-                                      usersDataSet['userId'],
-                                      file as String,
-                                      nameController.text.trim(),
-                                      double.parse(
-                                          callorieController.text.trim()),
-                                      double.parse(fatController.text.trim()),
-                                      double.parse(sweetController.text.trim()),
-                                      double.parse(
-                                          sodiumController.text.trim()),
-                                      userBMR,
-                                    );
-                                  },
-                                  child:
-                                      Text('ยืนยัน', style: TextStyles.Tlogin),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 25.0,
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          PageTransition(
-                                            type:
-                                                PageTransitionType.rightToLeft,
-                                            child: foodPage(
-                                              userId: usersDataSet['userId'],
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: Text('เพิ่มเมนูจากหน้าอาหาร',
-                                          textAlign: TextAlign.end,
-                                          style: TextStyles.Tunder),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                    Text(
+                      newsList['des'] ?? 'ไม่มีข้อมูล',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        String url = newsList['news_link'];
+                        launchUrl(Uri.parse(url),
+                            mode: LaunchMode.inAppBrowserView);
+                      },
+                      child: Text('อ่านเพิ่มเติม'),
                     ),
                   ],
                 ),
@@ -2863,7 +2768,7 @@ class BuildUserAddFoodListView extends StatelessWidget {
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

@@ -259,6 +259,14 @@ class UserOperator {
     }
   }
 
+  static Future<void> deleteData(
+    BuildContext context,
+    String Id,
+    String label,
+  ) async {
+    final success = await APIEndpoint.deleteDate(Id, label);
+  }
+
   static Future<void> addWaterUser(
     BuildContext context,
     String userId,

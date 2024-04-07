@@ -250,6 +250,20 @@ class APIEndpoint {
     }
   }
 
+  static Future<bool> deleteDate(String Id, String label) async {
+    try {
+      final CollectionReference collectionRef =
+          FirebaseFirestore.instance.collection(label);
+
+      await collectionRef.doc(Id).delete();
+
+      return true;
+    } catch (e) {
+      print("Error: $e");
+      return false;
+    }
+  }
+
   static Future<bool> updateUserFoodAndWaterStatus(
       String userId, String Id, String newStatus) async {
     try {
