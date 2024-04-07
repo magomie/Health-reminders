@@ -9,6 +9,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //endpoin and views
 import 'package:health_reminders/controller/endpoin.dart';
+import 'package:health_reminders/views/AppMenu/menu/account_setting.dart';
+import 'package:health_reminders/views/AppMenu/menu/calcalorie.dart';
 import 'package:health_reminders/views/AppMenu/notification/showNotiScreen.dart';
 import 'package:health_reminders/views/Home/home.dart';
 import 'package:health_reminders/views/Intro/gender_screen.dart';
@@ -142,6 +144,7 @@ class UserOperator {
     double fat,
     double suger,
     double sodium,
+    double userBMR,
   ) async {
     try {
       String foodId = await userPlugin.generateUserFoodId(userId);
@@ -161,8 +164,93 @@ class UserOperator {
       final success = await APIEndpoint.addUserFood(userId, foodData, dateOnly);
 
       if (success) {
-        Navigator.pop(
+        double totalCalorie =
+            await UserOperator.fetchTotalNutrient(userId, 'calorie');
+        double totalFat = await UserOperator.fetchTotalNutrient(userId, 'fat');
+        double totalSodium =
+            await UserOperator.fetchTotalNutrient(userId, 'sodium');
+        double totalSugar =
+            await UserOperator.fetchTotalNutrient(userId, 'suger');
+
+        if (totalCalorie > userBMR) {
+          if (totalSugar < 24.0 && totalSodium < 2.3 && totalFat < 24.0) {
+            NotificationServices.scheduleCalorieExceedingBMRNotification();
+          } else if (totalSugar > 24.0 &&
+              totalSodium < 2.3 &&
+              totalFat < 24.0) {
+            NotificationServices.scheduleSugerNotification();
+          } else if (totalSugar < 24.0 &&
+              totalSodium > 2.3 &&
+              totalFat < 24.0) {
+            NotificationServices.scheduleSodiumNotification();
+          } else if (totalSugar < 24.0 &&
+              totalSodium < 2.3 &&
+              totalFat > 24.0) {
+            NotificationServices.scheduleFatNotification();
+          } else if (totalSugar > 24.0 &&
+              totalSodium > 2.3 &&
+              totalFat > 24.0) {
+            NotificationServices.scheduleCalorieExceedingBMRNotification();
+            NotificationServices.scheduleSugerNotification();
+            NotificationServices.scheduleSodiumNotification();
+            NotificationServices.scheduleFatNotification();
+          } else if (totalSugar > 24.0 &&
+              totalSodium < 2.3 &&
+              totalFat < 24.0) {
+            NotificationServices.scheduleCalorieExceedingBMRNotification();
+            NotificationServices.scheduleSugerNotification();
+          } else if (totalSugar < 24.0 &&
+              totalSodium > 2.3 &&
+              totalFat < 24.0) {
+            NotificationServices.scheduleCalorieExceedingBMRNotification();
+            NotificationServices.scheduleSodiumNotification();
+          } else if (totalSugar < 24.0 &&
+              totalSodium < 2.3 &&
+              totalFat > 24.0) {
+            NotificationServices.scheduleCalorieExceedingBMRNotification();
+            NotificationServices.scheduleFatNotification();
+          }
+        } else if (totalCalorie < userBMR) {
+          if (totalSugar > 24.0 && totalSodium > 2.3 && totalFat < 24.0) {
+            NotificationServices.scheduleSugerNotification();
+            NotificationServices.scheduleSodiumNotification();
+          } else if (totalSugar > 24.0 &&
+              totalSodium < 2.3 &&
+              totalFat > 24.0) {
+            NotificationServices.scheduleSugerNotification();
+            NotificationServices.scheduleFatNotification();
+          } else if (totalSugar < 24.0 &&
+              totalSodium > 2.3 &&
+              totalFat > 24.0) {
+            NotificationServices.scheduleSodiumNotification();
+            NotificationServices.scheduleFatNotification();
+          } else if (totalSugar < 24.0 &&
+              totalSodium < 2.3 &&
+              totalFat < 24.0) {
+            NotificationServices.scheduleCalorieExceedingBMRNotification();
+          } else if (totalSugar > 24.0 &&
+              totalSodium < 2.3 &&
+              totalFat < 24.0) {
+            NotificationServices.scheduleSugerNotification();
+          } else if (totalSugar < 24.0 &&
+              totalSodium > 2.3 &&
+              totalFat < 24.0) {
+            NotificationServices.scheduleSodiumNotification();
+          } else if (totalSugar < 24.0 &&
+              totalSodium < 2.3 &&
+              totalFat > 24.0) {
+            NotificationServices.scheduleFatNotification();
+          }
+        }
+
+        Navigator.pushReplacement(
           context,
+          PageTransition(
+            type: PageTransitionType.leftToRight,
+            child: calcaloriePage(
+              userId: userId,
+            ),
+          ),
         );
       }
     } on Exception catch (e) {
@@ -273,6 +361,37 @@ class UserOperator {
     }
   }
 
+  static Future<void> updateInfo(
+      BuildContext context,
+      String userId,
+      File? image_File,
+      String username,
+      String gender,
+      int age,
+      double weight,
+      double height,
+      int Exe_B) async {
+    String image = await APIEndpoint.uploadImageToFirebase(image_File);
+
+    HealthDataModel healthData = HealthDataModel(
+      userId: userId,
+      image_flie: image,
+      gender: gender,
+      age: age,
+      weight: weight,
+      height: height,
+      exerciseLevel: Exe_B,
+    );
+
+    final success = await APIEndpoint.updateInfo(userId, username, healthData);
+
+    if (success) {
+      Navigator.pop(
+        context,
+      );
+    }
+  }
+
   static Future<void> addNoti(
     BuildContext context,
     String userId,
@@ -325,24 +444,15 @@ class UserOperator {
     }
   }
 
-  static Future<double> fetchTotalCalorie(String userId) async {
-    return APIEndpoint.fetchTotalCalorieForUserToday(userId);
+  static Future<double> fetchTotalNutrient(
+      String userId, String nutrient) async {
+    return APIEndpoint.fetchTotalNutrientForUserToday(userId, nutrient);
   }
 
-  static Future<double> fetchTotalSuger(String userId) async {
-    return APIEndpoint.fetchTotalSugerForUserToday(userId);
-  }
-
-  static Future<double> fetchTotalFat(String userId) async {
-    return APIEndpoint.fetchTotalFatForUserToday(userId);
-  }
-
-  static Future<double> fetchTotalSodium(String userId) async {
-    return APIEndpoint.fetchTotalSodiumForUserToday(userId);
-  }
-
-  static Future<double> fetchTotalWater(String userId) async {
-    return APIEndpoint.fetchTotalWaterForUserToday(userId);
+  static Future<List<double>> fetchTotalNutrientForWeek(String userId,
+      String nutrient, int year, int month, int currentDay) async {
+    return APIEndpoint.fetchTotalNutrientForWeek(
+        userId, nutrient, year, month, currentDay);
   }
 
   static Future<void> updateUserFoodStatus(

@@ -186,6 +186,27 @@ class APIEndpoint {
     }
   }
 
+  static Future<bool> updateInfo(
+      String userId, String username, HealthDataModel healthData) async {
+    try {
+      final CollectionReference users =
+          FirebaseFirestore.instance.collection('users');
+      // Add user health data
+      await users.doc(userId).update({'username': username});
+
+      await users
+          .doc(userId)
+          .collection('health_data')
+          .doc(userId)
+          .update(healthData.toMap());
+
+      return true;
+    } catch (e) {
+      print("Error: $e");
+      return false;
+    }
+  }
+
   static Future<bool> addNoti(String userId, NotiModel noti) async {
     try {
       final CollectionReference users =
@@ -313,7 +334,8 @@ class APIEndpoint {
     }
   }
 
-  static Future<double> fetchTotalCalorieForUserToday(String userId) async {
+  static Future<double> fetchTotalNutrientForUserToday(
+      String userId, String nutrient) async {
     try {
       DateTime now = DateTime.now();
       String formattedDate = DateFormat('yyyy-MM-dd').format(now);
@@ -331,146 +353,63 @@ class APIEndpoint {
 
       print(formattedDate);
 
-      double totalCalorie = 0;
+      double total = 0;
 
       // Loop through each document in the subcollection
       for (QueryDocumentSnapshot doc in userFoodSnapshot.docs) {
         // Extract the 'calorie' field from each document
         final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        final double calorie =
-            data['calorie'] ?? 0; // Default to 0 if 'calorie' is null
-        totalCalorie += calorie; // Sum up the calorie values
+        final double temp =
+            data[nutrient] ?? 0; // Default to 0 if 'calorie' is null
+        total += temp; // Sum up the calorie values
       }
 
-      return totalCalorie;
+      return total;
     } catch (e) {
       print('Error fetching total calorie for user today: $e');
       return 0;
     }
   }
 
-  static Future<double> fetchTotalSugerForUserToday(String userId) async {
+  static Future<List<double>> fetchTotalNutrientForWeek(String userId,
+      String nutrient, int year, int month, int currentDay) async {
     try {
-      DateTime now = DateTime.now();
-      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+      List<double> dailyNutrients = [];
 
-      final CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
+      // หาวันแรกของสัปดาห์
+      DateTime firstDayOfWeek =
+          DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+      int lastDayOfWeek = firstDayOfWeek.add(Duration(days: 6)).day;
 
-      final QuerySnapshot userFoodSnapshot = await users
-          .doc(userId)
-          .collection('userFood')
-          .where('timestamp', isEqualTo: formattedDate)
-          .where('Status', isEqualTo: 'pick')
-          .get();
+      for (int day = firstDayOfWeek.day; day <= lastDayOfWeek; day++) {
+        DateTime date = DateTime(year, month, day);
+        String formattedDate = DateFormat('yyyy-MM-dd').format(date);
 
-      double totalSuger = 0;
-      for (QueryDocumentSnapshot doc in userFoodSnapshot.docs) {
-        final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        final double suger = data['suger'] ?? 0;
-        totalSuger += suger;
+        final CollectionReference users =
+            FirebaseFirestore.instance.collection('users');
+
+        final QuerySnapshot userFoodSnapshot = await users
+            .doc(userId)
+            .collection('userFood')
+            .where('timestamp', isEqualTo: formattedDate)
+            .where('Status', isEqualTo: 'pick')
+            .get();
+
+        double totalNutrient = 0;
+
+        for (QueryDocumentSnapshot doc in userFoodSnapshot.docs) {
+          final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+          final double nutrientValue = data[nutrient] ?? 0;
+          totalNutrient += nutrientValue;
+        }
+
+        dailyNutrients.add(totalNutrient);
       }
 
-      return totalSuger;
+      return dailyNutrients;
     } catch (e) {
-      print('Error fetching total calorie for user today: $e');
-      return 0;
-    }
-  }
-
-  static Future<double> fetchTotalFatForUserToday(String userId) async {
-    try {
-      DateTime now = DateTime.now();
-      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-
-      final CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
-
-      final QuerySnapshot userFoodSnapshot = await users
-          .doc(userId)
-          .collection('userFood')
-          .where('timestamp', isEqualTo: formattedDate)
-          .where('Status', isEqualTo: 'pick')
-          .get();
-
-      double totalFat = 0;
-
-      for (QueryDocumentSnapshot doc in userFoodSnapshot.docs) {
-        final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        final double fat = data['fat'] ?? 0;
-        totalFat += fat;
-      }
-
-      return totalFat;
-    } catch (e) {
-      print('Error fetching total calorie for user today: $e');
-      return 0;
-    }
-  }
-
-  static Future<double> fetchTotalSodiumForUserToday(String userId) async {
-    try {
-      DateTime now = DateTime.now();
-      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-
-      final CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
-
-      final QuerySnapshot userFoodSnapshot = await users
-          .doc(userId)
-          .collection('userFood')
-          .where('timestamp', isEqualTo: formattedDate)
-          .where('Status', isEqualTo: 'pick')
-          .get();
-
-      double totalSodium = 0;
-
-      for (QueryDocumentSnapshot doc in userFoodSnapshot.docs) {
-        final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        final double sodium = data['sodium'] ?? 0;
-        totalSodium += sodium;
-      }
-
-      return totalSodium;
-    } catch (e) {
-      print('Error fetching total calorie for user today: $e');
-      return 0;
-    }
-  }
-
-  static Future<double> fetchTotalWaterForUserToday(String userId) async {
-    try {
-      DateTime now = DateTime.now();
-      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-
-      final CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
-
-      final QuerySnapshot userFoodSnapshot = await users
-          .doc(userId) // User ID
-          .collection('userFood') // Subcollection 'userFood'
-          .where('timestamp',
-              isEqualTo: formattedDate) // Filter by today's date
-          .where('Status', isEqualTo: 'pick') // Filter by status
-          .get();
-
-      print(formattedDate);
-
-      double totalAmount = 0;
-
-      // Loop through each document in the subcollection
-      for (QueryDocumentSnapshot doc in userFoodSnapshot.docs) {
-        // Extract the 'calorie' field from each document
-        final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        final double amount =
-            data['amount'] ?? 0; // Default to 0 if 'calorie' is null
-        totalAmount += amount; // Sum up the calorie values
-      }
-
-      return totalAmount;
-    } catch (e) {
-      print('Error fetching total calorie for user today: $e');
-      return 0;
+      print('Error fetching total $nutrient for user this week: $e');
+      return [];
     }
   }
 

@@ -67,8 +67,8 @@ class _homePageState extends State<homePage> {
             label: 'หน้าหลัก',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'โปรไฟล์',
+            icon: Icon(Icons.summarize),
+            label: 'สรุปผล',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

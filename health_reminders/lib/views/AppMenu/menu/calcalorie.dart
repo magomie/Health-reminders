@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
-import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/AppMenu/menu/Addmenucal_Page.dart';
-import 'package:intl/intl.dart';
+import 'package:health_reminders/views/Home/home.dart';
+import 'package:page_transition/page_transition.dart';
 
 class calcaloriePage extends StatefulWidget {
   final String userId;
@@ -23,7 +22,15 @@ class _calcaloriePageState extends State<calcaloriePage> {
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
           onBackButtonPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.leftToRight,
+                child: homePage(
+                  userId: widget.userId,
+                ),
+              ),
+            );
           },
           title: "คำนวณแคลอรี่"),
       body: showDataPlugin(

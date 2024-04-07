@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_reminders/views/AppMenu/menu/profile.dart';
 
 // User model
 class UserModel {

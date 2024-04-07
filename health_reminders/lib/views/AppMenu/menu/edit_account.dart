@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:health_reminders/controller/operator.dart';
 
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
@@ -11,10 +13,8 @@ import 'package:image_picker/image_picker.dart';
 
 class edit_accountPage extends StatefulWidget {
   final String userId;
- 
 
-  edit_accountPage(
-      {required this.userId});
+  edit_accountPage({required this.userId});
 
   @override
   _edit_accountPageState createState() => _edit_accountPageState();
@@ -24,6 +24,12 @@ class _edit_accountPageState extends State<edit_accountPage> {
   final ImagePicker _picker = ImagePicker();
   File? _file;
   int? activityLevel;
+  String? sexselect;
+
+  List<String> listsex = [
+    "ชาย",
+    "หญิง",
+  ];
 
   List<String> listitem = [
     "ไม่มีการออกกำลังกาย",
@@ -136,33 +142,6 @@ class _edit_accountPageState extends State<edit_accountPage> {
                     ),
                   ),
                   SizedBox(height: 1),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0, vertical: 12.0),
-                    child: TextField(
-                      controller: ageController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: 'อายุ',
-                        labelStyle: TextStyle(
-                            color: brown, fontSize: 16, fontFamily: 'Garuda'),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 15.0),
-                        border: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 2.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 1.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 1),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -232,6 +211,103 @@ class _edit_accountPageState extends State<edit_accountPage> {
                     ],
                   ),
                   SizedBox(height: 1),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              right: 5.0, left: 30, top: 12.0, bottom: 12.0),
+                          child: TextField(
+                            controller: ageController,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              labelText: 'อายุ',
+                              labelStyle: TextStyle(
+                                  color: brown,
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda'),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 15.0),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 2.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 1),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              right: 30.0, left: 5, top: 12.0, bottom: 12.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 0.0,
+                                horizontal: 8.0,
+                              ),
+                              child: DropdownButton(
+                                hint: Text(
+                                  "เพศ",
+                                  style: TextStyle(
+                                    color: Colors.brown,
+                                    fontSize: 16,
+                                    fontFamily: 'Garuda',
+                                  ),
+                                ),
+                                icon: Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Colors.brown,
+                                ),
+                                iconSize: 36,
+                                style: TextStyle(
+                                  color: Colors.brown,
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda',
+                                ),
+                                value: sexselect,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    sexselect = newValue as String?;
+                                  });
+                                },
+                                items: listsex.map((item) {
+                                  return DropdownMenuItem(
+                                    value: item as String?,
+                                    child: Text(
+                                      item!,
+                                      style: TextStyle(
+                                        color: Colors.brown,
+                                        fontSize: 16,
+                                        fontFamily: 'Garuda',
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 1),
                   Padding(
                     padding: const EdgeInsets.only(
                         right: 30.0, left: 30.0, top: 12.0, bottom: 12.0),
@@ -245,7 +321,7 @@ class _edit_accountPageState extends State<edit_accountPage> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 0.0, horizontal: 8.0),
+                            vertical: 0.0, horizontal: 20.0),
                         child: DropdownButton(
                           hint: Text(
                             "ระดับการออกกำลังกาย",
@@ -293,15 +369,49 @@ class _edit_accountPageState extends State<edit_accountPage> {
                 ],
               ),
               SizedBox(height: 1),
-                ElevatedButton (
-                  style: buttonlgin,
-                  onPressed: () {
-                    // กดยืนยันแล้วไปหน้าโปรไฟล์ที่แก้ไขแล้ว
-                    print('Button ยืนยันการแก้ไข Pressed');
-                  
-                  },
-                  child: Text('ยืนยัน', style: TextStyles.Tlogin),
-                ),
+              ElevatedButton(
+                style: buttonlgin,
+                onPressed: () {
+                  // กดยืนยันแล้วไปหน้าโปรไฟล์ที่แก้ไขแล้ว
+                  print('Button ยืนยันการแก้ไข Pressed');
+                  if (activityLevel != null &&
+                      nameController.text.trim().isNotEmpty &&
+                      ageController.text.trim().isNotEmpty &&
+                      weightController.text.trim().isNotEmpty &&
+                      heightController.text.trim().isNotEmpty) {
+                    UserOperator.updateInfo(
+                      context,
+                      widget.userId,
+                      _file,
+                      nameController.text.trim(),
+                      sexselect! == 'ชาย' ? 'M' : 'F',
+                      int.parse(ageController.text.trim()),
+                      double.parse(weightController.text.trim()),
+                      double.parse(heightController.text.trim()),
+                      activityLevel!,
+                    );
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('แจ้งเตือน'),
+                          content: Text('กรุณากรอกข้อมูลให้ครบถ้วน'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('ตกลง'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                },
+                child: Text('ยืนยัน', style: TextStyles.Tlogin),
+              ),
             ],
           ),
         ),
@@ -309,3 +419,6 @@ class _edit_accountPageState extends State<edit_accountPage> {
     );
   }
 }
+ 
+ /*
+                  SizedBox(height: 1),*/

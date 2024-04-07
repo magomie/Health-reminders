@@ -4,6 +4,7 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:health_reminders/views/AppMenu/menu/account_setting.dart';
+import 'package:page_transition/page_transition.dart';
 
 class settingPage extends StatelessWidget {
   final String userId;
@@ -67,13 +68,14 @@ class settingPage extends StatelessWidget {
                     ),
                     onPressed: () {
                       // Handle the first button press
-                      print('go to drug notification');
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => account_settingPage(
-                                  userId: userId,
-                                )),
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: account_settingPage(
+                            userId: userId,
+                          ),
+                        ),
                       );
                     },
                     child: Padding(

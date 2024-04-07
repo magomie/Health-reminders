@@ -3,23 +3,18 @@ import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:health_reminders/views/AppMenu/menu/edit_account.dart';
+import 'package:page_transition/page_transition.dart';
 
 class account_settingPage extends StatelessWidget {
   final String userId;
-  
 
-  const account_settingPage(
-      {required this.userId
-      });
-
-  /*void initState() {
-    NotificationProvider.checkReminders((widget.userId));
-  }*/
+  const account_settingPage({required this.userId});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -54,10 +49,12 @@ class account_settingPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => edit_accountPage(
-                              userId: userId,
-                              )),
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: edit_accountPage(
+                          userId: userId,
+                        ),
+                      ),
                     );
                   },
                 ),

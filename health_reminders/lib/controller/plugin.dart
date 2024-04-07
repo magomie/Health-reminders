@@ -747,6 +747,225 @@ class BMR_Widget extends StatelessWidget {
   }
 }
 
+class WeightHeight_Widget extends StatelessWidget {
+  final dynamic healthDataSet;
+
+  WeightHeight_Widget({required this.healthDataSet});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment
+                .spaceBetween, // Adjust the alignment as needed
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 5.0,
+                    left: 30,
+                    top: 12.0,
+                    bottom: 12.0,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'น้ำหนัก: ${healthDataSet['weight']}',
+                        style: TextStyle(
+                          color: Colors.brown,
+                          fontSize: 16,
+                          fontFamily: 'Garuda',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 1),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 30.0,
+                    left: 5,
+                    top: 12.0,
+                    bottom: 12.0,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'ส่วนสูง: ${healthDataSet['height']}',
+                        style: TextStyle(
+                          color: Colors.brown,
+                          fontSize: 16,
+                          fontFamily: 'Garuda',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ExerciseLevel_Widget extends StatelessWidget {
+  final dynamic healthDataSet;
+
+  ExerciseLevel_Widget({required this.healthDataSet});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment
+                .spaceBetween, // Adjust the alignment as needed
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 30.0,
+                    left: 30,
+                    top: 12.0,
+                    bottom: 12.0,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'ระดับการออกกำลังกาย: \n${healthDataSet['exerciseLevel'] == 0 ? "ไม่มีการออกกำลังกาย" : healthDataSet['exerciseLevel'] == 1 ? "ออกกำลังกายเล็กน้อยอาทิตย์ละ 1-3 วัน" : healthDataSet['exerciseLevel'] == 2 ? "ออกกำลังกายปานกลางอาทิตย์ละ 3-5 วัน" : healthDataSet['exerciseLevel'] == 3 ? "ออกกำลังกายอย่างหนักอาทิตย์ละ 6-7 วัน" : healthDataSet['exerciseLevel'] == 4 ? "ออกกำลังกายอย่างหนักทุกวัน" : ""}',
+                        style: TextStyle(
+                          color: Colors.brown,
+                          fontSize: 16,
+                          fontFamily: 'Garuda',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SexAge_Widget extends StatelessWidget {
+  final dynamic healthDataSet;
+
+  SexAge_Widget({
+    required this.healthDataSet,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 5.0,
+                    left: 30,
+                    top: 12.0,
+                    bottom: 12.0,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'เพศ: ${healthDataSet != null ? (healthDataSet['gender'] == 'M' ? 'ชาย' : 'หญิง') : 'ไม่มีข้อมูล'}',
+                        style: TextStyle(
+                          color: Colors.brown,
+                          fontSize: 16,
+                          fontFamily: 'Garuda',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 1),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 30.0,
+                    left: 5,
+                    top: 12.0,
+                    bottom: 12.0,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'อายุ: ${healthDataSet['age']} ปี',
+                        style: TextStyle(
+                          color: Colors.brown,
+                          fontSize: 16,
+                          fontFamily: 'Garuda',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class profileWidget extends StatelessWidget {
   final dynamic usersDataSet;
   final dynamic healthDataSet;
@@ -756,6 +975,7 @@ class profileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -910,12 +1130,12 @@ class summaryCaloriesWidget extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   FutureBuilder<double>(
-                                    future: UserOperator.fetchTotalCalorie(
-                                        usersDataSet['userId']),
+                                    future: UserOperator.fetchTotalNutrient(
+                                        usersDataSet['userId'], 'calorie'),
                                     builder: (context, snapshot) {
                                       if (snapshot.hasData) {
                                         return Text(
-                                          '${snapshot.data?.toStringAsFixed(3)}',
+                                          '${snapshot.data?.toStringAsFixed(2)}',
                                           style: TextStyles.common2,
                                         );
                                       } else if (snapshot.hasError) {
@@ -988,12 +1208,14 @@ class summaryCaloriesWidget extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         FutureBuilder<double>(
-                                          future: UserOperator.fetchTotalSodium(
-                                              usersDataSet['userId']),
+                                          future:
+                                              UserOperator.fetchTotalNutrient(
+                                                  usersDataSet['userId'],
+                                                  'sodium'),
                                           builder: (context, snapshot) {
                                             if (snapshot.hasData) {
                                               return Text(
-                                                '${snapshot.data?.toStringAsFixed(3)}',
+                                                '${snapshot.data?.toStringAsFixed(2)}',
                                                 style: TextStyles.common2,
                                               );
                                             } else if (snapshot.hasError) {
@@ -1057,12 +1279,13 @@ class summaryCaloriesWidget extends StatelessWidget {
                                         children: [
                                           FutureBuilder<double>(
                                             future:
-                                                UserOperator.fetchTotalSuger(
-                                                    usersDataSet['userId']),
+                                                UserOperator.fetchTotalNutrient(
+                                                    usersDataSet['userId'],
+                                                    'suger'),
                                             builder: (context, snapshot) {
                                               if (snapshot.hasData) {
                                                 return Text(
-                                                  '${snapshot.data?.toStringAsFixed(3)}',
+                                                  '${snapshot.data?.toStringAsFixed(2)}',
                                                   style: TextStyles.common2,
                                                 );
                                               } else if (snapshot.hasError) {
@@ -1127,12 +1350,14 @@ class summaryCaloriesWidget extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         FutureBuilder<double>(
-                                          future: UserOperator.fetchTotalFat(
-                                              usersDataSet['userId']),
+                                          future:
+                                              UserOperator.fetchTotalNutrient(
+                                                  usersDataSet['userId'],
+                                                  'fat'),
                                           builder: (context, snapshot) {
                                             if (snapshot.hasData) {
                                               return Text(
-                                                '${snapshot.data?.toStringAsFixed(3)}',
+                                                '${snapshot.data?.toStringAsFixed(2)}',
                                                 style: TextStyles.common2,
                                               );
                                             } else if (snapshot.hasError) {
@@ -1203,8 +1428,9 @@ class summaryCaloriesWidget extends StatelessWidget {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => addmenucalPage(
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: addmenucalPage(
                                     userId: usersDataSet['userId'],
                                   ),
                                 ),
@@ -1510,7 +1736,8 @@ class NotificationServices {
     }
   }
 
-  static Future<void> scheduleCalorieExceedingBMRNotification() async {
+  static Future<void> scheduleCalorieExceedingBMRNotification(
+      {final bool schedule = false, DateTime? now}) async {
     Random rd = Random();
     final int max = 1000000;
 
@@ -1528,6 +1755,16 @@ class NotificationServices {
         fullScreenIntent: true,
         backgroundColor: yellow,
       ),
+      schedule: schedule && now != null
+          ? NotificationCalendar(
+              second: now.second,
+              minute: now.minute,
+              hour: now.hour,
+              day: now.day,
+              month: now.month,
+              year: now.year,
+            )
+          : null,
       actionButtons: [
         NotificationActionButton(
             key: 'close',
@@ -1538,7 +1775,8 @@ class NotificationServices {
     );
   }
 
-  static Future<void> scheduleFatNotification() async {
+  static Future<void> scheduleFatNotification(
+      {final bool schedule = false, DateTime? now}) async {
     Random rd = Random();
     final int max = 1000000;
 
@@ -1556,6 +1794,16 @@ class NotificationServices {
         fullScreenIntent: true,
         backgroundColor: yellow,
       ),
+      schedule: schedule && now != null
+          ? NotificationCalendar(
+              second: now.second,
+              minute: now.minute,
+              hour: now.hour,
+              day: now.day,
+              month: now.month,
+              year: now.year,
+            )
+          : null,
       actionButtons: [
         NotificationActionButton(
           key: 'close',
@@ -1566,7 +1814,8 @@ class NotificationServices {
     );
   }
 
-  static Future<void> scheduleSugerNotification() async {
+  static Future<void> scheduleSugerNotification(
+      {final bool schedule = false, DateTime? now}) async {
     Random rd = Random();
     final int max = 1000000;
 
@@ -1584,6 +1833,16 @@ class NotificationServices {
         fullScreenIntent: true,
         backgroundColor: yellow,
       ),
+      schedule: schedule && now != null
+          ? NotificationCalendar(
+              second: now.second,
+              minute: now.minute,
+              hour: now.hour,
+              day: now.day,
+              month: now.month,
+              year: now.year,
+            )
+          : null,
       actionButtons: [
         NotificationActionButton(
           key: 'close',
@@ -1594,7 +1853,8 @@ class NotificationServices {
     );
   }
 
-  static Future<void> scheduleSodiumNotification() async {
+  static Future<void> scheduleSodiumNotification(
+      {final bool schedule = false, DateTime? now}) async {
     Random rd = Random();
     final int max = 1000000;
 
@@ -1612,6 +1872,16 @@ class NotificationServices {
         fullScreenIntent: true,
         backgroundColor: yellow,
       ),
+      schedule: schedule && now != null
+          ? NotificationCalendar(
+              second: now.second,
+              minute: now.minute,
+              hour: now.hour,
+              day: now.day,
+              month: now.month,
+              year: now.year,
+            )
+          : null,
       actionButtons: [
         NotificationActionButton(
           key: 'close',
@@ -1896,6 +2166,14 @@ class BuildFoodListView extends StatelessWidget {
                             color: brown,
                           ),
                           onPressed: () async {
+                            userBMR = calBMR(
+                              healthDataSet['weight'],
+                              healthDataSet['height'],
+                              healthDataSet['gender'],
+                              healthDataSet['age'],
+                              healthDataSet['exerciseLevel'],
+                            );
+
                             UserOperator.addFoodUser(
                               context,
                               usersDataSet['userId'],
@@ -1905,38 +2183,8 @@ class BuildFoodListView extends StatelessWidget {
                               double.parse(foodList['fat'].toString()),
                               double.parse(foodList['suger'].toString()),
                               double.parse(foodList['sodium'].toString()),
+                              userBMR,
                             );
-
-                            userBMR = calBMR(
-                              healthDataSet['weight'],
-                              healthDataSet['height'],
-                              healthDataSet['gender'],
-                              healthDataSet['age'],
-                              healthDataSet['exerciseLevel'],
-                            );
-
-                            double totalCalorie =
-                                await UserOperator.fetchTotalCalorie(
-                                    usersDataSet['userId']);
-                            double totalFat = await UserOperator.fetchTotalFat(
-                                usersDataSet['userId']);
-                            double totalSodium =
-                                await UserOperator.fetchTotalSodium(
-                                    usersDataSet['userId']);
-                            double totalSugar =
-                                await UserOperator.fetchTotalSuger(
-                                    usersDataSet['userId']);
-
-                            if (totalCalorie > userBMR) {
-                              NotificationServices
-                                  .scheduleCalorieExceedingBMRNotification();
-                            } else if (totalSugar > 24.0) {
-                              NotificationServices.scheduleSugerNotification();
-                            } else if (totalSodium > 24.0) {
-                              NotificationServices.scheduleSodiumNotification();
-                            } else if (totalFat > 24.0) {
-                              NotificationServices.scheduleFatNotification();
-                            }
                           },
                         ),
                       ),
@@ -2553,6 +2801,14 @@ class BuildUserAddFoodListView extends StatelessWidget {
                                   style: buttonlgin,
                                   onPressed: () async {
                                     // Handle the button press to save data
+                                    userBMR = calBMR(
+                                      healthDataSet['weight'],
+                                      healthDataSet['height'],
+                                      healthDataSet['gender'],
+                                      healthDataSet['age'],
+                                      healthDataSet['exerciseLevel'],
+                                    );
+
                                     UserOperator.addFoodUser(
                                       context,
                                       usersDataSet['userId'],
@@ -2564,42 +2820,8 @@ class BuildUserAddFoodListView extends StatelessWidget {
                                       double.parse(sweetController.text.trim()),
                                       double.parse(
                                           sodiumController.text.trim()),
+                                      userBMR,
                                     );
-
-                                    userBMR = calBMR(
-                                      healthDataSet['weight'],
-                                      healthDataSet['height'],
-                                      healthDataSet['gender'],
-                                      healthDataSet['age'],
-                                      healthDataSet['exerciseLevel'],
-                                    );
-
-                                    double totalCalorie =
-                                        await UserOperator.fetchTotalCalorie(
-                                            usersDataSet['userId']);
-                                    double totalFat =
-                                        await UserOperator.fetchTotalFat(
-                                            usersDataSet['userId']);
-                                    double totalSodium =
-                                        await UserOperator.fetchTotalSodium(
-                                            usersDataSet['userId']);
-                                    double totalSugar =
-                                        await UserOperator.fetchTotalSuger(
-                                            usersDataSet['userId']);
-
-                                    if (totalCalorie > userBMR) {
-                                      NotificationServices
-                                          .scheduleCalorieExceedingBMRNotification();
-                                    } else if (totalSugar > 24.0) {
-                                      NotificationServices
-                                          .scheduleSugerNotification();
-                                    } else if (totalSodium > 24.0) {
-                                      NotificationServices
-                                          .scheduleSodiumNotification();
-                                    } else if (totalFat > 24.0) {
-                                      NotificationServices
-                                          .scheduleFatNotification();
-                                    }
                                   },
                                   child:
                                       Text('ยืนยัน', style: TextStyles.Tlogin),
@@ -2612,10 +2834,12 @@ class BuildUserAddFoodListView extends StatelessWidget {
                                     alignment: Alignment.center,
                                     child: TextButton(
                                       onPressed: () {
-                                        Navigator.push(
+                                        Navigator.pushReplacement(
                                           context,
-                                          MaterialPageRoute(
-                                            builder: (context) => foodPage(
+                                          PageTransition(
+                                            type:
+                                                PageTransitionType.rightToLeft,
+                                            child: foodPage(
                                               userId: usersDataSet['userId'],
                                             ),
                                           ),
@@ -2690,8 +2914,8 @@ class BuildAmountWaterListView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       FutureBuilder<double>(
-                        future: UserOperator.fetchTotalWater(
-                            usersDataSet['userId']),
+                        future: UserOperator.fetchTotalNutrient(
+                            usersDataSet['userId'], 'amount'),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return Text(

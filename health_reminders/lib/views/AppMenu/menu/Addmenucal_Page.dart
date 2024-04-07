@@ -1,12 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:health_reminders/controller/operator.dart';
 import 'package:health_reminders/controller/plugin.dart';
-import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
-import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/AppMenu/menu/food.dart';
 import 'package:image_picker/image_picker.dart';
 
 class addmenucalPage extends StatefulWidget {
