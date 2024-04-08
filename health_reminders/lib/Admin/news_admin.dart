@@ -45,9 +45,7 @@ class news_adminPage extends StatelessWidget {
           ),
         ],
       ),
-      body: BuildListViewForWeb(
-        label: 'news',
-      ),
+      body: BuildNewsListViewForWeb(),
     );
   }
 }

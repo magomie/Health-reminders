@@ -2317,7 +2317,7 @@ class BuildListViewForWeb extends StatelessWidget {
                         ),
                         trailing: IconButton(
                           icon: Icon(
-                            Icons.add_circle_outline,
+                            Icons.delete,
                             color: brown,
                           ),
                           onPressed: () async {
@@ -2856,6 +2856,127 @@ class BuildAmountWaterListView extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BuildNewsListViewForWeb extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('news').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('เกิดข้อผิดพลาด: ${snapshot.error}');
+        }
+
+        if (!snapshot.hasData || snapshot.data == null) {
+          return Text('ไม่พบข้อมูล');
+        }
+
+        var newsdata = snapshot.data!.docs;
+
+        return Container(
+          height: MediaQuery.of(context).size.height,
+          child: ListView.separated(
+            separatorBuilder: (context, index) =>
+                Divider(color: Colors.grey), // แบ่งแต่ละรายการด้วยเส้นขอบ
+            itemCount: newsdata.length,
+            itemBuilder: (context, index) {
+              var newsList = newsdata[index].data() as Map<String, dynamic>;
+              return buildNewsListTile(context, newsList);
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget buildNewsListTile(
+    BuildContext context,
+    Map<String, dynamic> newsList,
+  ) {
+    Future<String> _getImageUrl(String imageUrl) async {
+      try {
+        Reference ref = FirebaseStorage.instance.ref(imageUrl);
+        String downloadUrl = await ref.getDownloadURL();
+        return downloadUrl;
+      } catch (e) {
+        print('Error fetching image: $e');
+        throw e; // Rethrow the error to be caught by the FutureBuilder
+      }
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Container(
+        height: 100,
+        child: Row(
+          children: [
+            Expanded(
+              child: ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: FutureBuilder<String>(
+                    future: _getImageUrl(newsList['image_file']),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator(); // Show progress indicator during loading
+                      } else if (snapshot.hasError) {
+                        return Icon(
+                            Icons.error); // Show error icon if loading fails
+                      } else if (snapshot.hasData) {
+                        return Image.network(
+                          snapshot.data!,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        ); // Show image if available
+                      } else {
+                        return Icon(Icons
+                            .error); // Show error icon if no data available
+                      }
+                    },
+                  ),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      newsList['news_name'] ?? 'ไม่มีข้อมูล',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      newsList['des'] ?? 'ไม่มีข้อมูล',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                trailing: IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.brown,
+                  ),
+                  onPressed: () async {
+                    UserOperator.deleteData(
+                      context,
+                      newsList['newsId'],
+                      'news',
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
