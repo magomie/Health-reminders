@@ -2808,7 +2808,7 @@ class BuildAmountWaterListView extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('ปริมาณน้ำที่ควรได้รับต่อวัน',
+                      Text('ปริมาณน้ำที่ได้รับ',
                           style: TextStyles.common),
                     ],
                   ),

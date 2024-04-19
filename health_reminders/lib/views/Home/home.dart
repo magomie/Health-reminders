@@ -103,7 +103,7 @@ class HomePageContent extends StatelessWidget {
                   centerTitle: true,
                   elevation: 0.0,
                   title: Text(
-                    'HEALTHREMINDER',
+                    'HEALTH REMINDER',
                     style: TextStyle(
                       color: Colors.brown,
                       fontFamily: 'Garuda',

@@ -310,7 +310,7 @@ class _edit_accountPageState extends State<edit_accountPage> {
                   SizedBox(height: 1),
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 30.0, left: 30.0, top: 12.0, bottom: 12.0),
+                        right: 30.0, left: 30.0, top: 12.0, bottom: 20.0),
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -321,7 +321,7 @@ class _edit_accountPageState extends State<edit_accountPage> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 0.0, horizontal: 20.0),
+                            vertical: 0.0, horizontal: 10.0),
                         child: DropdownButton(
                           hint: Text(
                             "ระดับการออกกำลังกาย",

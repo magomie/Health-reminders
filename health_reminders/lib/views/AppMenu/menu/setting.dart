@@ -4,6 +4,7 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:health_reminders/views/AppMenu/menu/account_setting.dart';
+import 'package:health_reminders/views/AppMenu/menu/appinformation.dart';
 import 'package:page_transition/page_transition.dart';
 
 class settingPage extends StatelessWidget {
@@ -314,6 +315,60 @@ class settingPage extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: 5,
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Container(
+                  height: 60,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 5), // ปรับขนาดของปุ่มตามต้องการ
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(10.0), // ให้มีมุมโค้ง
+                        ),
+                        //elevation: 5, // เพิ่มเงา
+                        foregroundColor: Colors.white, // สีพื้นหลังของปุ่ม
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: appinformationPage()
+                        ),
+                      );
+                        // Handle the first button press
+                        print('go to information');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'ข้อมูลเกี่ยวกับแอปพลิเคชัน',
+                              style: TextStyles.common5,
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 24,
+                              color: const Color.fromARGB(255, 182, 182, 182),
+                            ),
+                          ],
+                        ),
+                      )),
+                ),
+              ),
+            ],
+          ),
+          
           SizedBox(
             height: 5,
           ),
