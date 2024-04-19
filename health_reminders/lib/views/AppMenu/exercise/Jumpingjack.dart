@@ -43,23 +43,23 @@ class _JumpingjackPageState extends State<JumpingjackPage> {
                 height: 20,
               ),
               Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ' 1 นอนราบกับพื้น ยกขาทั้งสองข้างขึ้นตั้งฉาก ยกศีรษะขึ้นจากพื้น มือทั้งสองข้างแตะไว้ที่ด้านหลังศีรษะ',
+                      ' 1.ยืนตรงเท้าชิด มือ 2 ข้างแนบข้างลำตัว',
                       style: TextStyles.common2,
                       softWrap: true,
                       overflow: TextOverflow.visible,
                     ),
                     Text(
-                      ' 2 ยกลำตัวด้านบนขึ้นเอียงไปด้านซ้าย ให้ศอกขวาแตะที่เข่าซ้าย พร้อมกับเหยียดขาขวาตรงไปด้านหน้า',
+                      ' 2.กระโดดพร้อมแยกขาออกจากกันมือทั้งสองข้างยกขึ้นเหนือศีรษะ',
                       style: TextStyles.common2,
                       softWrap: true,
                       overflow: TextOverflow.visible,
                     ),
                     Text(
-                      ' 3 สลับข้าง บิดลำตัวเอียงไปด้านขวา ให้ศอกซ้ายแตะที่เข่าขวา พร้อมกับเหยียดขาซ้ายตรงไปด้านหน้า นับเป็น 1 ครั้ง ทำซ้ำจนครบ 15-20 ครั้ง',
+                      ' 3.กระโดดกลับที่ท่าเริ่มต้น ทำซ้ำจนครบ 1-2 นาที',
                       style: TextStyles.common2,
                       softWrap: true,
                       overflow: TextOverflow.visible,
