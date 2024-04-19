@@ -4,12 +4,10 @@ import 'dart:typed_data';
 //flutter_lib
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//firebase_lib
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 //endpoin and views
 import 'package:health_reminders/controller/endpoin.dart';
-import 'package:health_reminders/views/AppMenu/menu/account_setting.dart';
+import 'package:health_reminders/styles/toast.dart';
 import 'package:health_reminders/views/AppMenu/menu/calcalorie.dart';
 import 'package:health_reminders/views/AppMenu/notification/showNotiScreen.dart';
 import 'package:health_reminders/views/Home/home.dart';
@@ -242,6 +240,8 @@ class UserOperator {
             NotificationServices.scheduleFatNotification();
           }
         }
+
+        ToastStyles.showToastFoodAddToCal(context);
 
         Navigator.pushReplacement(
           context,
