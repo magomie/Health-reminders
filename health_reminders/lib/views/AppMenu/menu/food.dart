@@ -17,9 +17,9 @@ class foodPage extends StatefulWidget {
 }
 
 class _foodPageState extends State<foodPage> {
+  int _toggleValue = 0;
   @override
   Widget build(BuildContext context) {
-    int _toggleValue = 0;
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,

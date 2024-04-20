@@ -2085,123 +2085,123 @@ class BuildFoodListView extends StatelessWidget {
               itemCount: fooddata.length,
               itemBuilder: (context, index) {
                 var foodList = fooddata[index].data() as Map<String, dynamic>;
-                if (foodList != null) {
-                  if (foodList['label'] == label) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        right: 10.0,
-                        left: 10.0,
-                      ),
-                      child: Container(
-                        height: 100,
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Colors.grey,
-                              width: 0.5,
-                            ),
+                if (foodList != null &&
+                    foodList != null &&
+                    foodList['labal'] == label) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      right: 10.0,
+                      left: 10.0,
+                    ),
+                    child: Container(
+                      height: 100,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.grey,
+                            width: 0.5,
                           ),
                         ),
-                        child: ListTile(
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: FutureBuilder<String>(
-                              future: FirebaseStorage.instance
-                                  .ref('${foodList['image_file']}')
-                                  .getDownloadURL(),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<String> snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.done) {
-                                  if (snapshot.hasData) {
-                                    return Image.network(
-                                      snapshot.data!,
-                                      width: 50,
-                                      height: 50,
-                                      fit: BoxFit.cover,
-                                    );
-                                  } else {
-                                    return Icon(Icons
-                                        .error); // แสดงไอคอนเมื่อเกิดข้อผิดพลาด
-                                  }
+                      ),
+                      child: ListTile(
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: FutureBuilder<String>(
+                            future: FirebaseStorage.instance
+                                .ref('${foodList['image_file']}')
+                                .getDownloadURL(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<String> snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                if (snapshot.hasData) {
+                                  return Image.network(
+                                    snapshot.data!,
+                                    width: 50,
+                                    height: 50,
+                                    fit: BoxFit.cover,
+                                  );
                                 } else {
-                                  return CircularProgressIndicator(); // แสดง indicator ขณะโหลดรูปภาพ
+                                  return Icon(Icons
+                                      .error); // แสดงไอคอนเมื่อเกิดข้อผิดพลาด
                                 }
-                              },
-                            ),
-                          ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        foodList['name_food'] ?? 'ไม่มีข้อมูล',
-                                        style: TextStyles.Tlogin,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text('แคลอรี่ : ${foodList['calorie']}' ??
-                                        'ไม่มีข้อมูล'),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text('น้ำตาล : ${foodList['suger']}' ??
-                                        'ไม่มีข้อมูล'),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text('ไขมัน : ${foodList['fat']}' ??
-                                        'ไม่มีข้อมูล'),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text('โซเดียม : ${foodList['sodium']}' ??
-                                        'ไม่มีข้อมูล'),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          trailing: IconButton(
-                            icon: Icon(
-                              Icons.add_circle_outline,
-                              color: brown,
-                            ),
-                            onPressed: () async {
-                              userBMR = calBMR(
-                                healthDataSet['weight'],
-                                healthDataSet['height'],
-                                healthDataSet['gender'],
-                                healthDataSet['age'],
-                                healthDataSet['exerciseLevel'],
-                              );
-
-                              UserOperator.addFoodUser(
-                                context,
-                                usersDataSet['userId'],
-                                foodList['image_file'],
-                                foodList['name_food'],
-                                double.parse(foodList['calorie'].toString()),
-                                double.parse(foodList['fat'].toString()),
-                                double.parse(foodList['suger'].toString()),
-                                double.parse(foodList['sodium'].toString()),
-                                userBMR,
-                                foodList['label'],
-                              );
+                              } else {
+                                return CircularProgressIndicator(); // แสดง indicator ขณะโหลดรูปภาพ
+                              }
                             },
                           ),
                         ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      foodList['name_food'] ?? 'ไม่มีข้อมูล',
+                                      style: TextStyles.Tlogin,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('แคลอรี่ : ${foodList['calorie']}' ??
+                                      'ไม่มีข้อมูล'),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text('น้ำตาล : ${foodList['suger']}' ??
+                                      'ไม่มีข้อมูล'),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('ไขมัน : ${foodList['fat']}' ??
+                                      'ไม่มีข้อมูล'),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text('โซเดียม : ${foodList['sodium']}' ??
+                                      'ไม่มีข้อมูล'),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        trailing: IconButton(
+                          icon: Icon(
+                            Icons.add_circle_outline,
+                            color: brown,
+                          ),
+                          onPressed: () async {
+                            userBMR = calBMR(
+                              healthDataSet['weight'],
+                              healthDataSet['height'],
+                              healthDataSet['gender'],
+                              healthDataSet['age'],
+                              healthDataSet['exerciseLevel'],
+                            );
+
+                            UserOperator.addFoodUser(
+                              context,
+                              usersDataSet['userId'],
+                              foodList['image_file'],
+                              foodList['name_food'],
+                              double.parse(foodList['calorie'].toString()),
+                              double.parse(foodList['fat'].toString()),
+                              double.parse(foodList['suger'].toString()),
+                              double.parse(foodList['sodium'].toString()),
+                              userBMR,
+                              foodList['label'],
+                            );
+                          },
+                        ),
                       ),
-                    );
-                  }
+                    ),
+                  );
                 } else {
                   return Container(); // ถ้าสถานะไม่ใช่ active ให้ไม่แสดงรายการ
                 }
@@ -2216,8 +2216,10 @@ class BuildFoodListView extends StatelessWidget {
 
 class BuildListViewForWeb extends StatelessWidget {
   final String label;
+  final String type;
 
-  const BuildListViewForWeb({super.key, required this.label});
+  const BuildListViewForWeb(
+      {super.key, required this.label, required this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -2243,7 +2245,7 @@ class BuildListViewForWeb extends StatelessWidget {
               itemCount: fooddata.length,
               itemBuilder: (context, index) {
                 var foodList = fooddata[index].data() as Map<String, dynamic>;
-                if (foodList != null) {
+                if (foodList != null && foodList['labal'] == type) {
                   return Padding(
                     padding: const EdgeInsets.only(
                       right: 10.0,

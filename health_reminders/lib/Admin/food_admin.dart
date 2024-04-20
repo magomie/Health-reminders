@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:health_reminders/controller/plugin.dart';
 
 import 'package:health_reminders/styles/color.dart';
-import 'package:health_reminders/styles/text.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 import 'package:health_reminders/Admin/admin_add_food.dart';
 
-enum SampleItem {
-  edit,
-  delete,
+class food_adminPage extends StatefulWidget {
+  @override
+  State<food_adminPage> createState() => _food_adminPageState();
 }
 
-class food_adminPage extends StatelessWidget {
-  SampleItem? selectedMenu;
-
+class _food_adminPageState extends State<food_adminPage> {
+  int _toggleValue = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,9 +50,57 @@ class food_adminPage extends StatelessWidget {
           ),
         ],
       ),
-      body: BuildListViewForWeb(
-        label: 'foods',
+      body: Center(
+        child: Column(
+          children: [
+            ToggleSwitch(
+              minWidth: 150.0,
+              initialLabelIndex: _toggleValue,
+              totalSwitches: 5,
+              activeBgColors: [
+                [yellow],
+                [yellow],
+                [yellow],
+                [yellow],
+                [yellow],
+              ],
+              activeFgColor: brown,
+              inactiveBgColor: white,
+              inactiveFgColor: brown,
+              labels: [
+                'คาว',
+                'หวาน',
+                'เครื่องดื่ม',
+                'ผลไม้',
+                'อื่นๆ',
+              ],
+              onToggle: (index) {
+                setState(() {
+                  _toggleValue = index!;
+                });
+              },
+            ),
+            SizedBox(height: 10),
+            Expanded(
+                child: _toggleValue == 0
+                    ? _buildFoodContent('ของคาว')
+                    : _toggleValue == 1
+                        ? _buildFoodContent('ของหวาน')
+                        : _toggleValue == 3
+                            ? _buildFoodContent('เครื่องดื่ม')
+                            : _toggleValue == 4
+                                ? _buildFoodContent('ผลไม้')
+                                : _buildFoodContent('อื่นๆ')),
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget _buildFoodContent(String label) {
+    return BuildListViewForWeb(
+      label: 'foods',
+      type: label,
     );
   }
 }
