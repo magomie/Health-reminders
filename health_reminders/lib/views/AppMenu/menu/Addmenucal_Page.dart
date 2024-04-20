@@ -24,6 +24,7 @@ class addmenucalPage extends StatefulWidget {
 class _addmenucalPageState extends State<addmenucalPage> {
   final ImagePicker _picker = ImagePicker();
   File? _file;
+  String? selectedFoodLabel;
 
   Future<void> pickImage() async {
     final XFile? pickedFile =
@@ -40,6 +41,14 @@ class _addmenucalPageState extends State<addmenucalPage> {
   final TextEditingController sodiumController = TextEditingController();
   final TextEditingController sweetController = TextEditingController();
   final TextEditingController fatController = TextEditingController();
+
+  final List<String> foodItems = [
+    'ของคาว',
+    'ของหวาน',
+    'เครื่องดื่ม',
+    'ผลไม้',
+    'อื่นๆ',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -146,85 +155,206 @@ class _addmenucalPageState extends State<addmenucalPage> {
                         SizedBox(
                           height: 20,
                         ),
-                        TextField(
-                          controller: nameController,
-                          decoration: InputDecoration(
-                            labelText: 'ชื่ออาหาร',
-                            labelStyle: TextStyle(
-                              color: brown,
-                              fontSize: 16,
-                              fontFamily: 'Garuda',
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 12.0),
+                          child: TextField(
+                            controller: nameController,
+                            decoration: InputDecoration(
+                              labelText: 'ชื่ออาหาร',
+                              labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily:
+                                      'Garuda' // ขนาด font ของ labelText
+                                  ),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 15.0),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 2.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
-                            contentPadding: EdgeInsets.all(15),
-                            border: OutlineInputBorder(),
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          controller: callorieController,
-                          decoration: InputDecoration(
-                            labelText: 'จำนวนแคลอรี่',
-                            labelStyle: TextStyle(
-                              color: brown,
-                              fontSize: 16,
-                              fontFamily: 'Garuda',
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 12.0),
+                          child: TextField(
+                            controller: callorieController,
+                            decoration: InputDecoration(
+                              labelText: 'จำนวนแคลอรี่',
+                              labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily:
+                                      'Garuda' // ขนาด font ของ labelText
+                                  ),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 15.0),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 2.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
-                            contentPadding: EdgeInsets.all(15),
-                            border: OutlineInputBorder(),
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          controller: sweetController,
-                          decoration: InputDecoration(
-                            labelText: 'ปริมาณน้ำตาล',
-                            labelStyle: TextStyle(
-                              color: brown,
-                              fontSize: 16,
-                              fontFamily: 'Garuda',
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 12.0),
+                          child: TextField(
+                            controller: sweetController,
+                            decoration: InputDecoration(
+                              labelText: 'ปริมาณน้ำตาล',
+                              labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily:
+                                      'Garuda' // ขนาด font ของ labelText
+                                  ),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 15.0),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 2.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
-                            contentPadding: EdgeInsets.all(15),
-                            border: OutlineInputBorder(),
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          controller: sodiumController,
-                          decoration: InputDecoration(
-                            labelText: 'ปริมาณโซเดียม',
-                            labelStyle: TextStyle(
-                              color: brown,
-                              fontSize: 16,
-                              fontFamily: 'Garuda',
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 12.0),
+                          child: TextField(
+                            controller: sodiumController,
+                            decoration: InputDecoration(
+                              labelText: 'ปริมาณโซเดียม',
+                              labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily:
+                                      'Garuda' // ขนาด font ของ labelText
+                                  ),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 15.0),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 2.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
-                            contentPadding: EdgeInsets.all(15),
-                            border: OutlineInputBorder(),
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          controller: fatController,
-                          decoration: InputDecoration(
-                            labelText: 'ปริมาณไขมัน',
-                            labelStyle: TextStyle(
-                              color: brown,
-                              fontSize: 16,
-                              fontFamily: 'Garuda',
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 12.0),
+                          child: TextField(
+                            controller: fatController,
+                            decoration: InputDecoration(
+                              labelText: 'ปริมาณไขมัน',
+                              labelStyle: TextStyle(
+                                  color: brown, // สีของ labelText
+                                  fontSize: 16,
+                                  fontFamily:
+                                      'Garuda' // ขนาด font ของ labelText
+                                  ),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 15.0),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 2.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
-                            contentPadding: EdgeInsets.all(15),
-                            border: OutlineInputBorder(),
                           ),
                         ),
-                        SizedBox(
-                          height: 20,
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              right: 30.0, left: 30.0, top: 12.0, bottom: 12.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0, horizontal: 8.0),
+                              child: DropdownButton<String>(
+                                hint: Text(
+                                  "เลือกประเภทอาหาร",
+                                  style: TextStyle(
+                                    color: Colors.brown,
+                                    fontSize: 16,
+                                    fontFamily: 'Garuda',
+                                  ),
+                                ),
+                                icon: Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Colors.brown,
+                                ),
+                                iconSize: 36,
+                                style: TextStyle(
+                                  color: Colors.brown,
+                                  fontSize: 16,
+                                  fontFamily: 'Garuda',
+                                ),
+                                value: selectedFoodLabel,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    selectedFoodLabel = newValue;
+                                  });
+                                },
+                                items: foodItems.map((item) {
+                                  return DropdownMenuItem(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: TextStyle(
+                                        color: Colors.brown,
+                                        fontSize: 16,
+                                        fontFamily: 'Garuda',
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
                         ),
                         ElevatedButton(
                           style: buttonlgin,
@@ -238,16 +368,16 @@ class _addmenucalPageState extends State<addmenucalPage> {
                                       _file);
 
                               UserOperator.addFoodUser(
-                                context,
-                                widget.userId,
-                                imageUrl, // ส่งชื่อไฟล์เต็มไปยังฟังก์ชัน
-                                nameController.text.trim(),
-                                double.parse(callorieController.text.trim()),
-                                double.parse(fatController.text.trim()),
-                                double.parse(sweetController.text.trim()),
-                                double.parse(sodiumController.text.trim()),
-                                userBMR,
-                              );
+                                  context,
+                                  widget.userId,
+                                  imageUrl, // ส่งชื่อไฟล์เต็มไปยังฟังก์ชัน
+                                  nameController.text.trim(),
+                                  double.parse(callorieController.text.trim()),
+                                  double.parse(fatController.text.trim()),
+                                  double.parse(sweetController.text.trim()),
+                                  double.parse(sodiumController.text.trim()),
+                                  userBMR,
+                                  selectedFoodLabel!);
                             }
                           },
                           child: Text('ยืนยัน', style: TextStyles.Tlogin),

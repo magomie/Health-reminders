@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:health_reminders/controller/plugin.dart';
 
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
 import 'package:health_reminders/views/AppMenu/menu/Addmenucal_Page.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class foodPage extends StatefulWidget {
   final String userId;
@@ -17,6 +19,7 @@ class foodPage extends StatefulWidget {
 class _foodPageState extends State<foodPage> {
   @override
   Widget build(BuildContext context) {
+    int _toggleValue = 0;
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
@@ -67,11 +70,56 @@ class _foodPageState extends State<foodPage> {
         ],
       ),
       body: Center(
-        child: showDataPlugin(
-          docId: widget.userId,
-          otherClass: (context, usersData, healthData) => BuildFoodListView(
-              usersDataSet: usersData, healthDataSet: healthData),
+        child: Column(
+          children: [
+            ToggleSwitch(
+              minWidth: 150.0,
+              initialLabelIndex: _toggleValue,
+              totalSwitches: 5,
+              activeBgColors: [
+                [yellow],
+                [yellow]
+              ],
+              activeFgColor: brown,
+              inactiveBgColor: white,
+              inactiveFgColor: brown,
+              labels: [
+                'คาว',
+                'หวาน',
+                'เครื่องดื่ม',
+                'ผลไม้',
+                'อื่นๆ',
+              ],
+              onToggle: (index) {
+                setState(() {
+                  _toggleValue = index!;
+                });
+              },
+            ),
+            SizedBox(height: 10),
+            Expanded(
+                child: _toggleValue == 0
+                    ? _buildFoodContent('ของคาว')
+                    : _toggleValue == 1
+                        ? _buildFoodContent('ของหวาน')
+                        : _toggleValue == 3
+                            ? _buildFoodContent('เครื่องดื่ม')
+                            : _toggleValue == 4
+                                ? _buildFoodContent('ผลไม้')
+                                : _buildFoodContent('อื่นๆ')),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildFoodContent(String label) {
+    return showDataPlugin(
+      docId: widget.userId,
+      otherClass: (context, usersData, healthData) => BuildFoodListView(
+        usersDataSet: usersData,
+        healthDataSet: healthData,
+        label: label,
       ),
     );
   }

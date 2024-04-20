@@ -16,6 +16,7 @@ class admin_add_foodPage extends StatefulWidget {
 class _admin_add_foodPageState extends State<admin_add_foodPage> {
   Uint8List? _fileBytes;
   String? _downloadUrl;
+  String? selectedFoodLabel;
 
   Future<void> _pickImage() async {
     html.FileUploadInputElement input = html.FileUploadInputElement();
@@ -35,14 +36,22 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
     });
   }
 
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController callorieController = TextEditingController();
+  final TextEditingController sodiumController = TextEditingController();
+  final TextEditingController sweetController = TextEditingController();
+  final TextEditingController fatController = TextEditingController();
+
+  final List<String> foodItems = [
+    'ของคาว',
+    'ของหวาน',
+    'เครื่องดื่ม',
+    'ผลไม้',
+    'อื่นๆ',
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController callorieController = TextEditingController();
-    final TextEditingController sodiumController = TextEditingController();
-    final TextEditingController sweetController = TextEditingController();
-    final TextEditingController fatController = TextEditingController();
-
     return Scaffold(
       backgroundColor: white,
       resizeToAvoidBottomInset: false,
@@ -288,26 +297,88 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                                 SizedBox(
                                   height: 10,
                                 ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 30.0,
+                                      left: 30.0,
+                                      top: 12.0,
+                                      bottom: 12.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 0.0, horizontal: 8.0),
+                                      child: DropdownButton<String>(
+                                        hint: Text(
+                                          "เลือกประเภทอาหาร",
+                                          style: TextStyle(
+                                            color: Colors.brown,
+                                            fontSize: 16,
+                                            fontFamily: 'Garuda',
+                                          ),
+                                        ),
+                                        icon: Icon(
+                                          Icons.arrow_drop_down,
+                                          color: Colors.brown,
+                                        ),
+                                        iconSize: 36,
+                                        style: TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 16,
+                                          fontFamily: 'Garuda',
+                                        ),
+                                        value: selectedFoodLabel,
+                                        onChanged: (newValue) {
+                                          setState(() {
+                                            selectedFoodLabel = newValue;
+                                          });
+                                        },
+                                        items: foodItems.map((item) {
+                                          return DropdownMenuItem(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: TextStyle(
+                                                color: Colors.brown,
+                                                fontSize: 16,
+                                                fontFamily: 'Garuda',
+                                              ),
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
                                 ElevatedButton(
                                   style: buttonlgin,
                                   onPressed: () {
                                     UserOperator.addFood(
-                                      context,
-                                      _fileBytes,
-                                      nameController.text.trim(),
-                                      double.parse(
-                                        callorieController.text.trim(),
-                                      ),
-                                      double.parse(
-                                        fatController.text.trim(),
-                                      ),
-                                      double.parse(
-                                        sweetController.text.trim(),
-                                      ),
-                                      double.parse(
-                                        sodiumController.text.trim(),
-                                      ),
-                                    );
+                                        context,
+                                        _fileBytes,
+                                        nameController.text.trim(),
+                                        double.parse(
+                                          callorieController.text.trim(),
+                                        ),
+                                        double.parse(
+                                          fatController.text.trim(),
+                                        ),
+                                        double.parse(
+                                          sweetController.text.trim(),
+                                        ),
+                                        double.parse(
+                                          sodiumController.text.trim(),
+                                        ),
+                                        selectedFoodLabel!);
                                   },
                                   child: Text('เพิ่มข้อมูล',
                                       style: TextStyles.Tlogin),

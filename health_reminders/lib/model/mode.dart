@@ -116,6 +116,7 @@ class foodDataModel {
   final double fat;
   final double suger;
   final double sodium;
+  final String labal;
 
   foodDataModel({
     required this.foodId,
@@ -125,6 +126,7 @@ class foodDataModel {
     required this.fat,
     required this.suger,
     required this.sodium,
+    required this.labal,
   });
 
   Map<String, dynamic> toMap() {
@@ -136,6 +138,7 @@ class foodDataModel {
       'fat': fat,
       'suger': suger,
       'sodium': sodium,
+      'labal': labal,
     };
   }
 }

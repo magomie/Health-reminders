@@ -53,9 +53,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
                 });
               },
             ),
-            SizedBox(height: 20), // Adjust the spacing based on your design
-
-            // Content based on the selected toggle value
+            SizedBox(height: 20),
             _toggleValue == 0 ? _buildBMIContent() : _buildBMRContent(),
           ],
         ),

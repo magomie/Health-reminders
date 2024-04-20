@@ -10,7 +10,7 @@ class ToastStyles {
     Widget toast = Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(25),
         color: yellow,
       ),
       child: const Row(
@@ -36,6 +36,11 @@ class ToastStyles {
           ),
         ],
       ),
+    );
+    fToast.showToast(
+      child: toast,
+      toastDuration: const Duration(seconds: 5),
+      gravity: ToastGravity.BOTTOM,
     );
   }
 }

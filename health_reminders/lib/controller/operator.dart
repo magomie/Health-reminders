@@ -111,18 +111,21 @@ class UserOperator {
     double fat,
     double suger,
     double sodium,
+    String labal,
   ) async {
     String foodId = await userPlugin.generateFoodId();
     String imageUrl = await APIEndpoint.uploadImageFood(imageFile!);
 
     foodDataModel foodData = foodDataModel(
-        foodId: foodId,
-        image_file: imageUrl,
-        name_food: name_food,
-        calorie: calorie,
-        fat: fat,
-        suger: suger,
-        sodium: sodium);
+      foodId: foodId,
+      image_file: imageUrl,
+      name_food: name_food,
+      calorie: calorie,
+      fat: fat,
+      suger: suger,
+      sodium: sodium,
+      labal: labal,
+    );
 
     final success = await APIEndpoint.addFoodData(foodData);
 
@@ -143,18 +146,21 @@ class UserOperator {
     double suger,
     double sodium,
     double userBMR,
+    String labal,
   ) async {
     try {
       String foodId = await userPlugin.generateUserFoodId(userId);
 
       foodDataModel foodData = foodDataModel(
-          foodId: foodId,
-          image_file: imageUrl,
-          name_food: name_food,
-          calorie: calorie,
-          fat: fat,
-          suger: suger,
-          sodium: sodium);
+        foodId: foodId,
+        image_file: imageUrl,
+        name_food: name_food,
+        calorie: calorie,
+        fat: fat,
+        suger: suger,
+        sodium: sodium,
+        labal: labal,
+      );
 
       DateTime timestamp = DateTime.now();
       String dateOnly = DateFormat('yyyy-MM-dd').format(timestamp);
@@ -162,8 +168,12 @@ class UserOperator {
       final success = await APIEndpoint.addUserFood(userId, foodData, dateOnly);
 
       if (success) {
+        ToastStyles.showToastFoodAddToCal(context);
+
         double totalCalorie =
             await UserOperator.fetchTotalNutrient(userId, 'calorie');
+
+        print('$totalCalorie');
         double totalFat = await UserOperator.fetchTotalNutrient(userId, 'fat');
         double totalSodium =
             await UserOperator.fetchTotalNutrient(userId, 'sodium');
@@ -240,8 +250,6 @@ class UserOperator {
             NotificationServices.scheduleFatNotification();
           }
         }
-
-        ToastStyles.showToastFoodAddToCal(context);
 
         Navigator.pushReplacement(
           context,
