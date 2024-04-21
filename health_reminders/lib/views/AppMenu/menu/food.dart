@@ -78,6 +78,9 @@ class _foodPageState extends State<foodPage> {
               totalSwitches: 5,
               activeBgColors: [
                 [yellow],
+                [yellow],
+                [yellow],
+                [yellow],
                 [yellow]
               ],
               activeFgColor: brown,
