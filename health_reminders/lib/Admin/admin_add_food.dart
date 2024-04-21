@@ -298,12 +298,11 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 30.0,
-                                      left: 30.0,
-                                      top: 12.0,
-                                      bottom: 12.0),
+                                  padding: const EdgeInsets.symmetric(
+                                          vertical: 12.0, horizontal: 30.0),
                                   child: Container(
+                                    width: double.infinity,
+                      height: 48.0,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                         color: Colors.grey,
@@ -313,7 +312,7 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          vertical: 0.0, horizontal: 8.0),
+                                          vertical: 12.0, horizontal: 15.0),
                                       child: DropdownButton<String>(
                                         hint: Text(
                                           "เลือกประเภทอาหาร",

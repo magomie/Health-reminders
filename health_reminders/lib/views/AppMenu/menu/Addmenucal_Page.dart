@@ -301,9 +301,9 @@ class _addmenucalPageState extends State<addmenucalPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              right: 30.0, left: 30.0, top: 12.0, bottom: 12.0),
+                          padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 30),
                           child: Container(
+                             
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.grey,
@@ -313,7 +313,7 @@ class _addmenucalPageState extends State<addmenucalPage> {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 0.0, horizontal: 8.0),
+                                  vertical: 0.0, horizontal: 60.0),
                               child: DropdownButton<String>(
                                 hint: Text(
                                   "เลือกประเภทอาหาร",
