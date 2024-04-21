@@ -18,7 +18,7 @@ class ToastStyles {
         children: [
           Icon(
             Icons.check_circle_outline,
-            color: Color.fromARGB(255, 165, 214, 167),
+            color: brown,
           ),
           SizedBox(
             width: 10,
@@ -27,7 +27,7 @@ class ToastStyles {
             child: Text(
               'เพิ่มเมนูของท่านเสร็จสิ้น',
               style: TextStyle(
-                color: Color.fromARGB(255, 165, 214, 167),
+                color: brown,
                 fontFamily: 'Garuda',
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
