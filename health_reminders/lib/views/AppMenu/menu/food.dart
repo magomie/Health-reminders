@@ -102,9 +102,9 @@ class _foodPageState extends State<foodPage> {
                     ? _buildFoodContent('ของคาว')
                     : _toggleValue == 1
                         ? _buildFoodContent('ของหวาน')
-                        : _toggleValue == 3
+                        : _toggleValue == 2
                             ? _buildFoodContent('เครื่องดื่ม')
-                            : _toggleValue == 4
+                            : _toggleValue == 3
                                 ? _buildFoodContent('ผลไม้')
                                 : _buildFoodContent('อื่นๆ')),
           ],
