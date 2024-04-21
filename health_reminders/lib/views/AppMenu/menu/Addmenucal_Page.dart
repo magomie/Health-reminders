@@ -8,6 +8,7 @@ import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:health_reminders/styles/toast.dart';
 import 'package:health_reminders/views/AppMenu/menu/food.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
@@ -301,9 +302,9 @@ class _addmenucalPageState extends State<addmenucalPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 30),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 30),
                           child: Container(
-                             
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.grey,
@@ -379,6 +380,8 @@ class _addmenucalPageState extends State<addmenucalPage> {
                                   userBMR,
                                   selectedFoodLabel!);
                             }
+
+                            ToastStyles.showToastFoodAddToCal(context);
                           },
                           child: Text('ยืนยัน', style: TextStyles.Tlogin),
                         ),

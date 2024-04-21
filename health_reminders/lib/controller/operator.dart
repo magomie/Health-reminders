@@ -180,7 +180,7 @@ class UserOperator {
         double totalSugar =
             await UserOperator.fetchTotalNutrient(userId, 'suger');
 
-        if (totalCalorie > userBMR) {
+        if (totalCalorie >= userBMR) {
           if (totalSugar < 24.0 && totalSodium < 2.3 && totalFat < 24.0) {
             NotificationServices.scheduleCalorieExceedingBMRNotification();
           } else if (totalSugar > 24.0 &&
@@ -232,10 +232,6 @@ class UserOperator {
               totalFat > 24.0) {
             NotificationServices.scheduleSodiumNotification();
             NotificationServices.scheduleFatNotification();
-          } else if (totalSugar < 24.0 &&
-              totalSodium < 2.3 &&
-              totalFat < 24.0) {
-            NotificationServices.scheduleCalorieExceedingBMRNotification();
           } else if (totalSugar > 24.0 &&
               totalSodium < 2.3 &&
               totalFat < 24.0) {

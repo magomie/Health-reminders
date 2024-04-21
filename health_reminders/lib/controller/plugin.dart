@@ -168,13 +168,15 @@ class showDataPlugin extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: SizedBox(
-              width: 20,
-              height: 20,
+              width: 100,
+              height: 5,
               child: Center(
                 child: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: LinearProgressIndicator(),
+                  width: 100,
+                  height: 5,
+                  child: LinearProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(yellow),
+                  ),
                 ),
               ),
             ),
@@ -2067,7 +2069,21 @@ class BuildFoodListView extends StatelessWidget {
       stream: FirebaseFirestore.instance.collection('foods').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return Center(
+            child: SizedBox(
+              width: 100,
+              height: 5,
+              child: Center(
+                child: SizedBox(
+                  width: 100,
+                  height: 5,
+                  child: LinearProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(yellow),
+                  ),
+                ),
+              ),
+            ),
+          );
         } else if (snapshot.hasError) {
           return Text('เกิดข้อผิดพลาด: ${snapshot.error}');
         }
@@ -2085,9 +2101,7 @@ class BuildFoodListView extends StatelessWidget {
               itemCount: fooddata.length,
               itemBuilder: (context, index) {
                 var foodList = fooddata[index].data() as Map<String, dynamic>;
-                if (foodList != null &&
-                    foodList != null &&
-                    foodList['labal'] == label) {
+                if (foodList != null && foodList['labal'] == label) {
                   return Padding(
                     padding: const EdgeInsets.only(
                       right: 10.0,
@@ -2195,7 +2209,7 @@ class BuildFoodListView extends StatelessWidget {
                               double.parse(foodList['suger'].toString()),
                               double.parse(foodList['sodium'].toString()),
                               userBMR,
-                              foodList['label'],
+                              label,
                             );
                           },
                         ),

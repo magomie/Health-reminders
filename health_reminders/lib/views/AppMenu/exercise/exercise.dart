@@ -7,6 +7,7 @@ import 'package:health_reminders/views/AppMenu/exercise/aerobic.dart';
 import 'package:health_reminders/views/AppMenu/exercise/cadio.dart';
 import 'package:health_reminders/views/AppMenu/exercise/run.dart';
 import 'package:health_reminders/views/AppMenu/exercise/yoga.dart';
+import 'package:page_transition/page_transition.dart';
 
 class exercisePage extends StatefulWidget {
   @override
@@ -45,8 +46,9 @@ class _exercisePageState extends State<exercisePage> {
                               print('Button 1 Pressed');
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => runPage()),
+                                PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: runPage()),
                               );
                             },
                             child: Row(
