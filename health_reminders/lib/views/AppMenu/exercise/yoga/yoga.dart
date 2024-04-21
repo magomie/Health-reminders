@@ -4,15 +4,14 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/AppMenu/exercise/Jumpingjack.dart';
-import 'package:health_reminders/views/AppMenu/exercise/Threshold.dart';
+import 'package:health_reminders/views/AppMenu/exercise/yoga/DownwardFacingDog.dart';
 
-class cadioPage extends StatefulWidget {
+class yogaPage extends StatefulWidget {
   @override
-  _cadioPageState createState() => _cadioPageState();
+  _yogaPageState createState() => _yogaPageState();
 }
 
-class _cadioPageState extends State<cadioPage> {
+class _yogaPageState extends State<yogaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +21,7 @@ class _cadioPageState extends State<cadioPage> {
           onBackButtonPressed: () {
             Navigator.pop(context);
           },
-          title: "คาร์ดิโอ"),
+          title: "โยคะ"),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -49,21 +48,23 @@ class _cadioPageState extends State<cadioPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => JumpingjackPage()),
+                                  builder: (context) =>
+                                      DownwardFacingDogPage()),
                             );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Jumping Jack', style: TextStyles.Tlogin),
+                              Text('Downward Facing Dog',
+                                  style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -78,7 +79,7 @@ class _cadioPageState extends State<cadioPage> {
                           style: buttonmanu,
                           onPressed: () {
                             // Handle the first button press
-                           /* print('Button 2 Pressed');
+                            /* print('Button 2 Pressed');
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -89,14 +90,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Bicycle Crunch', style: TextStyles.Tlogin),
+                              Text('Warrior Pose', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -132,15 +133,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Mountain Climber',
-                                  style: TextStyles.Tlogin),
+                              Text('Tree Pose', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -161,14 +161,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Squat Jump', style: TextStyles.Tlogin),
+                              Text('Bridge Pose', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -198,14 +198,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Lunge Jump', style: TextStyles.Tlogin),
+                              Text('Triangle Pose', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -226,14 +226,51 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/yoga1.jpg',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Push-Up Burpee', style: TextStyles.Tlogin),
+                              Text('Cobra Pose', style: TextStyles.Tlogin),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 200.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 200.0,
+                        child: ElevatedButton(
+                          style: buttonmanu,
+                          onPressed: () {
+                            // Handle the first button press
+                            print('Button 2 Pressed');
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'asset/image/yoga1.jpg',
+                                width: 110,
+                                height: 110,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text('LChair Pose', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),

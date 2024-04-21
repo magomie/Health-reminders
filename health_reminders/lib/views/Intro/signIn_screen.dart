@@ -221,6 +221,25 @@ class _signInScreenState extends State<signInScreen> {
                           );
                         },
                       );
+                    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                        .hasMatch(emailController.text)) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('แจ้งเตือน'),
+                            content: Text('อีเมลไม่ถูกต้อง'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('ตกลง'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     } else {
                       // Proceed with login
                       bool success = await UserOperator.login(context,

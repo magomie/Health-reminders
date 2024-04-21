@@ -358,24 +358,18 @@ class APIEndpoint {
           FirebaseFirestore.instance.collection('users');
 
       final QuerySnapshot userFoodSnapshot = await users
-          .doc(userId) // User ID
-          .collection('userFood') // Subcollection 'userFood'
-          .where('timestamp',
-              isEqualTo: formattedDate) // Filter by today's date
-          .where('Status', isEqualTo: 'pick') // Filter by status
+          .doc(userId)
+          .collection('userFood')
+          .where('timestamp', isEqualTo: formattedDate)
+          .where('Status', isEqualTo: 'pick')
           .get();
-
-      print(formattedDate);
 
       double total = 0;
 
-      // Loop through each document in the subcollection
       for (QueryDocumentSnapshot doc in userFoodSnapshot.docs) {
-        // Extract the 'calorie' field from each document
         final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        final double temp =
-            data[nutrient] ?? 0; // Default to 0 if 'calorie' is null
-        total += temp; // Sum up the calorie values
+        final double temp = data[nutrient] ?? 0;
+        total += temp;
       }
 
       return total;
@@ -437,6 +431,29 @@ class APIEndpoint {
         .update({
       'notiStatus': status,
     });
+  }
+
+  static Future<int> getUserAge(String userId) async {
+    try {
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection('health_data')
+          .doc(userId)
+          .get();
+
+      if (userSnapshot.exists) {
+        Map<String, dynamic> userData =
+            userSnapshot.data() as Map<String, dynamic>;
+        int age = userData['age'];
+        return age;
+      } else {
+        return 0;
+      }
+    } catch (e) {
+      print('Error fetching total calorie for user today: $e');
+      return 0;
+    }
   }
 
   static Future<bool> signOut(BuildContext context) async {

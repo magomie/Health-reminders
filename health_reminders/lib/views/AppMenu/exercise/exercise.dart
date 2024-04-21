@@ -3,10 +3,10 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/AppMenu/exercise/aerobic.dart';
-import 'package:health_reminders/views/AppMenu/exercise/cadio.dart';
-import 'package:health_reminders/views/AppMenu/exercise/run.dart';
-import 'package:health_reminders/views/AppMenu/exercise/yoga.dart';
+import 'package:health_reminders/views/AppMenu/exercise/aerobic/aerobic.dart';
+import 'package:health_reminders/views/AppMenu/exercise/cadio/cadio.dart';
+import 'package:health_reminders/views/AppMenu/exercise/run/run.dart';
+import 'package:health_reminders/views/AppMenu/exercise/yoga/yoga.dart';
 import 'package:page_transition/page_transition.dart';
 
 class exercisePage extends StatefulWidget {

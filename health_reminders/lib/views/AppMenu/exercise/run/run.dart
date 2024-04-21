@@ -4,9 +4,7 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/AppMenu/menu/Addmenucal_Page.dart';
-import 'package:health_reminders/views/AppMenu/exercise/Threshold.dart';
-import 'package:health_reminders/views/AppMenu/exercise/exercise.dart';
+import 'package:health_reminders/views/AppMenu/exercise/run/Threshold.dart';
 
 class runPage extends StatefulWidget {
   @override

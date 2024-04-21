@@ -180,70 +180,141 @@ class UserOperator {
         double totalSugar =
             await UserOperator.fetchTotalNutrient(userId, 'suger');
 
-        if (totalCalorie >= userBMR) {
-          if (totalSugar < 24.0 && totalSodium < 2.3 && totalFat < 24.0) {
-            NotificationServices.scheduleCalorieExceedingBMRNotification();
-          } else if (totalSugar > 24.0 &&
-              totalSodium < 2.3 &&
-              totalFat < 24.0) {
-            NotificationServices.scheduleSugerNotification();
-          } else if (totalSugar < 24.0 &&
-              totalSodium > 2.3 &&
-              totalFat < 24.0) {
-            NotificationServices.scheduleSodiumNotification();
-          } else if (totalSugar < 24.0 &&
-              totalSodium < 2.3 &&
-              totalFat > 24.0) {
-            NotificationServices.scheduleFatNotification();
-          } else if (totalSugar > 24.0 &&
-              totalSodium > 2.3 &&
-              totalFat > 24.0) {
-            NotificationServices.scheduleCalorieExceedingBMRNotification();
-            NotificationServices.scheduleSugerNotification();
-            NotificationServices.scheduleSodiumNotification();
-            NotificationServices.scheduleFatNotification();
-          } else if (totalSugar > 24.0 &&
-              totalSodium < 2.3 &&
-              totalFat < 24.0) {
-            NotificationServices.scheduleCalorieExceedingBMRNotification();
-            NotificationServices.scheduleSugerNotification();
-          } else if (totalSugar < 24.0 &&
-              totalSodium > 2.3 &&
-              totalFat < 24.0) {
-            NotificationServices.scheduleCalorieExceedingBMRNotification();
-            NotificationServices.scheduleSodiumNotification();
-          } else if (totalSugar < 24.0 &&
-              totalSodium < 2.3 &&
-              totalFat > 24.0) {
-            NotificationServices.scheduleCalorieExceedingBMRNotification();
-            NotificationServices.scheduleFatNotification();
+        int age = await UserOperator.getUserAge(userId);
+
+        if (age >= 13 && age <= 60) {
+          if (totalCalorie >= userBMR) {
+            if (totalSugar < 24.0 && totalSodium < 2.3 && totalFat < 24.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat < 24.0) {
+              NotificationServices.scheduleSugerNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat < 24.0) {
+              NotificationServices.scheduleSodiumNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat > 24.0) {
+              NotificationServices.scheduleFatNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat > 24.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+              NotificationServices.scheduleSugerNotification();
+              NotificationServices.scheduleSodiumNotification();
+              NotificationServices.scheduleFatNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat < 24.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+              NotificationServices.scheduleSugerNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat < 24.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+              NotificationServices.scheduleSodiumNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat > 24.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+              NotificationServices.scheduleFatNotification();
+            }
+          } else if (totalCalorie < userBMR) {
+            if (totalSugar > 24.0 && totalSodium > 2.3 && totalFat < 24.0) {
+              NotificationServices.scheduleSugerNotification();
+              NotificationServices.scheduleSodiumNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat > 24.0) {
+              NotificationServices.scheduleSugerNotification();
+              NotificationServices.scheduleFatNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat > 24.0) {
+              NotificationServices.scheduleSodiumNotification();
+              NotificationServices.scheduleFatNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat < 24.0) {
+              NotificationServices.scheduleSugerNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat < 24.0) {
+              NotificationServices.scheduleSodiumNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat > 24.0) {
+              NotificationServices.scheduleFatNotification();
+            }
           }
-        } else if (totalCalorie < userBMR) {
-          if (totalSugar > 24.0 && totalSodium > 2.3 && totalFat < 24.0) {
-            NotificationServices.scheduleSugerNotification();
-            NotificationServices.scheduleSodiumNotification();
-          } else if (totalSugar > 24.0 &&
-              totalSodium < 2.3 &&
-              totalFat > 24.0) {
-            NotificationServices.scheduleSugerNotification();
-            NotificationServices.scheduleFatNotification();
-          } else if (totalSugar < 24.0 &&
-              totalSodium > 2.3 &&
-              totalFat > 24.0) {
-            NotificationServices.scheduleSodiumNotification();
-            NotificationServices.scheduleFatNotification();
-          } else if (totalSugar > 24.0 &&
-              totalSodium < 2.3 &&
-              totalFat < 24.0) {
-            NotificationServices.scheduleSugerNotification();
-          } else if (totalSugar < 24.0 &&
-              totalSodium > 2.3 &&
-              totalFat < 24.0) {
-            NotificationServices.scheduleSodiumNotification();
-          } else if (totalSugar < 24.0 &&
-              totalSodium < 2.3 &&
-              totalFat > 24.0) {
-            NotificationServices.scheduleFatNotification();
+        } else {
+          if (totalCalorie >= userBMR) {
+            if (totalSugar < 24.0 && totalSodium < 2.3 && totalFat < 16.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat < 16.0) {
+              NotificationServices.scheduleSugerNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat < 16.0) {
+              NotificationServices.scheduleSodiumNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat > 16.0) {
+              NotificationServices.scheduleFatNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat > 16.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+              NotificationServices.scheduleSugerNotification();
+              NotificationServices.scheduleSodiumNotification();
+              NotificationServices.scheduleFatNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat < 16.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+              NotificationServices.scheduleSugerNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat < 24.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+              NotificationServices.scheduleSodiumNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat > 16.0) {
+              NotificationServices.scheduleCalorieExceedingBMRNotification();
+              NotificationServices.scheduleFatNotification();
+            }
+          } else if (totalCalorie < userBMR) {
+            if (totalSugar > 24.0 && totalSodium > 2.3 && totalFat < 16.0) {
+              NotificationServices.scheduleSugerNotification();
+              NotificationServices.scheduleSodiumNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat > 16.0) {
+              NotificationServices.scheduleSugerNotification();
+              NotificationServices.scheduleFatNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat > 16.0) {
+              NotificationServices.scheduleSodiumNotification();
+              NotificationServices.scheduleFatNotification();
+            } else if (totalSugar > 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat < 16.0) {
+              NotificationServices.scheduleSugerNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium > 2.3 &&
+                totalFat < 16.0) {
+              NotificationServices.scheduleSodiumNotification();
+            } else if (totalSugar < 24.0 &&
+                totalSodium < 2.3 &&
+                totalFat > 16.0) {
+              NotificationServices.scheduleFatNotification();
+            }
           }
         }
 
@@ -454,6 +525,10 @@ class UserOperator {
         ),
       );
     }
+  }
+
+  static Future<int> getUserAge(String userId) async {
+    return APIEndpoint.getUserAge(userId);
   }
 
   static Future<double> fetchTotalNutrient(

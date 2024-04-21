@@ -4,9 +4,7 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
-import 'package:health_reminders/views/AppMenu/exercise/Jumpingjack.dart';
-import 'package:health_reminders/views/AppMenu/exercise/Threshold.dart';
-import 'package:health_reminders/views/AppMenu/exercise/aerobic1.dart';
+import 'package:health_reminders/views/AppMenu/exercise/aerobic/footsteps.dart';
 
 class arobicPage extends StatefulWidget {
   @override
@@ -50,7 +48,7 @@ class _arobicPageState extends State<arobicPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => aerobic1Page()),
+                                  builder: (context) => footstepsPage()),
                             );
                           },
                           child: Column(
@@ -106,7 +104,6 @@ class _arobicPageState extends State<arobicPage> {
                   ],
                 ),
               ),
-              
             ],
           ),
         ),
