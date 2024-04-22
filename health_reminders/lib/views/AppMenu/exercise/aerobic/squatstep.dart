@@ -3,7 +3,7 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class footstepsPage extends StatelessWidget {
+class squatstepPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +12,7 @@ class footstepsPage extends StatelessWidget {
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
-        title: "การย่ำเท้า",
+        title: "สควอท",
       ),
       body: SafeArea(
         child: Padding(
@@ -24,14 +24,14 @@ class footstepsPage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.asset(
-                  'asset/image/arobic-1.jpg',
+                  'asset/image/arobic-12.jpg',
                   width: 200,
                   height: 200,
                 ),
               ),
               SizedBox(height: 20),
               Text(
-                'การย่ำเท้าอยู่กับที่ ส่วนใหญ่แล้วจะย่ำเท้า 2 แบบคือ แบบกว้าง ( Marching Out ) และแบบแคบ ( Marching In )',
+                'การนั่งยอง ๆ หรือ ย่อ ยืด ควรนั่งให้มุมสะโพกและเท้าเป็นมุม 90 % เท่านั้น ไม่ควรนั่งให้สะโพกชิดส้นเท้าเพราะจะทำให้เอ็นหรือกระดูกอ่อนที่หัวเข่ายืดมากเกินไป ซึ่งเป็นสาเหตุหนึ่งทำให้เข่าเจ็บ',
                 style: TextStyles.common2,
                 softWrap: true,
                     overflow: TextOverflow.visible,

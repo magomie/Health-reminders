@@ -4,7 +4,13 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:health_reminders/views/AppMenu/exercise/yoga/BridgePose.dart';
+import 'package:health_reminders/views/AppMenu/exercise/yoga/ChairPose.dart';
+import 'package:health_reminders/views/AppMenu/exercise/yoga/CobraPose.dart';
 import 'package:health_reminders/views/AppMenu/exercise/yoga/DownwardFacingDog.dart';
+import 'package:health_reminders/views/AppMenu/exercise/yoga/TrianglePose.dart';
+import 'package:health_reminders/views/AppMenu/exercise/yoga/treepose.dart';
+import 'package:health_reminders/views/AppMenu/exercise/yoga/warriorpose.dart';
 
 class yogaPage extends StatefulWidget {
   @override
@@ -79,12 +85,12 @@ class _yogaPageState extends State<yogaPage> {
                           style: buttonmanu,
                           onPressed: () {
                             // Handle the first button press
-                            /* print('Button 2 Pressed');
+                             print('Button 2 Pressed');
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => thresholdPage()),
-                            );*/
+                                  builder: (context) => warriorposePage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -123,11 +129,11 @@ class _yogaPageState extends State<yogaPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button go to exercisepage');
-                            /*Navigator.push(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => exercisePage()),
-                            );*/
+                                  builder: (context) => treeposePage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -156,6 +162,11 @@ class _yogaPageState extends State<yogaPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 2 Pressed');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BridgePosePage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -193,6 +204,11 @@ class _yogaPageState extends State<yogaPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 2 Pressed');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TrianglePosePage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -221,6 +237,11 @@ class _yogaPageState extends State<yogaPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 2 Pressed');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CobraPosePage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -258,6 +279,11 @@ class _yogaPageState extends State<yogaPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 2 Pressed');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ChairPosePage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

@@ -3,7 +3,7 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class footstepsPage extends StatelessWidget {
+class kneeliftPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,26 +12,26 @@ class footstepsPage extends StatelessWidget {
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
-        title: "การย่ำเท้า",
+        title: "ยกเข่า",
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
-            
+           
             children: [
               SizedBox(height: 5),
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.asset(
-                  'asset/image/arobic-1.jpg',
+                  'asset/image/arobic-10.jpg',
                   width: 200,
                   height: 200,
                 ),
               ),
               SizedBox(height: 20),
               Text(
-                'การย่ำเท้าอยู่กับที่ ส่วนใหญ่แล้วจะย่ำเท้า 2 แบบคือ แบบกว้าง ( Marching Out ) และแบบแคบ ( Marching In )',
+                'เป็นท่าการเคลื่อนไหวพื้นฐานในการพัฒนากล้ามเนื้อขาหรือ Knee Lift ได้อย่างดีดังนั้นแอโรบิก ด๊านซ์ทุกประเภทจึงมีท่าการยกเข่าทั้งการยกเข่าด้านหน้า ( Front Knee Lift )หรือ นีลีฟ ด้านข้าง ( Side Knee Lift ) การยกเข่าเฉียง ( Knee Cross )',
                 style: TextStyles.common2,
                 softWrap: true,
                     overflow: TextOverflow.visible,

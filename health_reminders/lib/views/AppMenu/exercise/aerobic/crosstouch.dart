@@ -3,7 +3,7 @@ import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
 
-class footstepsPage extends StatelessWidget {
+class crosstouchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +12,7 @@ class footstepsPage extends StatelessWidget {
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
-        title: "การย่ำเท้า",
+        title: "ก้าวไขว้ก้าวแตะ",
       ),
       body: SafeArea(
         child: Padding(
@@ -24,14 +24,14 @@ class footstepsPage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.asset(
-                  'asset/image/arobic-1.jpg',
+                  'asset/image/arobic-8.jpg',
                   width: 200,
                   height: 200,
                 ),
               ),
               SizedBox(height: 20),
               Text(
-                'การย่ำเท้าอยู่กับที่ ส่วนใหญ่แล้วจะย่ำเท้า 2 แบบคือ แบบกว้าง ( Marching Out ) และแบบแคบ ( Marching In )',
+                'ก้าวไขว้ก้าวแตะ หรือเกรพวายคือการทำก้าวไขว้ขาไปหลังหรือหน้าก็ได้ การทำเกรพวายนั้นสามารถทำได้หลายรูปแบบ เช่น เกรพวายธรรมดา หรือเกรพวายเป็นรูปสี่เหลี่ยมหรือเกรพวายหมุน 180 องศา',
                 style: TextStyles.common2,
                 softWrap: true,
                     overflow: TextOverflow.visible,

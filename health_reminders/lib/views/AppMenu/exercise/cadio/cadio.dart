@@ -4,8 +4,13 @@ import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
 import 'package:health_reminders/styles/custom_app_bar.dart';
 import 'package:health_reminders/styles/text.dart';
+import 'package:health_reminders/views/AppMenu/exercise/cadio/BicycleCrunch.dart';
 import 'package:health_reminders/views/AppMenu/exercise/cadio/Jumpingjack.dart';
-import 'package:health_reminders/views/AppMenu/exercise/run/Threshold.dart';
+import 'package:health_reminders/views/AppMenu/exercise/cadio/LungeJump.dart';
+import 'package:health_reminders/views/AppMenu/exercise/cadio/MountainClimber.dart';
+import 'package:health_reminders/views/AppMenu/exercise/cadio/PushUpBurpee.dart';
+import 'package:health_reminders/views/AppMenu/exercise/cadio/SquatJump.dart';
+import 'package:health_reminders/views/AppMenu/exercise/run/LongRuns.dart';
 
 class cadioPage extends StatefulWidget {
   @override
@@ -78,12 +83,12 @@ class _cadioPageState extends State<cadioPage> {
                           style: buttonmanu,
                           onPressed: () {
                             // Handle the first button press
-                            /* print('Button 2 Pressed');
+                            print('Button 2 Pressed');
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => thresholdPage()),
-                            );*/
+                                  builder: (context) => BicycleCrunchPage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -122,11 +127,11 @@ class _cadioPageState extends State<cadioPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button go to exercisepage');
-                            /*Navigator.push(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => exercisePage()),
-                            );*/
+                                  builder: (context) => MountainClimberPage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -156,6 +161,11 @@ class _cadioPageState extends State<cadioPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 2 Pressed');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SquatJumpPage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -193,6 +203,11 @@ class _cadioPageState extends State<cadioPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 2 Pressed');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LungeJumpPage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -221,6 +236,11 @@ class _cadioPageState extends State<cadioPage> {
                           onPressed: () {
                             // Handle the first button press
                             print('Button 2 Pressed');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PushUpBurpeePage()),
+                            );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

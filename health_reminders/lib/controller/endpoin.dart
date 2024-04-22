@@ -39,9 +39,6 @@ class APIEndpoint {
       if (userQuery.docs.isNotEmpty) {
         // ครีนี้คือครีของเจ้าของอีเมลนี้
         String userId = userQuery.docs.first['userId'];
-
-        print('userId $userId');
-
         Navigator.pushReplacement(
           context,
           PageTransition(
@@ -56,11 +53,28 @@ class APIEndpoint {
 
         // ส่ง userId ไปยังหน้า homePage หรือทำอย่างอื่นต่อไปได้ตามต้องการ
       } else {
-        // ไม่พบข้อมูลผู้ใช้สำหรับอีเมลนี้
-        print('ไม่พบข้อมูลผู้ใช้สำหรับอีเมลนี้');
+        showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('แจ้งเตือน'),
+                            content:
+                                Text('ไม่พบข้อมูลผู้ใช้สำหรับอีเมลนี้'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('ตกลง'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+
         return false;
       }
-    } on Exception catch (e) {
+    } on FirebaseAuthException catch (e) {
       // TODO
       print("signIn Err : $e");
       return false;

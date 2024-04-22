@@ -19,6 +19,7 @@ class _MyLandingScreenState extends State<MyLandingScreen> {
     return Scaffold(
       backgroundColor: white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: white,
         elevation: 0,
       ),

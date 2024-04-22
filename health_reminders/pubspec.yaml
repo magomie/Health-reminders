@@ -94,12 +94,38 @@ flutter:
     - asset/image/cardio.png
     - asset/image/cardio1.jpg
     - asset/image/cardio-1.jpg
+    - asset/image/cardio-2.jpg
+    - asset/image/cardio-3.jpg
+    - asset/image/cardio-4.jpg
+    - asset/image/cardio-5.jpg
+    - asset/image/cardio-6.jpg
     - asset/image/aerobic.png
     - asset/image/aerobics.jpg
     - asset/image/arobic-1.jpg
+    - asset/image/arobic-2.jpg
+    - asset/image/arobic-3.jpg
+    - asset/image/arobic-4.jpg
+    - asset/image/arobic-5.jpg
+    - asset/image/arobic-6.jpg
+    - asset/image/arobic-7.jpg
+    - asset/image/arobic-8.jpg
+    - asset/image/arobic-9.jpg
+    - asset/image/arobic-10.jpg
+    - asset/image/arobic-11.jpg
+    - asset/image/arobic-12.jpg
+    - asset/image/arobic-13.jpg
+    - asset/image/arobic-14.jpg
+    - asset/image/arobic-15.jpg
+    - asset/image/arobic-16.jpg
     - asset/image/yoga.png
     - asset/image/yoga1.jpg
     - asset/image/yoga-1.jpg
+    - asset/image/yoga-2.jpg
+    - asset/image/yoga-3.jpg
+    - asset/image/yoga-4.jpg
+    - asset/image/yoga-5.jpg
+    - asset/image/yoga-6.jpg
+    - asset/image/yoga-7.jpg
     - asset/image/food.png
     - asset/image/calories.png
     - asset/image/news.png
@@ -107,6 +133,10 @@ flutter:
     - asset/image/water.png
     - asset/image/reminder.png
     - asset/image/xcercise.png
+    - asset/image/tempo.jpg
+    - asset/image/longrun.jpg
+    - asset/image/intervalrun.png
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
