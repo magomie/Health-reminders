@@ -31,52 +31,64 @@ class APIEndpoint {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      QuerySnapshot userQuery = await _firestore
-          .collection('users')
-          .where('email', isEqualTo: email)
-          .get();
+      if (userCredential.user != null) {
+        // ดึงข้อมูลผู้ใช้จาก Firestore
+        QuerySnapshot userQuery = await _firestore
+            .collection('users')
+            .where('email', isEqualTo: email)
+            .get();
 
-      if (userQuery.docs.isNotEmpty) {
-        // ครีนี้คือครีของเจ้าของอีเมลนี้
-        String userId = userQuery.docs.first['userId'];
-        Navigator.pushReplacement(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: homePage(
-              userId: userId,
+        if (userQuery.docs.isNotEmpty) {
+          // ครีนี้คือครีของเจ้าของอีเมลนี้
+          String userId = userQuery.docs.first['userId'];
+          Navigator.pushReplacement(
+            context,
+            PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: homePage(
+                userId: userId,
+              ),
             ),
-          ),
-        );
-
-        return true;
-
-        // ส่ง userId ไปยังหน้า homePage หรือทำอย่างอื่นต่อไปได้ตามต้องการ
-      } else {
-        showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('แจ้งเตือน'),
-                            content:
-                                Text('ไม่พบข้อมูลผู้ใช้สำหรับอีเมลนี้'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text('ตกลง'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-
+          );
+          return true;
+        }
         return false;
       }
-    } on FirebaseAuthException catch (e) {
-      // TODO
-      print("signIn Err : $e");
+      return false;
+    } catch (e) {
+      print('signIn Err: $e');
+      String errorMessage = 'เข้าสู่ระบบล้มเหลว';
+
+      if (e is FirebaseAuthException) {
+        if (e.code == 'invalid-email') {
+          errorMessage = 'อีเมลไม่ถูกต้อง';
+        } else if (e.code == 'wrong-password') {
+          errorMessage = 'รหัสผ่านไม่ถูกต้อง';
+        } else if (e.code == 'user-not-found') {
+          errorMessage = 'ไม่พบผู้ใช้งานนี้ในระบบ';
+        } else {
+          errorMessage =
+              'อีเมล หรือ รหัสผ่านของท่านไม่ถูกต้อง กรุณาตรวจสอบใหม่อีกครั้ง';
+        }
+      }
+
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('แจ้งเตือน'),
+            content: Text(errorMessage),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('ตกลง'),
+              ),
+            ],
+          );
+        },
+      );
       return false;
     }
   }

@@ -209,51 +209,55 @@ class _signUpScreenState extends State<signUpScreen> {
                           );
                         },
                       );
-                    } else if (passwordController.text.length < 6 ||
-                        passwordConfirmController.text.length < 6) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('แจ้งเตือน'),
-                            content:
-                                Text('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัว'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text('ตกลง'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                        .hasMatch(emailController.text)) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('แจ้งเตือน'),
-                            content: Text('อีเมลไม่ถูกต้อง'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text('ตกลง'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    } else {
-                      UserOperator.newSignUp(
-                          context,
-                          emailController.text,
-                          passwordController.text,
-                          passwordConfirmController.text);
+                    } else if (emailController.text.isNotEmpty &&
+                        passwordController.text.isNotEmpty &&
+                        passwordConfirmController.text.isNotEmpty) {
+                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                          .hasMatch(emailController.text)) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text('แจ้งเตือน'),
+                              content: Text('อีเมลไม่ถูกต้อง'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('ตกลง'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else if (passwordController.text.length < 6 ||
+                          passwordConfirmController.text.length < 6) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text('แจ้งเตือน'),
+                              content:
+                                  Text('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัว'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('ตกลง'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else {
+                        UserOperator.newSignUp(
+                            context,
+                            emailController.text,
+                            passwordController.text,
+                            passwordConfirmController.text);
+                      }
                     }
                   },
                   child: Text('สมัคร', style: TextStyles.Tlogin),
