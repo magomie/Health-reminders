@@ -674,7 +674,7 @@ class BMI_Widget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'ค่าดัชนีมวลกาย',
+                'ค่าดัชนีมวลกาย \n      (BMI)',
                 style: TextStyles.Thome,
               ),
               SizedBox(
@@ -727,7 +727,7 @@ class BMR_Widget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'อัตราการเผาพลาญ',
+                        'อัตราการเผาพลาญ (BMR)',
                         style: TextStyles.common2,
                       ),
                       SizedBox(
@@ -739,7 +739,6 @@ class BMR_Widget extends StatelessWidget {
                             healthDataSet['height'],
                             healthDataSet['gender'],
                             healthDataSet['age'],
-                            healthDataSet['exerciseLevel'],
                           )} กิโลแคลอรี่' : '0.0'}',
                         style: TextStyles.Tlogin,
                       ),
@@ -871,7 +870,7 @@ class ExerciseLevel_Widget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'ระดับการออกกำลังกาย: \n${healthDataSet['exerciseLevel'] == 0 ? "ไม่มีการออกกำลังกาย" : healthDataSet['exerciseLevel'] == 1 ? "ออกกำลังกายเล็กน้อยอาทิตย์ละ 1-3 วัน" : healthDataSet['exerciseLevel'] == 2 ? "ออกกำลังกายปานกลางอาทิตย์ละ 3-5 วัน" : healthDataSet['exerciseLevel'] == 3 ? "ออกกำลังกายอย่างหนักอาทิตย์ละ 6-7 วัน" : healthDataSet['exerciseLevel'] == 4 ? "ออกกำลังกายอย่างหนักทุกวัน" : ""}',
+                        'ระดับการออกกำลังกาย: ${healthDataSet['exerciseLevel'] == 0 ? "ระดับที่ 1 \nไม่มีการออกกำลังกาย" : healthDataSet['exerciseLevel'] == 1 ? "ระดับที่ 2 \nออกกำลังกายเล็กน้อยอาทิตย์ละ 1-3 วัน" : healthDataSet['exerciseLevel'] == 2 ? "ระดับที่ 3 \nออกกำลังกายปานกลางอาทิตย์ละ 3-5 วัน" : healthDataSet['exerciseLevel'] == 3 ? "ระดับที่ 4 \nออกกำลังกายอย่างหนักอาทิตย์ละ 6-7 วัน" : healthDataSet['exerciseLevel'] == 4 ? "ระดับที่ 5 \nออกกำลังกายอย่างหนักทุกวัน" : ""}',
                         style: TextStyle(
                           color: Colors.brown,
                           fontSize: 16,
@@ -982,6 +981,14 @@ class profileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double userBMR = calBMR(
+      healthDataSet['weight'],
+      healthDataSet['height'],
+      healthDataSet['gender'],
+      healthDataSet['age'],
+    );
+    double TDEE = bmrExercise(userBMR, healthDataSet['exerciseLevel']);
+
     return Container(
       color: white,
       child: Column(
@@ -1059,8 +1066,9 @@ class profileWidget extends StatelessWidget {
                   healthDataSet['height'],
                   healthDataSet['gender'],
                   healthDataSet['age'],
-                  healthDataSet['exerciseLevel'],
                 )} กิโลแคลอรี่' : 'ไม่มีข้อมูล'}'),
+          _buildHealthInfoRow('TDEE ',
+              '${healthDataSet != null ? '${TDEE} กิโลแคลอรี่' : 'ไม่มีข้อมูล'}'),
         ],
       ),
     );
@@ -1570,15 +1578,15 @@ double calBMI(double w, double h) {
   return double.parse(bmi.toStringAsFixed(2));
 }
 
-double calBMR(double w, double h, String gender, int age, int exerciseLevel) {
-  double tempBMR, BMR;
+double calBMR(double w, double h, String gender, int age) {
+  double BMR;
   if (gender == 'M') {
-    tempBMR = (66 + (13.7 * w) + (5 * h) - (6.8 * age));
-    BMR = bmrExercise(tempBMR, exerciseLevel);
+    BMR = (66 + (13.7 * w) + (5 * h) - (6.8 * age));
+    //BMR = bmrExercise(tempBMR, exerciseLevel);
     return double.parse(BMR.toStringAsFixed(2));
   } else if (gender == 'F') {
-    tempBMR = (665 + (9.6 * w) + (1.8 * h) - (4.7 * age));
-    BMR = bmrExercise(tempBMR, exerciseLevel);
+    BMR = (665 + (9.6 * w) + (1.8 * h) - (4.7 * age));
+    //BMR = bmrExercise(tempBMR, exerciseLevel);
     return double.parse(BMR.toStringAsFixed(2));
   } else {
     return 0;
@@ -1587,20 +1595,20 @@ double calBMR(double w, double h, String gender, int age, int exerciseLevel) {
 
 double bmrExercise(double bmr, int exerciseLevel) {
   double bmrDiv;
-  if (exerciseLevel == 1) {
+  if (exerciseLevel == 0) {
     bmrDiv = bmr * 1.2;
+    return double.parse(bmrDiv.toStringAsFixed(2));
+  } else if (exerciseLevel == 1) {
+    bmrDiv = bmr * 1.375;
     return double.parse(bmrDiv.toStringAsFixed(2));
   } else if (exerciseLevel == 2) {
-    bmrDiv = bmr * 1.2;
+    bmrDiv = bmr * 1.55;
     return double.parse(bmrDiv.toStringAsFixed(2));
   } else if (exerciseLevel == 3) {
-    bmrDiv = bmr * 1.2;
+    bmrDiv = bmr * 1.7;
     return double.parse(bmrDiv.toStringAsFixed(2));
   } else if (exerciseLevel == 4) {
-    bmrDiv = bmr * 1.2;
-    return double.parse(bmrDiv.toStringAsFixed(2));
-  } else if (exerciseLevel == 5) {
-    bmrDiv = bmr * 1.2;
+    bmrDiv = bmr * 1.9;
     return double.parse(bmrDiv.toStringAsFixed(2));
   } else {
     return 0;
@@ -1755,7 +1763,7 @@ class NotificationServices {
         channelKey: 'cal_reminder',
         title: 'คำเตือนแคลอรี่',
         body:
-            'คุณได้บริโภคแคลอรี่มากกว่า BMR ของคุณแล้ว! โปรดระมัดระวังในการบริโภค',
+            'คุณได้บริโภคแคลอรี่มากกว่าพลังงานที่คุณจะได้รับแล้ว! โปรดระมัดระวังในการบริโภค',
         category: NotificationCategory.Reminder,
         notificationLayout: NotificationLayout.BigText,
         locked: true,
@@ -2063,7 +2071,7 @@ class BuildFoodListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double userBMR;
+    double userBMR, TDEE;
 
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('foods').snapshots(),
@@ -2196,8 +2204,10 @@ class BuildFoodListView extends StatelessWidget {
                               healthDataSet['height'],
                               healthDataSet['gender'],
                               healthDataSet['age'],
-                              healthDataSet['exerciseLevel'],
                             );
+
+                            TDEE = bmrExercise(
+                                userBMR, healthDataSet['exerciseLevel']);
 
                             UserOperator.addFoodUser(
                               context,
@@ -2208,7 +2218,7 @@ class BuildFoodListView extends StatelessWidget {
                               double.parse(foodList['fat'].toString()),
                               double.parse(foodList['suger'].toString()),
                               double.parse(foodList['sodium'].toString()),
-                              userBMR,
+                              TDEE,
                               label,
                             );
                           },

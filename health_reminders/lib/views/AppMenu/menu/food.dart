@@ -94,7 +94,7 @@ class _foodPageState extends State<foodPage> {
                 'หวาน',
                 'เครื่องดื่ม',
                 'ผลไม้',
-                'อื่นๆ',
+                'ผัก',
               ],
               onToggle: (index) {
                 setState(() {
@@ -112,7 +112,7 @@ class _foodPageState extends State<foodPage> {
                           ? _buildFoodContent('เครื่องดื่ม')
                           : _toggleValue == 3
                               ? _buildFoodContent('ผลไม้')
-                              : _buildFoodContent('อื่นๆ'),
+                              : _buildFoodContent('ผัก'),
             ),
           ],
         ),

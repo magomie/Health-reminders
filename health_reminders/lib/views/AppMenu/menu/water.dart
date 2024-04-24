@@ -87,6 +87,21 @@ class waterPage extends StatelessWidget {
                     height: 20,
                   ),
                   Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            '*กรอกเฉพาะปริมาณของน้ำเปล่าเท่านั้น*',
+                            style: TextStyles.common7,
+                            textAlign: TextAlign.end,
+                          ),
+                          SizedBox(width: 40.0),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

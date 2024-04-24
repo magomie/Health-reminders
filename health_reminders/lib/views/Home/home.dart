@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/widgets.dart';
 import 'package:health_reminders/controller/plugin.dart';
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
@@ -154,9 +156,11 @@ class HomePageContent extends StatelessWidget {
                             size: 15.0,
                           ),
                           SizedBox(width: 8),
-                          Text(
-                            'เมนู',
-                            textAlign: TextAlign.end,
+                          Flexible(
+                            child: Text(
+                              'เมนู',
+                              textAlign: TextAlign.end,
+                            ),
                           ),
                         ],
                       ),
@@ -198,7 +202,9 @@ class HomePageContent extends StatelessWidget {
                                   width: 50.0,
                                   height: 50.0,
                                 ),
-                                Text('คำนวณแคลอรี่', style: TextStyles.common4),
+                                Flexible(
+                                    child: Text('คำนวณแคลอรี่',
+                                        style: TextStyles.common4)),
                               ],
                             ),
                           ),
@@ -232,7 +238,9 @@ class HomePageContent extends StatelessWidget {
                                   width: 50.0,
                                   height: 50.0,
                                 ),
-                                Text('อาหาร', style: TextStyles.common4),
+                                Flexible(
+                                    child: Text('อาหาร',
+                                        style: TextStyles.common4)),
                               ],
                             ),
                           ),
@@ -264,7 +272,9 @@ class HomePageContent extends StatelessWidget {
                                   width: 50.0,
                                   height: 50.0,
                                 ),
-                                Text('น้ำ', style: TextStyles.common4),
+                                Flexible(
+                                    child:
+                                        Text('น้ำ', style: TextStyles.common4)),
                               ],
                             ),
                           ),
@@ -306,7 +316,9 @@ class HomePageContent extends StatelessWidget {
                                   width: 50.0,
                                   height: 50.0,
                                 ),
-                                Text('ออกกำลังกาย', style: TextStyles.common4),
+                                Flexible(
+                                    child: Text('ออกกำลังกาย',
+                                        style: TextStyles.common4)),
                               ],
                             ),
                           ),
@@ -340,7 +352,9 @@ class HomePageContent extends StatelessWidget {
                                   width: 50.0,
                                   height: 50.0,
                                 ),
-                                Text('BMI/BMR', style: TextStyles.common4),
+                                Flexible(
+                                    child: Text('BMI/BMR',
+                                        style: TextStyles.common4)),
                               ],
                             ),
                           ),
@@ -374,7 +388,9 @@ class HomePageContent extends StatelessWidget {
                                   width: 50.0,
                                   height: 50.0,
                                 ),
-                                Text('แจ้งเตือน', style: TextStyles.common4),
+                                Flexible(
+                                    child: Text('แจ้งเตือน',
+                                        style: TextStyles.common4)),
                               ],
                             ),
                           ),
@@ -418,8 +434,10 @@ class HomePageContent extends StatelessWidget {
                                   width: 50.0,
                                   height: 50.0,
                                 ),
-                                Text('ข่าวสารสุขภาพ',
-                                    style: TextStyles.common4),
+                                Flexible(
+                                  child: Text('ข่าวสารสุขภาพ',
+                                      style: TextStyles.common4),
+                                ),
                               ],
                             ),
                           ),

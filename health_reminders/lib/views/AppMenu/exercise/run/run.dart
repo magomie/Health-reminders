@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:health_reminders/styles/button.dart';
 import 'package:health_reminders/styles/color.dart';
@@ -85,7 +86,6 @@ class _runPageState extends State<runPage> {
                               MaterialPageRoute(
                                   builder: (context) => TempoRunsPage()),
                             );
-                           
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -98,8 +98,7 @@ class _runPageState extends State<runPage> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Tempo Runs',
-                                  style: TextStyles.Tlogin),
+                              Text('Tempo Runs', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -112,19 +111,18 @@ class _runPageState extends State<runPage> {
                 height: 10,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 200.0),
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                 child: Row(
                   children: [
                     Expanded(
                       child: Container(
-                        width: double
-                            .infinity, // ตั้งค่าเป็น double.infinity เพื่อให้ช่องว่างทั้งหมดเท่ากัน
+                        width: double.infinity,
                         height: 200.0,
                         child: ElevatedButton(
                           style: buttonmanu,
                           onPressed: () {
                             // Handle the first button press
-                            print('Button go to exercisepage');
+                            print('Button 3 Pressed');
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -142,11 +140,17 @@ class _runPageState extends State<runPage> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Interval Runs',
-                                  style: TextStyles.Tlogin),
+                              Text('Interval Runs', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
+                      ),
+                    ),
+                    SizedBox(width: 10.0),
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 200.0,
                       ),
                     ),
                   ],

@@ -47,7 +47,7 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
     'ของหวาน',
     'เครื่องดื่ม',
     'ผลไม้',
-    'อื่นๆ',
+    'ผัก',
   ];
 
   @override
@@ -299,10 +299,10 @@ class _admin_add_foodPageState extends State<admin_add_foodPage> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                          vertical: 12.0, horizontal: 30.0),
+                                      vertical: 12.0, horizontal: 30.0),
                                   child: Container(
                                     width: double.infinity,
-                      height: 48.0,
+                                    height: 48.0,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                         color: Colors.grey,

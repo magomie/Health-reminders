@@ -237,6 +237,12 @@ class _MyBarGraphState extends State<MyBarGraph> {
             rightTitles: AxisTitles(
               sideTitles: SideTitles(showTitles: false),
             ),
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                getTitlesWidget: getBottomTitles,
+              ),
+            ),
           ),
           barGroups: daysummary
               .asMap()
@@ -263,4 +269,61 @@ class _MyBarGraphState extends State<MyBarGraph> {
       );
     }
   }
+}
+
+Widget getBottomTitles(double value, TitleMeta meta) {
+  const style = TextStyle(
+    color: Colors.brown, // Assuming 'brown' is a defined color variable
+    fontFamily: 'Garuda',
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
+
+  late Widget text;
+  switch (value.toInt()) {
+    case 1:
+      text = const Text(
+        'จ.',
+        style: style,
+      );
+      break;
+    case 2:
+      text = const Text(
+        'อ.',
+        style: style,
+      );
+      break;
+    case 3:
+      text = const Text(
+        'พ.',
+        style: style,
+      );
+      break;
+    case 4:
+      text = const Text(
+        'พฤ.',
+        style: style,
+      );
+      break;
+    case 5:
+      text = const Text(
+        'ศ.',
+        style: style,
+      );
+      break;
+    case 6:
+      text = const Text(
+        'ส.',
+        style: style,
+      );
+      break;
+    case 7:
+      text = const Text(
+        'อา.',
+        style: style,
+      );
+      break;
+  }
+
+  return SideTitleWidget(axisSide: meta.axisSide, child: text);
 }

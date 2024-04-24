@@ -48,7 +48,7 @@ class _addmenucalPageState extends State<addmenucalPage> {
     'ของหวาน',
     'เครื่องดื่ม',
     'ผลไม้',
-    'อื่นๆ',
+    'ผัก',
   ];
 
   @override
@@ -121,8 +121,9 @@ class _addmenucalPageState extends State<addmenucalPage> {
                 healthData['height'],
                 healthData['gender'],
                 healthData['age'],
-                healthData['exerciseLevel'],
               );
+
+              double TDEE = bmrExercise(userBMR, healthData['exerciseLevel']);
 
               return SingleChildScrollView(
                 child: Center(
@@ -377,7 +378,7 @@ class _addmenucalPageState extends State<addmenucalPage> {
                                   double.parse(fatController.text.trim()),
                                   double.parse(sweetController.text.trim()),
                                   double.parse(sodiumController.text.trim()),
-                                  userBMR,
+                                  TDEE,
                                   selectedFoodLabel!);
                             }
 

@@ -93,7 +93,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
               padding: const EdgeInsets.only(left: 31.0),
               child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                 Text(
-                  'คำนวณค่าดัชนีมวลกาย',
+                  'คำนวณค่าดัชนีมวลกาย (BMI)',
                   style: TextStyles.common4,
                 ),
               ]),
@@ -134,22 +134,39 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
                           SizedBox(
                             height: 5,
                           ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text('น้ำหนักตัว (กิโลกรัม)',
-                                style: TextStyles.common2),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text('÷', style: TextStyles.common3),
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text('ส่วนสูง (เมตร) x ส่วนสูง (เมตร)',
-                                style: TextStyles.common2),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text('BMI =', style: TextStyles.common2),
+                              ),
+                              Column(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Text('น้ำหนักตัว (กิโลกรัม)',
+                                        style: TextStyles.common2),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Text('÷', style: TextStyles.common3),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                        'ส่วนสูง (เมตร) x ส่วนสูง (เมตร)',
+                                        style: TextStyles.common2),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                            ],
                           ),
                         ],
                       )),
@@ -190,7 +207,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
               padding: const EdgeInsets.only(left: 31.0),
               child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                 Text(
-                  'คำนวณอัตราการเผาพลาญ',
+                  'คำนวณอัตราการเผาพลาญ (BMR)',
                   style: TextStyles.common4,
                 ),
               ]),
@@ -252,7 +269,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
                         Align(
                           alignment: Alignment.center,
                           child: Text(
-                              '66 + (13.7 x น้ำหนักตัว กก.) + (5 x ส่วนสูง ซม.) - (6.8 x อายุ) ',
+                              'BMR = 66 + (13.7 x น้ำหนักตัว กก.) + (5 x ส่วนสูง ซม.) - (6.8 x อายุ) ',
                               style: TextStyles.common2),
                         ),
                         SizedBox(
@@ -265,7 +282,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
                         Align(
                           alignment: Alignment.center,
                           child: Text(
-                              '665 + (9.6 x น้ำหนักตัว กก.) + (1.8 x ส่วนสูง ซม.) - (4.7 x อายุ)',
+                              'BMR = 665 + (9.6 x น้ำหนักตัว กก.) + (1.8 x ส่วนสูง ซม.) - (4.7 x อายุ)',
                               style: TextStyles.common2),
                         ),
                         SizedBox(
@@ -273,7 +290,7 @@ class _bmi_bmr_pageState extends State<bmi_bmr_page> {
                         ),
                         Align(
                           alignment: Alignment.center,
-                          child: Text('BMR x ระดับการออกกำลังกาย',
+                          child: Text('TDEE = BMR x ระดับการออกกำลังกาย',
                               style: TextStyles.common2),
                         ),
                       ],
