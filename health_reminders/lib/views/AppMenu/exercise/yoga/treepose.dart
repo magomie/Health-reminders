@@ -18,7 +18,7 @@ class _treeposePageState extends State<treeposePage> {
           onBackButtonPressed: () {
             Navigator.pop(context);
           },
-          title: "Tree Pose"),
+          title: "ท่าต้นไม้"),
 
       body: SafeArea(
         child: Padding(
@@ -52,6 +52,48 @@ class _treeposePageState extends State<treeposePage> {
                     overflow: TextOverflow.visible,
                   ),
                 ]),
+                 SizedBox(
+              height: 15,
+            ),
+            Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 70,
+                  width: 330,
+                  decoration: BoxDecoration(
+                    //border: Border.all(color: brown, width: 1.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: aa,
+                        // blurRadius:5.0,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 11, top: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          child: Text('เสริมกล้ามเนื้อขาและสะโพก',
+                              style: TextStyles.common3),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text('อัตราการเผาพลาญ 2-4 กิโลแคลอรี่ต่อนาที',
+                              style: TextStyles.common2),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ]),
         ),
       ),

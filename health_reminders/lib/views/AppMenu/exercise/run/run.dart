@@ -58,14 +58,14 @@ class _runPageState extends State<runPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/longruns.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Long Runs', style: TextStyles.Tlogin),
+                              Text('การวิ่งยาว', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -91,14 +91,14 @@ class _runPageState extends State<runPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/tempos.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Tempo Runs', style: TextStyles.Tlogin),
+                              Text('การวิ่งสม่ำเสมอ', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -111,7 +111,7 @@ class _runPageState extends State<runPage> {
                 height: 10,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                padding: const EdgeInsets.only(left: 20.0, right: 200.0),
                 child: Row(
                   children: [
                     Expanded(
@@ -133,26 +133,20 @@ class _runPageState extends State<runPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/run.jpg',
+                                'asset/image/intervalruns.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Interval Runs', style: TextStyles.Tlogin),
+                              Text('การวิ่งเบาสลับหนัก', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(width: 10.0),
-                    Expanded(
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: 200.0,
-                      ),
-                    ),
+                    
                   ],
                 ),
               ),

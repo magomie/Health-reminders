@@ -168,6 +168,110 @@ class _appinformationPageState extends State<appinformationPage> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  children: [
+                    Container(
+                      height: 260,
+                      width: 320,
+                      decoration: BoxDecoration(
+                        //border: Border.all(color: brown, width: 1.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: aa,
+                            // blurRadius:5.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Align(
+                              child: Text(
+                                  'Total Daily Energy Expenditure (TDEE)',
+                                  style: TextStyles.common2),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text('- ไม่ออกกำลังกายหรือทำงานนั่งโต๊ะ',
+                                  style: TextStyles.common2),
+                            ),
+                            Align(
+                              child: Text('TDEE = BMRx1.2',
+                                  style: TextStyles.common2),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                  '- ออกกำลังกายเบาๆ (1-2 ครั้งต่อสัปดาห์)',
+                                  style: TextStyles.common2),
+                            ),
+                            Align(
+                              child: Text('TDEE = BMRx1.375',
+                                  style: TextStyles.common2),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                  '- ออกกำลังกายปานกลาง (3-5 ครั้งต่อสัปดาห์)',
+                                  style: TextStyles.common2),
+                            ),
+                            Align(
+                              child: Text('TDEE = BMRx1.55',
+                                  style: TextStyles.common2),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                  '- ออกกำลังกายหนัก (6-7 ครั้งต่อสัปดาห์)',
+                                  style: TextStyles.common2),
+                            ),
+                            Align(
+                              child: Text('TDEE = BMRx1.725',
+                                  style: TextStyles.common2),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                  '- ออกกำลังกายหนักมาก (ทุกวัน วันละ 2 เวลา)',
+                                  style: TextStyles.common2),
+                            ),
+                            Align(
+                              child: Text('TDEE = BMRx1.9',
+                                  style: TextStyles.common2),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

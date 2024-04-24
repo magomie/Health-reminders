@@ -30,12 +30,52 @@ class tappingPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Text(
-                'การแตะด้วยส้นเท้าข้างใดข้างหนึ่ง โดยแตะข้างหน้าหรือด้านหลัง',
-                style: TextStyles.common2,
-               softWrap: true,
-                    overflow: TextOverflow.visible,
+              Column(
+                children: [
+                  Text(
+                    'การยกเท้าหนึ่งไปด้านข้างแล้วยกเท้าอีกข้างหนึ่งไปแตะแล้วทำสลับกัน ทิศทางการเคลื่อนไหวจะเป็นการก้าวแตะที่อยู่กับที่หรือเป็นรูปตัวแอล',
+                    style: TextStyles.common2,
+                   softWrap: true,
+                        overflow: TextOverflow.visible,
+                  ),
+                ],
               ),
+              SizedBox(
+              height: 15,
+            ),
+            Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 50,
+                  width: 330,
+                  decoration: BoxDecoration(
+                    //border: Border.all(color: brown, width: 1.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: aa,
+                        // blurRadius:5.0,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 11, top: 13),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text('อัตราการเผาพลาญ 100-200 กิโลแคลอรี่ต่อชั่วโมง',
+                              style: TextStyles.common2),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
             ],
           ),
         ),

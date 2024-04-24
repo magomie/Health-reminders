@@ -61,14 +61,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/jj.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Jumping Jack', style: TextStyles.Tlogin),
+                              Text('ท่ากระโดดตบ', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -94,14 +94,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/bc.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Bicycle Crunch', style: TextStyles.Tlogin),
+                              Text('ท่าปั่นจักรยานอากาศ', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -137,14 +137,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/mc.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Mountain Climber',
+                              Text('ท่าปีนเขา',
                                   style: TextStyles.Tlogin),
                             ],
                           ),
@@ -171,14 +171,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/sj.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Squat Jump', style: TextStyles.Tlogin),
+                              Text('ท่าสควอทจั๊มพ์', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -213,14 +213,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/lj.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Lunge Jump', style: TextStyles.Tlogin),
+                              Text('ท่ากระโดดสลับย่อขา', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -246,14 +246,14 @@ class _cadioPageState extends State<cadioPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/cardio1.jpg',
+                                'asset/image/bp.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Push-Up Burpee', style: TextStyles.Tlogin),
+                              Text('ท่าพุ่งหลัง', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),

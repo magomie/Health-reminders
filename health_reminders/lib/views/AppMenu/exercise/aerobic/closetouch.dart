@@ -30,12 +30,52 @@ class closetouchPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Text(
-                'การทำก้าวชิดก้าวแตะ หรือการทำก้าวแตะ 2 ครั้ง',
-                style: TextStyles.common2,
-                softWrap: true,
-                    overflow: TextOverflow.visible,
+              Column(
+                children: [
+                  Text(
+                    'กการแตะด้วยส้นเท้าข้างใดข้างหนึ่ง โดยแตะข้างหน้าหรือด้านหลัง 2 ครั้ง',
+                    style: TextStyles.common2,
+                    softWrap: true,
+                        overflow: TextOverflow.visible,
+                  ),
+                ],
               ),
+              SizedBox(
+              height: 15,
+            ),
+            Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 50,
+                  width: 330,
+                  decoration: BoxDecoration(
+                    //border: Border.all(color: brown, width: 1.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: aa,
+                        // blurRadius:5.0,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 11, top: 13),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text('อัตราการเผาพลาญ 150-300 กิโลแคลอรี่ต่อชั่วโมง',
+                              style: TextStyles.common2),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
             ],
           ),
         ),

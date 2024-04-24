@@ -62,14 +62,14 @@ class _yogaPageState extends State<yogaPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/yoga1.jpg',
+                                'asset/image/dfd.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Downward Facing Dog',
+                              Text('ท่าสุนัขก้มหน้า',
                                   style: TextStyles.Tlogin),
                             ],
                           ),
@@ -96,14 +96,14 @@ class _yogaPageState extends State<yogaPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/yoga1.jpg',
+                                'asset/image/wp.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Warrior Pose', style: TextStyles.Tlogin),
+                              Text('ท่านักรบ', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -139,14 +139,14 @@ class _yogaPageState extends State<yogaPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/yoga1.jpg',
+                                'asset/image/tp.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Tree Pose', style: TextStyles.Tlogin),
+                              Text('ท่าต้นไม้', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -172,14 +172,14 @@ class _yogaPageState extends State<yogaPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/yoga1.jpg',
+                                'asset/image/ybp.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Bridge Pose', style: TextStyles.Tlogin),
+                              Text('ท่าสะพาน', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -214,14 +214,14 @@ class _yogaPageState extends State<yogaPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/yoga1.jpg',
+                                'asset/image/ytp.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Triangle Pose', style: TextStyles.Tlogin),
+                              Text('ท่าตรีโกณ', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -247,14 +247,14 @@ class _yogaPageState extends State<yogaPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/yoga1.jpg',
+                                'asset/image/cp.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('Cobra Pose', style: TextStyles.Tlogin),
+                              Text('ท่างู', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),
@@ -289,14 +289,14 @@ class _yogaPageState extends State<yogaPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'asset/image/yoga1.jpg',
+                                'asset/image/ycp.png',
                                 width: 110,
                                 height: 110,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text('LChair Pose', style: TextStyles.Tlogin),
+                              Text('ท่าเก้าอี้', style: TextStyles.Tlogin),
                             ],
                           ),
                         ),

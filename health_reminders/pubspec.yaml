@@ -136,6 +136,33 @@ flutter:
     - asset/image/tempo.jpg
     - asset/image/longrun.jpg
     - asset/image/intervalrun.png
+    - asset/image/intervalruns.png
+    - asset/image/tempos.png
+    - asset/image/jj.png
+    - asset/image/lj.png
+    - asset/image/mc.png
+    - asset/image/sj.png
+    - asset/image/bc.png
+    - asset/image/bp.png
+    - asset/image/tp.png
+    - asset/image/wp.png
+    - asset/image/ybp.png
+    - asset/image/ycp.png
+    - asset/image/cp.png
+    - asset/image/dfd.png
+    - asset/image/ytp.png
+    - asset/image/ask.png
+    - asset/image/mi.png
+    - asset/image/st.png
+    - asset/image/ts.png
+    - asset/image/twis.png
+
+
+
+
+
+
+    
 
 
   # The following line ensures that the Material Icons font is

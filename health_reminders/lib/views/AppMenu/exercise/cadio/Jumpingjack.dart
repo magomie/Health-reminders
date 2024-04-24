@@ -18,7 +18,7 @@ class _JumpingjackPageState extends State<JumpingjackPage> {
           onBackButtonPressed: () {
             Navigator.pop(context);
           },
-          title: "Jumping Jack"),
+          title: "กระโดดตบ"),
 
       body: SafeArea(
         child: Padding(
@@ -64,6 +64,49 @@ class _JumpingjackPageState extends State<JumpingjackPage> {
                     overflow: TextOverflow.visible,
                   ),
                 ]),
+            SizedBox(
+              height: 15,
+            ),
+            Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 70,
+                  width: 330,
+                  decoration: BoxDecoration(
+                    //border: Border.all(color: brown, width: 1.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: aa,
+                        // blurRadius:5.0,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 11, top: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          child: Text(
+                              'เน้นกล้ามเนื้อขา แขน เร่งการเต้นของหัวใจ',
+                              style: TextStyles.common3),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text('อัตราการเผาพลาญ 5-10 กิโลแคลอรี่ต่อนาที',
+                              style: TextStyles.common2),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ]),
         ),
       ),
