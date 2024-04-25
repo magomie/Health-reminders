@@ -171,6 +171,14 @@ class _appinformationPageState extends State<appinformationPage> {
                 SizedBox(
                   height: 10,
                 ),
+               
+                Text(
+                  'ระดับการออกกำลังกาย',
+                  style: TextStyles.Tlogin,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Column(
                   children: [
                     Container(
